@@ -1,0 +1,207 @@
+C:\Users\DURBAY\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.AssemblyReference.cache
+C:\Users\DURBAY\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CoreCompileInputs.cache
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll.config
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.pdb
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.xml
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CopyComplete
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+C:\Users\DURBAY\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll.config
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.pdb
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.xml
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.AssemblyReference.cache
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CopyComplete
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+C:\Users\LENOVO\Source\Repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll.config
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.pdb
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.xml
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.AssemblyReference.cache
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CoreCompileInputs.cache
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CopyComplete
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+D:\Work\Nueva carpeta\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll.config
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.pdb
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.xml
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.AssemblyReference.cache
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CoreCompileInputs.cache
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CopyComplete
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+D:\Work\ElectroPeru\Fuente\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll.config
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.pdb
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.xml
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.AssemblyReference.cache
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CopyComplete
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+C:\Users\Sebastian\source\repos\STR_SERVICE_INTEGRATION_EAR\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll.config
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\STR_SERVICE_INTEGRATION_EAR.EL.pdb
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Newtonsoft.Json.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\RestSharp.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Buffers.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Memory.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Numerics.Vectors.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Encodings.Web.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Text.Json.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\bin\Debug\System.ValueTuple.xml
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.AssemblyReference.cache
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CoreCompileInputs.cache
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.csproj.CopyComplete
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.dll
+D:\Work\ElectroPeru\Fuente1501\STR_SERVICE_INTEGRATION_EAR.SL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.SL.pdb

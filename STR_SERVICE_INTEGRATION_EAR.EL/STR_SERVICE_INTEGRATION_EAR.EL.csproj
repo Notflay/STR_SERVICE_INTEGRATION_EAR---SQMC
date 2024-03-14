@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC683C68-E894-470F-B426-BE8096D77AC6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STR_SERVICE_INTEGRATION_EAR.EL</RootNamespace>
+    <AssemblyName>STR_SERVICE_INTEGRATION_EAR.EL</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commons\AttatchmentSerializer.cs" />
+    <Compile Include="Commons\B1SLLogin.cs" />
+    <Compile Include="Commons\B1SLLoginResponse.cs" />
+    <Compile Include="Commons\ConsultationResponse.cs" />
+    <Compile Include="Commons\Departamento.cs" />
+    <Compile Include="Commons\Distrito.cs" />
+    <Compile Include="Commons\Provincia.cs" />
+    <Compile Include="Commons\RendicionDetSerializer.cs" />
+    <Compile Include="Commons\RendicionSerializer.cs" />
+    <Compile Include="Commons\SUNAT.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\AperturaRequest.cs" />
+    <Compile Include="Requests\ComprobanteRequest.cs" />
+    <Compile Include="Requests\PresupuestoRq.cs" />
+    <Compile Include="Responses\CFGeneral.cs" />
+    <Compile Include="Requests\Document.cs" />
+    <Compile Include="Requests\Documento.cs" />
+    <Compile Include="Requests\DocumentoDet.cs" />
+    <Compile Include="Requests\Login.cs" />
+    <Compile Include="Requests\Rendicion.cs" />
+    <Compile Include="Requests\Rq_Aprobacion.cs" />
+    <Compile Include="Requests\Service.cs" />
+    <Compile Include="Requests\SolicitudRD.cs" />
+    <Compile Include="Requests\SolicitudRDdet.cs" />
+    <Compile Include="Requests\SolicitudRDSerializer.cs" />
+    <Compile Include="Requests\Usuario.cs" />
+    <Compile Include="Responses\Aprobador.cs" />
+    <Compile Include="Responses\CargaArchivo.cs" />
+    <Compile Include="Responses\CentroCosto.cs" />
+    <Compile Include="Responses\ComprobanteResponses.cs" />
+    <Compile Include="Responses\CreateDocument.cs" />
+    <Compile Include="Responses\CreateResponse.cs" />
+    <Compile Include="Responses\Cup.cs" />
+    <Compile Include="Responses\Direccion.cs" />
+    <Compile Include="Responses\Complemento.cs" />
+    <Compile Include="Responses\ErrorSL.cs" />
+    <Compile Include="Responses\FileRS.cs" />
+    <Compile Include="Responses\InfoRuc.cs" />
+    <Compile Include="Responses\Item.cs" />
+    <Compile Include="Responses\LoginElecResponse.cs" />
+    <Compile Include="Responses\LoginResponse.cs" />
+    <Compile Include="Responses\Precio.cs" />
+    <Compile Include="Responses\Proveedor.cs" />
+    <Compile Include="Responses\AprobadorResponse.cs" />
+    <Compile Include="Responses\TokenResponses.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
