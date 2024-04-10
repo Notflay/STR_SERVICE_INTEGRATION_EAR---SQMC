@@ -26,7 +26,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class Sq_Rendicion
     {
-        HanaADOHelper hash = new HanaADOHelper();
+        SqlADOHelper hash = new SqlADOHelper();
 
         public ConsultationResponse<Rendicion> ListarSolicitudesS(string usrCreate, string usrAsig, int perfil, string fecIni, string fecFin, string nrRendi, string estado, string area)
         {

@@ -15,7 +15,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/proveedor")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [TokenAuthorization]
+    //[TokenAuthorization]
     public class ProveedorController : ApiController
     {
         [Route]

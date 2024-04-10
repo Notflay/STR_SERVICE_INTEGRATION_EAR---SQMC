@@ -14,7 +14,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
     public class SQ_Ubicacion
     {
 
-        HanaADOHelper hash = new HanaADOHelper();
+        SqlADOHelper hash = new SqlADOHelper();
         public ConsultationResponse<Departamento> ObtenerDepartamentos()
         {
             string pais = "PE";

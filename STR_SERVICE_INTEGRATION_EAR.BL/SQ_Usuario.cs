@@ -17,129 +17,13 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class SQ_Usuario
     {
-        /*
-        public ConsultationResponse<Item> getItem(string id)
-        {
-
-            var qry = "SELECT \"ItemCode\",\"ItemName\" FROM OITM WHERE \"ItemCode\" = '{0}'";
-            var respOk = "OK";
-            var respIncorrect = "No Hay Items";
-            var mensaje = "";
-
-            HanaADOHelper hash = new HanaADOHelper();
-
-            try
-            {
-                List<Item> list = hash.GetResultAsType(qry, dc =>
-                {
-
-
-                    return new Item
-                    {
-                        ItemCode = dc["ItemCode"],
-                        ItemName = dc["ItemName"]
-                    };
-                }, id).ToList();
-
-                return new ConsultationResponse<Item>
-                {
-                    CodRespuesta = list.Count() > 0 ? "00" : "22",
-                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
-                    Result = list
-                };
-
-            }
-            catch (Exception ex)
-            {
-                return new ConsultationResponse<Item>
-                {
-                    CodRespuesta = "99",
-                    DescRespuesta = ex.Message,
-
-                };
-            }
-
-        }
-        public ConsultationResponse<Item> getItems(int cantidad)
-        {
-
-            var qry = "SELECT TOP {0} \"ItemCode\",\"ItemName\" FROM OITM";
-            var respOk = "OK";
-            var respIncorrect = "No Hay Items";
-            var mensaje = "";
-
-            HanaADOHelper hash = new HanaADOHelper();
-
-            try
-            {
-                List<Item> list = hash.GetResultAsType(qry, dc =>
-                {
-                    return new Item
-                    {
-                        ItemCode = dc["ItemCode"],
-                        ItemName = dc["ItemName"]
-                    };
-                }, cantidad.ToString()).ToList();
-
-                return new ConsultationResponse<Item>
-                {
-                    CodRespuesta = list.Count() > 0 ? "00" : "22",
-                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
-                    Result = list
-                };
-
-            }
-            catch (Exception ex)
-            {
-                return new ConsultationResponse<Item>
-                {
-                    CodRespuesta = "99",
-                    DescRespuesta = ex.Message,
-
-                };
-            }
-
-        }
-        /*
-        public object getUsuario(int id, string campo)
-        {
-            var respOk = "OK";
-            var respIncorrect = "No se encuentra usuario";
-
-            HanaADOHelper hash = new HanaADOHelper();
-
-            try
-            {
-                List<string> list = new List<string>
-                {
-                    hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_infUser), campo, id.ToString()).ToString()
-                };
-
-                return new ConsultationResponse<string>
-                {
-                    CodRespuesta = list.Count() == 1 ? "00" : list.Count() > 1 ? "01" : "22",
-                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
-                    Result = list
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ConsultationResponse<string>
-                {
-                    CodRespuesta = "99",
-                    DescRespuesta = ex.Message,
-
-                };
-            }
-        }
-        */
-
+       
         public async Task<ConsultationResponse<LoginElecResponse>> ValidaSesionAsync(EL.Requests.Login login)
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentró sesión ";
 
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             List<LoginElecResponse> loginElecResponses = new List<LoginElecResponse>();
 
             try
@@ -206,7 +90,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respOk = "OK";
             var respIncorrect = "No se encuentra Usuarios";
 
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
 
             try
             {
@@ -241,7 +125,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respOk = "OK";
             var respIncorrect = "No se encuentra usuario registrado en SAP";
 
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             SQ_Complemento sQ = new SQ_Complemento();
 
             try
@@ -286,7 +170,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respOk = "OK";
             var respIncorrect = "No se encuentra usuario registrado en SAP";
 
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             SQ_Complemento sQ = new SQ_Complemento();
 
             try
@@ -332,7 +216,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respOk = "OK";
             var respIncorrect = "No se encuentra usuario";
 
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
 
             try
             {

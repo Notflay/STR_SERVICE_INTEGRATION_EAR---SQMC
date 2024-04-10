@@ -12,7 +12,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class SQ_Proveedor
     {
-        HanaADOHelper hash = new HanaADOHelper();
+        SqlADOHelper hash = new SqlADOHelper();
         public ConsultationResponse<Proveedor> ObtenerProveedores()
         {
             var respIncorrect = "No Hay Proveedores";

@@ -14,7 +14,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class sQ_Apertura
     {
-        HanaADOHelper hash = new HanaADOHelper();
+        SqlADOHelper hash = new SqlADOHelper();
         public ConsultationResponse<Complemento> CreaApertura(AperturaRequest apertura)
         {
             var respIncorrect = "No se terminó de crear Apertura";

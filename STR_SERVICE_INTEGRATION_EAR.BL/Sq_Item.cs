@@ -12,7 +12,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class Sq_Item
     {
-        HanaADOHelper hash = new HanaADOHelper();
+        SqlADOHelper hash = new SqlADOHelper();
         public ConsultationResponse<Item> ObtenerItems(string ear, string sede)
         {
             var respIncorrect = "No se encuentra Items";

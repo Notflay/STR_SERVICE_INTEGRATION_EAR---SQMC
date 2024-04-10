@@ -26,7 +26,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentra Estados";
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
 
             try
             {
@@ -61,7 +61,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentra Estado";
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             try
             {
                 List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_estado), dc =>
@@ -95,7 +95,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentra data con el Field ID " + id.ToString();
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             try
             {
                 if (id == -99) throw new Exception("No se encuentra data con el Field ID " + id.ToString());
@@ -131,7 +131,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se encontró tipo de documentos";
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             try
             {
                 // if (id == "-99") throw new Exception("No se encuentra data con el Field ID " + id.ToString());
@@ -166,7 +166,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se encontró tipo de documento";
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             try
             {
                 // if (id == "-99") throw new Exception("No se encuentra data con el Field ID " + id.ToString());
@@ -202,7 +202,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentra data con el Field ID " + id.ToString();
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             try
             {
                 if (id == "-99") throw new Exception("No se encuentra data con el Field ID " + id.ToString());
@@ -240,7 +240,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respIncorrect = "No se encontró plantilla";
             List<Complemento> list = new List<Complemento>();
 
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             try
             {
 
@@ -305,7 +305,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respIncorrect = "No se encontró plantilla";
             List<Complemento> list = new List<Complemento>();
 
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             try
             {
 
@@ -342,7 +342,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respIncorrect = "No se encontró presupuesto";
 
 
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
             try
             {                                                                               // get_presupuesto
                 List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_presupuestoPrd), dc =>

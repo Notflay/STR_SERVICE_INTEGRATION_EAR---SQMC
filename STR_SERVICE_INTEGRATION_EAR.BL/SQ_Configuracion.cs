@@ -17,7 +17,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentra Sociedad";
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
 
            sociedad =  ConfigurationManager.AppSettings["CompanyDB"].ToString();
 
@@ -64,7 +64,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentra Ruta de anexo";
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
 
             try
             {

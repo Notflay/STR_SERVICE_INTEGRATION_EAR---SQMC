@@ -25,7 +25,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class Sq_SolicitudRd
     {
-        HanaADOHelper hash = new HanaADOHelper();
+        SqlADOHelper hash = new SqlADOHelper();
         public ConsultationResponse<Complemento> CreaSolicitudRd(SolicitudRD solicitudRD)
         {
             var respIncorrect = "Solicitud de Detalle";

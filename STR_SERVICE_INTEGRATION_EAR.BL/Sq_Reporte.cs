@@ -139,7 +139,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se generó reporte";
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
 
             try
             {
@@ -167,7 +167,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             var respOk = "OK";
             var respIncorrect = "No se generó reporte";
-            HanaADOHelper hash = new HanaADOHelper();
+            SqlADOHelper hash = new SqlADOHelper();
 
             try
             {
