@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Email\EnviarEmail.cs" />
+    <Compile Include="Encript.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Plantilla\Plantilla.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

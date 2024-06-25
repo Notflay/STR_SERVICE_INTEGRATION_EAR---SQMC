@@ -69,61 +69,16 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         //}
         [HttpPost]
         [Route("login")]
-        public async Task<IHttpActionResult> ObtieneSesion(EL.Requests.Login login)
+        public async Task<IHttpActionResult> ObtieneSesion(EL.Requests.LoginRequest login)
         {
-            SQ_Usuario sQ = new SQ_Usuario();
-            if (Prod)
+            SQ_Usuario sq = new SQ_Usuario();
+            var response = sq.ObtieneSesion(login);
+
+            if (response.CodRespuesta == "99")
             {
-
-                var response = await sQ.ValidaSesionAsync(login);
-
-                if (response.CodRespuesta == "99")
-                {
-                    return BadRequest(response.DescRespuesta);
-                }
-                else
-                {
-                    // Continua validando información del usuario 
-
-                    var body = response.Result[0];
-
-                    var respo2 = sQ.getUsuario2(body.username);
-
-                    if (respo2.CodRespuesta == "22")
-                    {
-                        return BadRequest(response.DescRespuesta);
-                    }
-                    else
-                    {
-                        string token = EncrypHelper.GenerarToken(login.username + login.password);
-                        respo2.Token = token;
-
-                        return Ok(respo2);
-                    }
-                }
+                return BadRequest(response.DescRespuesta);
             }
-            else
-            {
-                // Usuario Basico          -- proveedor06   853
-                // Usuario Autorizador     -- luis1         848 
-                // Usuario Autorizador2    -- pedro1        910
-                // Usuario Contable        -- roony1        1474
-                // Usuario Admin           -- jasmin1       1481 
-
-                var response = sQ.getUsuario2(login.username);
-
-                if (response.CodRespuesta == "22")
-                {
-                    return BadRequest(response.DescRespuesta);
-                }
-                else
-                {
-                    string token = EncrypHelper.GenerarToken(login.username + login.password);
-                    response.Token = token;
-
-                    return Ok(response);
-                }
-            }
+            return Ok(response);
         }
 
         static bool ValidateCredentials(string username, string password)

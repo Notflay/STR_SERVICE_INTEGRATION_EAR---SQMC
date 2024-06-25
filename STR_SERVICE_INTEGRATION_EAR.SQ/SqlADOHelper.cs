@@ -53,6 +53,47 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
 
         }
 
+        public IEnumerable<T> GetResultAsTypeDirecta<T>(string qry, GetValues<T> getValues, params string[] prms)
+        {
+            SqlConnectionManager hcm = new SqlConnectionManager();
+            SqlConnection hc = null;
+
+            try
+            {
+                hc = hcm.GetConnection();
+                SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                hcm.OpenConnection();
+                SqlDataReader hdr = cmd.ExecuteReader();
+                //List<T> lstTemp = new List<T>();
+                while (hdr.Read())
+                {
+                    var dc = new Dictionary<string, string>();
+
+                    for (int i = 0; i < hdr.FieldCount; i++)
+                    {
+                        try
+                        {
+                            // Verifica si el valor del campo es DBNull.Value antes de convertirlo a cadena
+                            object fieldValue = hdr[i];
+                            dc[hdr.GetName(i)] = fieldValue != DBNull.Value ? fieldValue.ToString() : "";
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    }
+
+                    yield return getValues(dc);
+                }
+            }
+            finally
+            {
+                if (hc?.State == System.Data.ConnectionState.Open)
+                    hcm.CloseConnection();
+            }
+
+        }
+
         public string insertValueSql(string qry, params object[] prms)
         {
             SqlConnectionManager hcm = new SqlConnectionManager();

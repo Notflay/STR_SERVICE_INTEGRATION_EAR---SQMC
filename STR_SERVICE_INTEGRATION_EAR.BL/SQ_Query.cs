@@ -8,6 +8,10 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class SQ_Query
     {
+        public static readonly string get_tokenPass = "ObtenerContraseniaUsuario";
+        public static readonly string get_infoUser = "ObtenerInformacionUsuario";
+
+
         public static readonly string get_infUser = "InformacionUsuario";
         public static readonly string get_infUser2 = "InformacionUsuario2";
         public static readonly string get_cfGeneral = "ObtenerConfGeneral";

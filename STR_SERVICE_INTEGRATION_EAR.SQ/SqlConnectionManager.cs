@@ -17,8 +17,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
         public SqlConnection GetConnection()
         {
             sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["hanaRAM"].ConnectionString);
-            return sqlConnection;
-            
+            return sqlConnection; 
         }
 
         public void OpenConnection()

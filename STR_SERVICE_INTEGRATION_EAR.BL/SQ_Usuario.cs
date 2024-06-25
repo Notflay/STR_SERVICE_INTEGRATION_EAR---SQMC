@@ -12,77 +12,53 @@ using STR_SERVICE_INTEGRATION_EAR.EL.Responses;
 using System.Configuration;
 using System.Net.Http;
 using Newtonsoft.Json;
+using DocumentFormat.OpenXml.Math;
 
 namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class SQ_Usuario
     {
-       
-        public async Task<ConsultationResponse<LoginElecResponse>> ValidaSesionAsync(EL.Requests.Login login)
+        public string nombreDB = ConfigurationManager.AppSettings["CompanyDB"];
+
+        public ConsultationResponse<Usuario> ObtieneSesion(LoginRequest user)
         {
             var respOk = "OK";
-            var respIncorrect = "No se encuentró sesión ";
+            var respIncorrect = "Usuario y/o contraseña incorrecta";
 
             SqlADOHelper hash = new SqlADOHelper();
-            List<LoginElecResponse> loginElecResponses = new List<LoginElecResponse>();
 
             try
             {
+                // Obtiene VALOR de la contraseña - Si no hay nada Es incorrecta
+                string passActual = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_tokenPass), user.username);
 
-                string uri = ConfigurationManager.AppSettings["rutaLogin"].ToString();
-                if (string.IsNullOrEmpty(uri))
+                if (string.IsNullOrWhiteSpace(passActual)) throw new Exception(respIncorrect);
+
+                // Obtiencontraseña y hace la validación
+                Encript validacion = new Encript();
+                bool reslt = validacion.ValidarCredenciales(passActual, user.password);
+
+                if (!reslt) throw new Exception(respIncorrect);
+
+                List<Usuario> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_infoUser), dc =>
                 {
-                    throw new Exception("No se encontró ruta de inicio de sesión, conctactar al administrador");
-                }
-             
-
-                var json = JsonConvert.SerializeObject(login);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                var request = new HttpRequestMessage()
-                {
-                    RequestUri = new Uri(uri),
-                    Method = HttpMethod.Post,
-                };
-
-
-
-                using (var client = new HttpClient())
-                {
-                    var response = await client.PostAsync(new Uri(uri), content);
-
-
-                    if (response.IsSuccessStatusCode)
+                    return new Usuario()
                     {
-                        LoginElecResponse respon = JsonConvert.DeserializeObject<LoginElecResponse>(response.Content.ReadAsStringAsync().Result);
+                        empID = Convert.ToInt32(dc["RML_USUARIOSAP"]),
+                        Nombres = dc["Nombres"],
+                        activo = Convert.ToInt32(dc["RML_ACTIVO"]),
+                        TipoUsuario = Convert.ToInt32(dc["RML_RODL_ID"]),
+                        SubGerencia = Convert.ToInt32(dc["branch"]),
+                        sex = dc["sex"]
+                    };
+                }, nombreDB, user.username).ToList();
 
-                        if (respon.isValid)
-                        {
-                            loginElecResponses.Add(respon);
-                            return Global.ReturnOk(loginElecResponses, respIncorrect);
-                        }
-                        else
-                        {
-                            throw new Exception("Contraseña o Usuario incorrecto, intentar nuevamente");
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("Contraseña o Usuario incorrecto, intentar nuevamente");
-                    }
-                }
-
+                return Global.ReturnOk(list, respIncorrect);
             }
             catch (Exception ex)
             {
-                return new ConsultationResponse<LoginElecResponse>
-                {
-                    CodRespuesta = "99",
-                    DescRespuesta = ex.Message,
-
-                };
+                return Global.ReturnError<Usuario>(ex);
             }
-
         }
 
         public ConsultationResponse<Usuario> getUsuarios()
@@ -91,6 +67,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respIncorrect = "No se encuentra Usuarios";
 
             SqlADOHelper hash = new SqlADOHelper();
+
+            string bd = ConfigurationManager.AppSettings["CompanyDBINT"];
 
             try
             {
@@ -101,7 +79,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         empID = Convert.ToInt32(dc["empID"]),
                         Nombres = dc["Nombres"]
                     };
-                }, string.Empty).ToList();
+                }, bd).ToList();
 
                 return new ConsultationResponse<Usuario>
                 {
@@ -135,15 +113,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     return new Usuario
                     {
                         empID = Convert.ToInt32(dc["empID"]),
-                        sex = dc["sex"],
-                        jobTitle = dc["jobTitle"],
-                        TipoUsuario = Convert.ToInt32(dc["U_STR_TIPO_USUARIO"]),
-                        Nombres = dc["Nombres"],
-                        SubGerencia = Convert.ToInt32(dc["branch"]),
-                        dept = Convert.ToInt32(dc["dept"]),
-                        email = dc["email"],
-                        fax = dc["fax"],
-                        numeroEAR = dc["U_CE_CEAR"]
+                        //sex = dc["sex"],
+                        //jobTitle = dc["jobTitle"],
+                        //TipoUsuario = Convert.ToInt32(dc["U_STR_TIPO_USUARIO"]),
+                        //Nombres = dc["Nombres"],
+                        //SubGerencia = Convert.ToInt32(dc["branch"]),
+                        //dept = Convert.ToInt32(dc["dept"]),
+                        //email = dc["email"],
+                        //fax = dc["fax"],
+                        //numeroEAR = dc["U_CE_CEAR"]
                     };
                 }, id.ToString()).ToList();
 
@@ -180,16 +158,16 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     return new Usuario
                     {
                         empID = Convert.ToInt32(dc["empID"]),
-                        sex = dc["sex"],
-                        jobTitle = dc["jobTitle"],
-                        TipoUsuario = Convert.ToInt32(dc["U_STR_TIPO_USUARIO"]),
-                        Nombres = dc["Nombres"],
-                        SubGerencia = Convert.ToInt32(dc["branch"]),
-                        dept = Convert.ToInt32(dc["dept"]),
-                        email = dc["email"],
-                        fax = dc["fax"],
-                        numeroEAR = dc["U_CE_CEAR"],
-                        CostCenter = dc["CostCenter"]
+                        //sex = dc["sex"],
+                        //jobTitle = dc["jobTitle"],
+                        //TipoUsuario = Convert.ToInt32(dc["U_STR_TIPO_USUARIO"]),
+                        //Nombres = dc["Nombres"],
+                        //SubGerencia = Convert.ToInt32(dc["branch"]),
+                        //dept = Convert.ToInt32(dc["dept"]),
+                        //email = dc["email"],
+                        //fax = dc["fax"],
+                        //numeroEAR = dc["U_CE_CEAR"],
+                        //CostCenter = dc["CostCenter"]
                     };
                 }, id).ToList();
 
