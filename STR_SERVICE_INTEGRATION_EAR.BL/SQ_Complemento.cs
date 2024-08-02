@@ -17,12 +17,13 @@ using System.Web.Http;
 using OfficeOpenXml;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
+using System.Security.Policy;
 
 namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class SQ_Complemento
     {
-        public ConsultationResponse<Complemento> ObtenerEstados(string filtro)
+        public ConsultationResponse<Complemento> ObtenerEstados(int area, int tipoUsuario, int trans)
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentra Estados";
@@ -34,10 +35,137 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
                     return new Complemento
                     {
-                        Id = Convert.ToInt32(dc["ID"]),
-                        Nombre = dc["DESCRIPCION"]
+                        id = dc["ID"],
+                        name = dc["RML_DESCRIPCION"]
                     };
-                }, filtro).ToList();
+                }, area.ToString(),tipoUsuario.ToString(),trans.ToString()).ToList();
+
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = list.Count() > 0 ? "00" : "22",
+                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
+                    Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = "99",
+                    DescRespuesta = ex.Message,
+
+                };
+            }
+        }
+        public ConsultationResponse<Complemento> ObtenerMonedas()
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estados";
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_monedas), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["CurrCode"],
+                        name = dc["CurrName"]
+                    };
+                }, string.Empty).ToList();
+
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = list.Count() > 0 ? "00" : "22",
+                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
+                    Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = "99",
+                    DescRespuesta = ex.Message,
+
+                };
+            }
+        }
+        public Complemento ObtenerMoneda(string id)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estados";
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_moneda), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["CurrCode"],
+                        name = dc["CurrName"]
+                    };
+                }, id).ToList();
+
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public ConsultationResponse<Impuesto> ObtenerWtliable(string tipo)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estados";
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<Impuesto> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_wtliable), dc =>
+                {
+                    return new Impuesto
+                    {
+                        code = dc["WTCode"],
+                        descripcion = dc["WTName"],
+                        rate = Convert.ToDecimal(dc["Rate"])
+                    };
+                }, tipo).ToList();
+
+                return new ConsultationResponse<Impuesto>
+                {
+                    CodRespuesta = list.Count() > 0 ? "00" : "22",
+                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
+                    Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ConsultationResponse<Impuesto>
+                {
+                    CodRespuesta = "99",
+                    DescRespuesta = ex.Message,
+
+                };
+            }
+        }
+        public ConsultationResponse<Complemento> ObtenerTipoOperacion()
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estados";
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_tpoperacion), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["U_NUM"],
+                        name = dc["U_descrp"]
+                    };
+                }, string.Empty).ToList();
 
                 return new ConsultationResponse<Complemento>
                 {
@@ -57,21 +185,69 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             }
         }
 
-        public ConsultationResponse<Complemento> ObtenerEstado(int id)
+        public Complemento ObtenerTipoOperacion(string id)
         {
-            var respOk = "OK";
-            var respIncorrect = "No se encuentra Estado";
+            var respIncorrect = "No se encontró indicador";
             SqlADOHelper hash = new SqlADOHelper();
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_estado), dc =>
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_tpoperacionId), dc =>
                 {
                     return new Complemento
                     {
-                        Id = Convert.ToInt32(dc["ID"]),
-                        Nombre = dc["DESCRIPCION"]
+                        id = dc["U_NUM"],
+                        name = dc["U_descrp"]
                     };
-                }, id.ToString()).ToList();
+                }, id).ToList();
+
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public Impuesto ObtenerWtliableId(string id)
+        {
+            var respIncorrect = "No se encontró indicador";
+            SqlADOHelper hash = new SqlADOHelper();
+            try
+            {
+                List<Impuesto> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_wtliableId), dc =>
+                {
+                    return new Impuesto()
+                    {
+                        code = dc["WTCode"],
+                        descripcion = dc["WTName"],
+                        rate = Convert.ToDecimal(dc["Rate"])
+                    };
+                }, id).ToList();
+
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public ConsultationResponse<Complemento> ObtenerCECO(string dimcode)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estados";
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_centroCosto), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["OcrCode"],
+                        name = dc["OcrName"]
+                    };
+                }, dimcode).ToList();
 
                 return new ConsultationResponse<Complemento>
                 {
@@ -88,6 +264,115 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     DescRespuesta = ex.Message,
 
                 };
+            }
+        }
+
+        public Complemento ObtenerCECOId(string code)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estados";
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_centroCostoId), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["OcrCode"],
+                        name = dc["OcrName"]
+                    };
+                }, code).ToList();
+
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public ConsultationResponse<Complemento> ObtieneDataTablaIR()
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estados";
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_tablaIR), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["RML_ID"],
+                        name = dc["RML_DESCRIPCION"]
+                    };
+                }).ToList();
+
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = list.Count() > 0 ? "00" : "22",
+                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
+                    Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = "99",
+                    DescRespuesta = ex.Message,
+
+                };
+            }
+        }
+
+        public Complemento ObtieneDataTablaIR(string id)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estados";
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_tablaIRId), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["RML_ID"],
+                        name = dc["RML_DESCRIPCION"]
+                    };
+                }, id).ToList();
+                return list[0];
+               
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public Complemento ObtenerEstado(int id)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Estado";
+            SqlADOHelper hash = new SqlADOHelper();
+            try
+            {
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_estado), dc =>
+                {
+                    return new Complemento
+                    {
+                         id = dc["ID"],
+                        name = dc["RML_DESCRIPCION"]
+                    };
+                }, id.ToString()).ToList();
+
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
 
@@ -100,13 +385,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             {
                 if (id == -99) throw new Exception("No se encuentra data con el Field ID " + id.ToString());
 
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_comboTipos), dc =>
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_comboTipos), dc =>
                 {
                     return new Complemento
                     {
-                        Id = Convert.ToInt32(dc["Id"]),
-                        Nombre = dc["Nombre"],
-                        Descripcion = dc["Descripcion"]
+                        id = dc["Nombre"],
+                        name = dc["Descripcion"]
+                        //Id = Convert.ToInt32(dc["Id"]),
+                        //Nombre = dc["Nombre"],
+                        //Descripcion = dc["Descripcion"]
                     };
                 }, id.ToString()).ToList();
 
@@ -127,6 +414,34 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 };
             }
         }
+        public Complemento ObtenerDesplegableId(string campoId, string valor)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra data con el Field ID " ;
+            SqlADOHelper hash = new SqlADOHelper();
+            try
+            {
+                //if (id == -99) throw new Exception("No se encuentra data con el Field ID " );
+
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_comboTiposPorId), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["Nombre"],
+                        name = dc["Descripcion"]
+                        //Id = Convert.ToInt32(dc["Id"]),
+                        //Nombre = dc["Nombre"],
+                        //Descripcion = dc["Descripcion"]
+                    };
+                }, campoId,valor).ToList();
+
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public ConsultationResponse<Complemento> ObtenerTpoDocumentos()
         {
             var respOk = "OK";
@@ -136,7 +451,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             {
                 // if (id == "-99") throw new Exception("No se encuentra data con el Field ID " + id.ToString());
 
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_tpoDocumentos), dc =>
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_tpoDocumentos), dc =>
                 {
                     return new Complemento
                     {
@@ -171,7 +486,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             {
                 // if (id == "-99") throw new Exception("No se encuentra data con el Field ID " + id.ToString());
 
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_tpoDocumento), dc =>
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_tpoDocumento), dc =>
                 {
                     return new Complemento
                     {
@@ -197,7 +512,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 };
             }
         }
-
         public ConsultationResponse<Complemento> ObtenerDesplegablePorId(string campo, string id)
         {
             var respOk = "OK";
@@ -207,13 +521,13 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             {
                 if (id == "-99") throw new Exception("No se encuentra data con el Field ID " + id.ToString());
 
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_comboTiposPorId), dc =>
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_comboTiposPorId), dc =>
                 {
                     return new Complemento
                     {
-                        Id = Convert.ToInt32(dc["Id"]),
-                        Nombre = dc["Nombre"],
-                        Descripcion = dc["Descripcion"]
+                        //Id = Convert.ToInt32(dc["Id"]),
+                        //Nombre = dc["Nombre"],
+                        //Descripcion = dc["Descripcion"]
                     };
                 }, campo, id).ToList();
 

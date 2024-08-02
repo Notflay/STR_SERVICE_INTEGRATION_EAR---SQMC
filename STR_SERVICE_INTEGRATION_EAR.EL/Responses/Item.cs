@@ -10,9 +10,9 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Responses
     {
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
-        public string posFinanciera { get; set; }
-        public string id { get; set; }
-        public string name { get; set; }    
-        public string CTA { get; set; }
+        //public string posFinanciera { get; set; }
+        //public string id { get; set; }
+        //public string name { get; set; }    
+        //public string CTA { get; set; }
     }
 }

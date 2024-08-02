@@ -11,12 +11,12 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
     {
         public int id { get; set; }
         public int ID { get; set; }
-        public string STR_CODARTICULO { get; set; }
-        public string STR_CONCEPTO { get; set; }
-        public double STR_TOTAL { get; set; }
-        public int STR_CANTIDAD { get; set; }
-        public string STR_POSFINAN { get; set; }
-        public string STR_CUP { get; set; }
+        public string RML_CODARTICULO { get; set; }
+        public string RML_CONCEPTO { get; set; }
+        public double RML_TOTAL { get; set; }
+        public int RML_CANTIDAD { get; set; }
+        public string RML_POSFINAN { get; set; }
+        public string RML_CUP { get; set; }
         public int SR_ID { get; set; }
         public Item articulo { get; set; }
         //public List<Complemento> centCostos { get; set; }

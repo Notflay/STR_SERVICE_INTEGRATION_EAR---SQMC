@@ -10,7 +10,21 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
     {
         public static readonly string get_tokenPass = "ObtenerContraseniaUsuario";
         public static readonly string get_infoUser = "ObtenerInformacionUsuario";
-
+        public static readonly string get_monedas = "ObtenerMonedas";
+        public static readonly string get_moneda = "ObtenerMoneda";
+        public static readonly string get_wtliable = "ObtenerWliable";
+        public static readonly string get_wtliableId = "ObtenerWliableID";
+        public static readonly string get_tablaIR = "ObtenerTablaIR";
+        public static readonly string get_tablaIRId = "ObtenerTablaIRId";
+        public static readonly string get_centroCosto = "ObtenerCeCo";
+        public static readonly string get_centroCostoId = "ObtenerCeCoId";
+        public static readonly string get_tpoperacion = "ObtenerTipoOperacion";
+        public static readonly string get_tpoperacionId = "ObtenerTipoOperacionID";
+        public static readonly string get_cuentacontable = "ObtieneCuentaContable";
+        public static readonly string get_cuentacontableId = "ObtieneCuentaContableId";
+        public static readonly string get_almacenes = "ObtieneAlmacenes";
+        public static readonly string get_almacenesId = "ObtieneAlmacenesId";
+        public static readonly string get_empleado = "obtenerEmpleado";
 
         public static readonly string get_infUser = "InformacionUsuario";
         public static readonly string get_infUser2 = "InformacionUsuario2";
@@ -30,15 +44,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public static readonly string get_proveedor = "ObtenerProveedor";
         public static readonly string get_items = "ListardItems";
         public static readonly string get_item = "ObtenerItem";
-        public static readonly string get_centroCosto = "ObtenerCeCo";
+        
         public static readonly string get_obtenCup = "ListardCup";
         public static readonly string get_obtieneCup = "ObtenCUP";
         public static readonly string get_precioUnitario = "ListarPrecioUnitario";
         public static readonly string get_rutaAdjSap = "ObtenerRutaArchivosSAP";
         public static readonly string post_insertSR = "InsertaSoliRendicion";
         public static readonly string post_insertRD = "InsertaSoliRendicion";
-        public static readonly string post_insertDOC = "InsertRegistroDoc";
-        public static readonly string post_insertDOCDt = "InsertRegistroDocDt";
+        public static readonly string post_insertDOC = "InsertRegiRMLoDoc";
+        public static readonly string post_insertDOCDt = "InsertRegiRMLoDocDt";
         public static readonly string post_insertRendicion = "InsertRendicion";
         public static readonly string post_pendientesBorrador = "InsertTotalPendientesBorr";
         public static readonly string get_pendienteBorradorId = "ObtieneTtPendienteBorr";

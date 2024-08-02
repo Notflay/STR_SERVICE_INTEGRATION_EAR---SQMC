@@ -11,7 +11,27 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Commons
     {
         [JsonProperty("Creator")]
         public string Creador { get; set; }
-        [JsonProperty("U_CE_MNDA")]
+        [JsonProperty("U_ER_MNDA")]
+        public string Moneda { get; set; }
+        [JsonProperty("U_ER_FCRG")]
+        public string FechaCargaDocs { get; set; }   // Fecha de Carga
+        [JsonProperty("U_ER_NMBR")]
+        public string UsuarioEARCod { get; set; }
+        [JsonProperty("U_ER_NMRO")]
+        public string NumRendicion { get; set; }
+        [JsonProperty("U_ER_SLDI")]
+        public double SaldoApertura { get; set; }
+        [JsonProperty("U_ER_SLDF")]
+        public double SaldoFinal { get; set; } // Defecto 0.0
+        [JsonProperty("U_ER_TTDC")]
+        public double DocsTotal { get; set; }
+        [JsonProperty("U_STR_WEB_AUTPRI")]
+        public string PrimerAutorizador { get; set; }
+        [JsonProperty("U_STR_WEB_AUTSEG")]
+        public string SegundoAutorizador { get; set; }
+        [JsonProperty("U_STR_WEB_AUTCON")]
+        public string ContableAutorizador { get; set; }
+        /*
         public string Moneda { get; set; }
         [JsonProperty("U_CE_NMBR")]
         public string UsuarioEARCod { get; set; }
@@ -31,16 +51,12 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Commons
         public string TipoRendicion { get; set; }       // EAR
         [JsonProperty("U_CE_ESTADO")]
         public string Estado { get; set; }
-        public string U_STR_WEB_EMPASIG { get; set; }
-        public string U_STR_WEB_PRIID { get; set; }
-        public string U_STR_WEB_SEGID { get; set; }
-        public string U_STR_WEB_CONID { get; set; }
-        //[JsonProperty("U_STR_WEB_AUTPRI")]
-        //public string PrimerAutorizador { get; set; }
-        //[JsonProperty("U_STR_WEB_AUTSEG")]
-        //public string SegundoAutorizador { get; set; }
-        //[JsonProperty("U_STR_WEB_AUTCON")]
-        //public string ContableAutorizador { get; set; }
+        */
+        //public string U_RML_WEB_EMPASIG { get; set; }
+        //public string U_RML_WEB_PRIID { get; set; }
+        //public string U_RML_WEB_SEGID { get; set; }
+        //public string U_RML_WEB_CONID { get; set; }
+
         public List<RendicionDetSerializer> STR_EARCRGDETCollection { get; set; }
     }
 }

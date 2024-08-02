@@ -18,7 +18,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/rendicion")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [TokenAuthorization]
+    //[TokenAuthorization]
     public class RendicionController : ApiController
     {
 

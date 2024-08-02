@@ -10,14 +10,14 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/estado")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [TokenAuthorization]
+    //[TokenAuthorization]
     public class EstadoController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult Get(string filtro)
+        public IHttpActionResult Get(int area,int tipoUsuario, int trans)
         {
             SQ_Complemento sQ_Estado = new SQ_Complemento();
-            var response = sQ_Estado.ObtenerEstados(filtro);
+            var response = sQ_Estado.ObtenerEstados(area, tipoUsuario, trans);
             return Ok(response);
         }
         [HttpGet]

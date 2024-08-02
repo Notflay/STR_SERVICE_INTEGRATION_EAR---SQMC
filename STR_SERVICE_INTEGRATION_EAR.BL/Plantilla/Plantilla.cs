@@ -87,19 +87,19 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             DateTime fechaDocumento = DateTime.Parse(cab.Cells[row, 3].Text);
             DateTime fechaVencimiento = DateTime.Parse(cab.Cells[row, 4].Text);
 
-            documento.STR_FECHA_CONTABILIZA = fechaContabiliza.ToString("yyyy-MM-dd");
-            documento.STR_FECHA_DOC = fechaDocumento.ToString("yyyy-MM-dd");
-            documento.STR_FECHA_VENCIMIENTO = fechaVencimiento.ToString("yyyy-MM-dd");
-            documento.STR_PROVEEDOR = cab.Cells[row, 5].Text == "" ? null : new Proveedor { CardCode = cab.Cells[row, 5].Text };
-            documento.STR_TIPO_AGENTE = cab.Cells[row, 6].Text == "" ? null : new Complemento { id = cab.Cells[row, 6].Text.Split('-')[0].Trim() };
-            documento.STR_MONEDA = cab.Cells[row, 7].Text == "" ? null : new Complemento { name = cab.Cells[row, 7].Text };
-            documento.STR_COMENTARIOS = cab.Cells[row, 8].Text;
-            documento.STR_TIPO_DOC = cab.Cells[row, 9].Text == "" ? null : new Complemento { id = cab.Cells[row, 9].Text.Split('-')[0].Trim() };
-            documento.STR_SERIE_DOC = cab.Cells[row, 10].Text;
-            documento.STR_CORR_DOC = cab.Cells[row, 11].Text;
-            documento.STR_TOTALDOC = Convert.ToDouble(cab.Cells[row, 12].Text);
-            documento.STR_RD_ID = Convert.ToInt32(cab.Cells[row, 13].Text);
-            documento.STR_OPERACION = "1";
+            documento.RML_FECHA_CONTABILIZA = fechaContabiliza.ToString("yyyy-MM-dd");
+            documento.RML_FECHA_DOC = fechaDocumento.ToString("yyyy-MM-dd");
+            documento.RML_FECHA_VENCIMIENTO = fechaVencimiento.ToString("yyyy-MM-dd");
+            documento.RML_PROVEEDOR = cab.Cells[row, 5].Text == "" ? null : new Proveedor { CardCode = cab.Cells[row, 5].Text };
+            documento.RML_TIPO_AGENTE = cab.Cells[row, 6].Text == "" ? null : new Complemento { id = cab.Cells[row, 6].Text.Split('-')[0].Trim() };
+            documento.RML_MONEDA = cab.Cells[row, 7].Text == "" ? null : new Complemento { name = cab.Cells[row, 7].Text };
+            documento.RML_COMENTARIOS = cab.Cells[row, 8].Text;
+            documento.RML_TIPO_DOC = cab.Cells[row, 9].Text == "" ? null : new Complemento { id = cab.Cells[row, 9].Text.Split('-')[0].Trim() };
+            documento.RML_SERIE_DOC = cab.Cells[row, 10].Text;
+            documento.RML_CORR_DOC = cab.Cells[row, 11].Text;
+            documento.RML_TOTALDOC = Convert.ToDouble(cab.Cells[row, 12].Text);
+            documento.RML_RD_ID = Convert.ToInt32(cab.Cells[row, 13].Text);
+            documento.RML_OPERACION = "1";
 
             /* Valores por Defecto */
 
@@ -122,16 +122,16 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
                     DocumentoDet documentoDet = new DocumentoDet()
                     {
-                        STR_CODARTICULO = new EL.Responses.Item { id = det.Cells[row, 2].Text, posFinanciera = det.Cells[row, 7].Text },
-                        STR_SUBTOTAL = Convert.ToDouble(det.Cells[row, 3].Text),
-                        STR_INDIC_IMPUESTO = new Complemento { id = det.Cells[row, 4].Text },
-                        STR_PROYECTO = new Complemento { name = det.Cells[row, 5].Text },
-                        STR_CENTCOSTO = new CentroCosto { CostCenter = det.Cells[row, 6].Text },
-                        //STR_POS_FINANCIERA = new Complemento { id = det.Cells[row, 7].Text },
-                        STR_CUP = new Cup { U_CUP = det.Cells[row, 8].Text },
-                        STR_ALMACEN = almacen,
-                        STR_TPO_OPERACION = tpoOpe,
-                        STR_CANTIDAD = cantidad
+                        RML_CODARTICULO = new EL.Responses.Item { ItemCode = det.Cells[row, 2].Text, ItemName = det.Cells[row, 7].Text },
+                        RML_SUBTOTAL = Convert.ToDecimal(det.Cells[row, 3].Text),
+                        //RML_INDIC_IMPUESTO = new Complemento { id = det.Cells[row, 4].Text },
+                        //RML_PROYECTO = new Complemento { name = det.Cells[row, 5].Text },
+                        //RML_CENTCOSTO = new CentroCosto { CostCenter = det.Cells[row, 6].Text },
+                        ////RML_POS_FINANCIERA = new Complemento { id = det.Cells[row, 7].Text },
+                        //RML_CUP = new Cup { U_CUP = det.Cells[row, 8].Text },
+                        //RML_ALMACEN = almacen,
+                        RML_TPO_OPERACION = tpoOpe,
+                        RML_CANTIDAD = cantidad
                     };
                     detalles.Add(documentoDet);
                 }
@@ -144,8 +144,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             Sq_Rendicion sq = new Sq_Rendicion();
 
             var data = sq.ObtenerRendicion(id.ToString()).Result[0];
-            almacen = data.STR_EMPLEADO_ASIGNADO.fax;
-            tpoRendicion = "1";//data.SOLICITUDRD.STR_TIPORENDICION;
+            almacen = data.RML_EMPLEADO_ASIGNADO.fax;
+            tpoRendicion = "1";//data.SOLICITUDRD.RML_TIPORENDICION;
 
         }
     }

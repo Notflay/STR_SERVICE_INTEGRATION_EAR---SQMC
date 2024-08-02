@@ -29,16 +29,16 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     return new CFGeneral
                     {
                         ID = Convert.ToInt32(dc["ID"]),
-                        STR_IMAGEN = dc["STR_IMAGEN"],
-                        STR_SOCIEDAD = dc["STR_SOCIEDAD"],
-                        STR_MAXADJRD = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_MAXADJRD"])) ? (int?)null : Convert.ToInt32(dc["STR_MAXADJRD"]),
-                        STR_MAXADJSR = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_MAXADJSR"])) ? (int?)null : Convert.ToInt32(dc["STR_MAXADJSR"]),
-                        STR_MAXAPRRD = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_MAXAPRRD"])) ? (int?)null : Convert.ToInt32(dc["STR_MAXAPRRD"]),
-                        STR_MAXAPRSR = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_MAXAPRSR"])) ? (int?)null : Convert.ToInt32(dc["STR_MAXAPRSR"]),
-                        STR_MAXRENDI_CURSO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_MAXRENDI_CURSO"])) ? (int?)null : Convert.ToInt32(dc["STR_MAXRENDI_CURSO"]),
-                        STR_OPERACION = dc["STR_OPERACION"],
-                        STR_PARTIDAFLUJO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_PARTIDAFLUJO"])) ? (int?)null : Convert.ToInt32(dc["STR_PARTIDAFLUJO"]),
-                        STR_PLANTILLARD = dc["STR_PLANTILLARD"]
+                        RML_IMAGEN = dc["RML_IMAGEN"],
+                        RML_SOCIEDAD = dc["RML_SOCIEDAD"],
+                        RML_MAXADJRD = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_MAXADJRD"])) ? (int?)null : Convert.ToInt32(dc["RML_MAXADJRD"]),
+                        RML_MAXADJSR = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_MAXADJSR"])) ? (int?)null : Convert.ToInt32(dc["RML_MAXADJSR"]),
+                        RML_MAXAPRRD = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_MAXAPRRD"])) ? (int?)null : Convert.ToInt32(dc["RML_MAXAPRRD"]),
+                        RML_MAXAPRSR = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_MAXAPRSR"])) ? (int?)null : Convert.ToInt32(dc["RML_MAXAPRSR"]),
+                        RML_MAXRENDI_CURSO = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_MAXRENDI_CURSO"])) ? (int?)null : Convert.ToInt32(dc["RML_MAXRENDI_CURSO"]),
+                        RML_OPERACION = dc["RML_OPERACION"],
+                        RML_PARTIDAFLUJO = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_PARTIDAFLUJO"])) ? (int?)null : Convert.ToInt32(dc["RML_PARTIDAFLUJO"]),
+                        RML_PLANTILLARD = dc["RML_PLANTILLARD"]
                     };
                 }, sociedad).ToList();
 
@@ -72,8 +72,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
                     return new Complemento
                     {
-                        Id = 1,
-                        Nombre = dc["Ruta"]
+                        //Id = 1,
+                        //Nombre = dc["Ruta"]
                     };
                 }, string.Empty).ToList();
 

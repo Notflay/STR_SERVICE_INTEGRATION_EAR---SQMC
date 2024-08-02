@@ -19,7 +19,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
             try
             {
-                List<Proveedor> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_proveedores), dc =>
+                List<Proveedor> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_proveedores), dc =>
                 {
                     return new Proveedor()
                     {
@@ -43,7 +43,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
             try
             {
-                List<Proveedor> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_proveedor), dc =>
+                List<Proveedor> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_proveedor), dc =>
                 {
                     return new Proveedor()
                     {

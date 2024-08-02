@@ -60,7 +60,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
 
             try
             {
-                hc = hcm.GetConnection();
+                hc = hcm.GetConnectionDirecta();
                 SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
                 hcm.OpenConnection();
                 SqlDataReader hdr = cmd.ExecuteReader();
@@ -107,7 +107,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
                 SqlDataReader hdr = cmd.ExecuteReader();
                 while (hdr.Read())
                 {
-                    result = hdr.GetString(0);
+                    result = hdr["ID"].ToString();
+
                 }
                 return result;
             }
@@ -143,6 +144,29 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
             try
             {
                 hc = hcm.GetConnection();
+                SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                hcm.OpenConnection();
+                SqlDataReader hdr = cmd.ExecuteReader();
+                while (hdr.Read())
+                {
+                    result = hdr.GetString(0);
+                }
+                return result;
+            }
+            finally
+            {
+                if (hc?.State == System.Data.ConnectionState.Open)
+                    hcm.CloseConnection();
+            }
+        }
+        public string GetValueSqlDrct(string qry, params string[] prms)
+        {
+            SqlConnectionManager hcm = new SqlConnectionManager();
+            SqlConnection hc = null;
+            string result = null;
+            try
+            {
+                hc = hcm.GetConnectionDirecta();
                 SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
                 hcm.OpenConnection();
                 SqlDataReader hdr = cmd.ExecuteReader();

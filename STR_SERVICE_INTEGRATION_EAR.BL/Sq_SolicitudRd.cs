@@ -31,24 +31,22 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respIncorrect = "Solicitud de Detalle";
             try
             {
+                // Obtener Usuario para completar Nombres
+                SQ_Usuario sQ = new SQ_Usuario();
+                Usuario usuarioNuevo = sQ.getUsuario(solicitudRD.RML_EMPLDASIG.empleadoID);
 
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertSR), solicitudRD.STR_EMPLDREGI, solicitudRD.STR_NRSOLICITUD, solicitudRD.STR_NRRENDICION, solicitudRD.STR_ESTADO, solicitudRD.STR_EMPLDASIG,
-                solicitudRD.STR_FECHAREGIS, solicitudRD.STR_UBIGEO, solicitudRD.STR_RUTA, solicitudRD.STR_RUTAANEXO, solicitudRD.STR_MOTIVO, solicitudRD.STR_FECHAINI,
-                solicitudRD.STR_FECHAFIN, solicitudRD.STR_FECHAVENC, solicitudRD.STR_MONEDA, solicitudRD.STR_TIPORENDICION, solicitudRD.STR_IDAPROBACION,
-                solicitudRD.STR_TOTALSOLICITADO, solicitudRD.STR_MOTIVOMIGR, solicitudRD.STR_DOCENTRY, solicitudRD.STR_ORDENVIAJE, solicitudRD.STR_AREA, solicitudRD.STR_NOMBRES);
+                string id = hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertSR),solicitudRD.RML_EMPLDREGI.empleadoID.ToString(),
+                    solicitudRD.RML_EMPLDASIG.empleadoID.ToString(), solicitudRD.RML_ESTADO.id,solicitudRD.RML_FECHAREGIS,solicitudRD.RML_RUTAANEXO,solicitudRD.RML_MONEDA?.id,
+                    solicitudRD.RML_TIPORENDICION?.id,solicitudRD.RML_DESCRIPCION,solicitudRD.RML_COMENTARIOS,solicitudRD.RML_TOTALSOLICITADO.ToString("F2"),
+                    usuarioNuevo.SubGerencia, usuarioNuevo.Nombres);
 
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_idSR), dc =>
-                {
-                    return new Complemento()
-                    {
-                        Id = Convert.ToInt32(dc["Id"]),
-                        Nombre = dc["Id"],
-                    };
-                }, solicitudRD.STR_EMPLDREGI.ToString()).ToList();
-
-                return Global.ReturnOk(list, respIncorrect);
+                if (string.IsNullOrEmpty(id))
+                    throw new Exception("No se pudo crear correctamente la Solicitud de Rendición");
+                List<Complemento> list = new List<Complemento>();
+                Complemento com = new Complemento() { id = id, name = id };
+                list.Add(com);
+                return Global.ReturnOk(list, "No se pudo crear correctamente la Solicitud de Rendición");
             }
-
             catch (Exception ex)
             {
                 return Global.ReturnError<Complemento>(ex);
@@ -122,7 +120,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             try
             {
 
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertSrDet), detalle.articulo?.id, detalle.articulo?.name, detalle.precioTotal, detalle.cantidad, detalle.posFinanciera?.name, detalle.cup?.U_CUP, detalle.SR_ID, detalle.ceco, detalle.ctc);
+                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertSrDet), detalle.articulo?.ItemCode, detalle.articulo?.ItemName, detalle.precioTotal, detalle.cantidad, detalle.posFinanciera?.name, detalle.cup?.U_CUP, detalle.SR_ID, detalle.ceco, detalle.ctc);
 
                 string id = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_idSrDet), string.Empty);
 
@@ -152,13 +150,13 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respIncorrect = "No se completo la actualización de la solicitud";
             try
             {
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_idSRDet), detalle.articulo.id, detalle.articulo.name, detalle.precioTotal, detalle.cantidad, detalle.posFinanciera.name, detalle.cup?.U_CUP, detalle.ceco, id);
+                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_idSRDet), detalle.articulo.ItemCode, detalle.articulo.ItemName, detalle.precioTotal, detalle.cantidad, detalle.posFinanciera.name, detalle.cup?.U_CUP, detalle.ceco, id);
 
                 List<Complemento> list = new List<Complemento>();
                 Complemento complemento = new Complemento()
                 {
-                    id = id.ToString(),
-                    Descripcion = "Actualizado exitosamente",
+                    //id = id.ToString(),
+                    //Descripcion = "Actualizado exitosamente",
                 };
 
                 list.Add(complemento);
@@ -196,19 +194,19 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             var respIncorrect = "No se completo la actualización de Sr";
             try
             {
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_idSR), solicitudRD.STR_EMPLDREGI, solicitudRD.STR_NRSOLICITUD, solicitudRD.STR_NRRENDICION, solicitudRD.STR_ESTADO, solicitudRD.STR_EMPLDASIG,
-                    solicitudRD.STR_FECHAREGIS, solicitudRD.STR_UBIGEO, solicitudRD.STR_RUTA, solicitudRD.STR_RUTAANEXO, solicitudRD.STR_MOTIVO, solicitudRD.STR_FECHAINI,
-                    solicitudRD.STR_FECHAFIN, solicitudRD.STR_FECHAVENC, solicitudRD.STR_MONEDA, solicitudRD.STR_TIPORENDICION, solicitudRD.STR_IDAPROBACION,
-                    solicitudRD.STR_TOTALSOLICITADO, solicitudRD.STR_MOTIVOMIGR, solicitudRD.STR_DOCENTRY, solicitudRD.STR_ORDENVIAJE, id);
+                // Obtener Usuario para completar Nombres
+                SQ_Usuario sQ = new SQ_Usuario();
+                Usuario usuarioNuevo = sQ.getUsuario(solicitudRD.RML_EMPLDASIG.empleadoID);
 
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_idSR), dc =>
-                {
-                    return new Complemento()
-                    {
-                        Id = Convert.ToInt32(dc["Id"]),
-                        Nombre = dc["Id"],
-                    };
-                }, solicitudRD.STR_EMPLDREGI.ToString()).ToList();
+                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_idSR), solicitudRD.RML_EMPLDASIG?.empleadoID,solicitudRD.RML_NRSOLICITUD,
+                    solicitudRD.RML_NRRENDICION,solicitudRD.RML_ESTADO?.id,solicitudRD.RML_RUTAANEXO,solicitudRD.RML_MONEDA?.id,
+                    solicitudRD.RML_TIPORENDICION?.id,solicitudRD.RML_DESCRIPCION,solicitudRD.RML_COMENTARIOS,solicitudRD.RML_TOTALSOLICITADO,
+                    usuarioNuevo.SubGerencia, usuarioNuevo.Nombres, solicitudRD.RML_DOCENTRY,solicitudRD.RML_MOTIVOMIGR, id);
+
+                List<Complemento> list = new List<Complemento>();
+                Complemento com = new Complemento() { 
+                    id = solicitudRD.ID.ToString(), name = "Creado Exitosamente"
+                };
 
                 return Global.ReturnOk(list, respIncorrect);
 
@@ -231,8 +229,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 List<Complemento> list = new List<Complemento>();
                 Complemento complemento = new Complemento()
                 {
-                    id = id.ToString(),
-                    Descripcion = "Actualizado exitosamente",
+                    //id = id.ToString(),
+                    //Descripcion = "Actualizado exitosamente",
                 };
 
                 list.Add(complemento);
@@ -249,6 +247,10 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public ConsultationResponse<SolicitudRD> ListarSolicitudesS(string usrCreate, string usrAsig, int perfil, string fecIni, string fecFin, string nrRendi, string estado, string area)
         {
             var respIncorrect = "No trajo la lista de solicitudes de rendición";
+            SQ_Complemento sQ_Complemento = new SQ_Complemento();
+            SQ_Usuario sQ_Usuario = new SQ_Usuario();
+
+            string campo = ConfigurationManager.AppSettings["tipoEARfielID"];
 
             try
             {
@@ -257,26 +259,24 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     return new SolicitudRD()
                     {
                         ID = string.IsNullOrWhiteSpace(Convert.ToString(dc["ID"])) ? (int?)null : Convert.ToInt32(dc["ID"]),
-                        STR_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["STR_DOCENTRY"]),
-                        STR_NRSOLICITUD = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_NRSOLICITUD"])) ? (int?)null : Convert.ToInt32(dc["STR_NRSOLICITUD"]),
-                        STR_ESTADO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_ESTADO"])) ? (int?)null : Convert.ToInt32(dc["STR_ESTADO"]),
-                        STR_ESTADO_INFO = dc["STR_ESTADO_INFO"],
-                        STR_MOTIVO = dc["STR_MOTIVO"],
-                        STR_UBIGEO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_UBIGEO"])) ? (int?)null : Convert.ToInt32(dc["STR_UBIGEO"]),
-                        STR_RUTA = dc["STR_RUTA"],
-                        STR_RUTAANEXO = dc["STR_RUTAANEXO"],
-                        STR_MONEDA = dc["STR_MONEDA"],
-                        STR_TIPORENDICION = dc["STR_TIPORENDICION"],
-                        STR_TOTALSOLICITADO = Convert.ToDouble(dc["STR_TOTALSOLICITADO"]),
-                        STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"],
-                        STR_EMPLDASIG = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_EMPLDASIG"])) ? (int?)null : Convert.ToInt32(dc["STR_EMPLDASIG"]),
-                        STR_EMPLDREGI = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_EMPLDREGI"])) ? (int?)null : Convert.ToInt32(dc["STR_EMPLDREGI"]),
-                        STR_FECHAREGIS = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy"),
-                        STR_FECHAINI = string.IsNullOrWhiteSpace(dc["STR_FECHAINI"]) ? "" : Convert.ToDateTime(dc["STR_FECHAINI"]).ToString("dd/MM/yyyy"),
-                        STR_FECHAFIN = string.IsNullOrWhiteSpace(dc["STR_FECHAFIN"]) ? "" : Convert.ToDateTime(dc["STR_FECHAFIN"]).ToString("dd/MM/yyyy"),
-                        STR_FECHAVENC = string.IsNullOrWhiteSpace(dc["STR_FECHAVENC"]) ? "" : Convert.ToDateTime(dc["STR_FECHAVENC"]).ToString("dd/MM/yyyy"),
-                        STR_NRRENDICION = dc["STR_NRRENDICION"],
-                        CREATE = dc["CREATE"]
+                        RML_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["RML_DOCENTRY"]),
+                        RML_NRSOLICITUD = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_NRSOLICITUD"])) ? (int?)null : Convert.ToInt32(dc["RML_NRSOLICITUD"]),
+                        RML_ESTADO = sQ_Complemento.ObtenerEstado(Convert.ToInt32(dc["RML_ESTADO"])),
+                        RML_ESTADO_INFO = dc["RML_ESTADO_INFO"],
+                        //RML_MOTIVO = dc["RML_MOTIVO"],
+                        //RML_RUTAANEXO = dc["RML_RUTAANEXO"],
+                        // RML_MONEDA = sQ_Complemento.ObtenerMonedas(dc["RML_MONEDA"]),
+                        RML_TIPORENDICION = sQ_Complemento.ObtenerDesplegableId(campo, dc["RML_TIPORENDICION"]),
+                        RML_DESCRIPCION = dc["RML_DESCRIPCION"],
+                        RML_TOTALSOLICITADO = Convert.ToDecimal(dc["RML_TOTALSOLICITADO"]),
+                        RML_EMPLDASIG = sQ_Usuario.getEmpleado(dc["RML_EMPLDASIG"]),
+                        RML_EMPLDREGI = sQ_Usuario.getEmpleado(dc["RML_EMPLDREGI"]),
+                        RML_FECHAREGIS = string.IsNullOrWhiteSpace(dc["RML_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["RML_FECHAREGIS"]).ToString("dd/MM/yyyy"),
+                        RML_NRRENDICION = dc["RML_NRRENDICION"],
+                        RML_MOTIVOMIGR = dc["RML_MOTIVOMIGR"],
+                        RML_NOMBRES = dc["RML_NOMBRES"],
+                        RML_APROBACIONFINALIZADA = dc["RML_APROBACIONFINALIZADA"],
+                        CREATE = dc["RML_CREATE"]
                     };
                 }, usrCreate, usrAsig, perfil.ToString(), fecIni, fecFin, nrRendi, estado, area).ToList();
 
@@ -298,9 +298,9 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
                     return new Complemento()
                     {
-                        Id = Convert.ToInt32(dc["STR_CENT_COSTO"]),
-                        Nombre = dc["STR_CENT_COSTO"],
-                        Descripcion = dc["STR_DET_ID"]
+                        //Id = Convert.ToInt32(dc["RML_CENT_COSTO"]),
+                        //Nombre = dc["RML_CENT_COSTO"],
+                        //Descripcion = dc["RML_DET_ID"]
                     };
                 }, detalleId.ToString()).ToList();
 
@@ -346,8 +346,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         return new Complemento()
                         {
                             id = sc["ID"],
-                            name = sc["STR_CENTCOSTO"],
-                            Descripcion = sc["STR_DET_ID"]
+                            name = sc["RML_CENTCOSTO"],
+                            Descripcion = sc["RML_DET_ID"]
                         };
                     }, dc["ID"]).ToList();
                     */
@@ -361,26 +361,26 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                             U_CUP = dc["U_CUP"],
                             U_DESCRIPTION = dc["U_DESCRIPTION"]
                         };
-                    }, dc["STR_CUP"]).ToList();
+                    }, dc["RML_CUP"]).ToList();
                     */
                     return new SolicitudRDdet()
                     {
                         id = Convert.ToInt32(dc["ID"]),
                         ID = Convert.ToInt32(dc["ID"]),
-                        STR_CANTIDAD = Convert.ToInt32(dc["STR_CANTIDAD"]),
-                        cantidad = Convert.ToInt32(dc["STR_CANTIDAD"]),
-                        STR_CONCEPTO = dc["STR_CONCEPTO"],
-                        STR_CODARTICULO = dc["STR_CODARTICULO"],
-                        STR_CUP = dc["STR_CUP"],
-                        STR_POSFINAN = dc["STR_POSFINAN"],
-                        STR_TOTAL = Convert.ToDouble(dc["STR_TOTAL"]),
+                        RML_CANTIDAD = Convert.ToInt32(dc["RML_CANTIDAD"]),
+                        cantidad = Convert.ToInt32(dc["RML_CANTIDAD"]),
+                        RML_CONCEPTO = dc["RML_CONCEPTO"],
+                        RML_CODARTICULO = dc["RML_CODARTICULO"],
+                        RML_CUP = dc["RML_CUP"],
+                        RML_POSFINAN = dc["RML_POSFINAN"],
+                        RML_TOTAL = Convert.ToDouble(dc["RML_TOTAL"]),
                         SR_ID = Convert.ToInt32(dc["SR_ID"]),
-                        articulo = sq_item.ObtenerItem(dc["STR_CODARTICULO"]).Result[0],
-                        ceco = dc["STR_CECO"],
-                        cup = string.IsNullOrEmpty(dc["STR_CUP"]) ? null : obtenerCup(dc["STR_CUP"]),
-                        posFinanciera = new Complemento { id = dc["STR_POSFINAN"], name = dc["STR_POSFINAN"] },
-                        precioUnitario = Convert.ToDouble(dc["STR_TOTAL"]) / Convert.ToDouble(dc["STR_CANTIDAD"]),
-                        precioTotal = Convert.ToDouble(dc["STR_TOTAL"]),
+                        articulo = sq_item.ObtenerItem(dc["RML_CODARTICULO"]).Result[0],
+                        ceco = dc["RML_CECO"],
+                        cup = string.IsNullOrEmpty(dc["RML_CUP"]) ? null : obtenerCup(dc["RML_CUP"]),
+                        posFinanciera = new Complemento { id = dc["RML_POSFINAN"], name = dc["RML_POSFINAN"] },
+                        precioUnitario = Convert.ToDouble(dc["RML_TOTAL"]) / Convert.ToDouble(dc["RML_CANTIDAD"]),
+                        precioTotal = Convert.ToDouble(dc["RML_TOTAL"]),
 
                     };
                 }, id.ToString()).ToList();
@@ -403,66 +403,9 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 SQ_Ubicacion sQ_Ubicacion = new SQ_Ubicacion();
                 Sq_Item sq_item = new Sq_Item();
                 List<SolicitudRDdet> listDet = null;
-                if (masDetalle)
-                {
-
-
-                    listDet = hash.GetResultAsType(SQ_QueryManager.Generar(create == "PWB" ? SQ_Query.get_solicitudRendicionDet : SQ_Query.get_solicitudRendicionDetSAP), dc =>
-                    {
-                        /*
-                        List<Complemento> listDetCentC = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_centrodeCostoPorItem), sc =>
-                        {
-                            return new Complemento()
-                            {
-                                id = sc["ID"],
-                                name = sc["STR_CENTCOSTO"],
-                                Descripcion = sc["STR_DET_ID"]
-                            };
-                        }, dc["ID"]).ToList();
-                        */
-                        /*
-                        List<Cup> listaCUP = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_obtieneCup), dc =>
-                        {
-                            return new Cup()
-                            {
-                                CRP = Convert.ToInt32(dc["CRP"]),
-                                Partida = Convert.ToInt32(dc["Partida"]),
-                                U_CUP = dc["U_CUP"],
-                                U_DESCRIPTION = dc["U_DESCRIPTION"]
-                            };
-                        }, dc["STR_CUP"]).ToList();
-                        */
-
-                        return new SolicitudRDdet()
-                        {
-                            id = Convert.ToInt32(dc["ID"]),
-                            ID = Convert.ToInt32(dc["ID"]),
-                            STR_CANTIDAD = Convert.ToInt32(dc["STR_CANTIDAD"]),
-                            cantidad = Convert.ToInt32(dc["STR_CANTIDAD"]),
-                            STR_CONCEPTO = dc["STR_CONCEPTO"],
-                            STR_CODARTICULO = dc["STR_CODARTICULO"],
-                            STR_CUP = dc["STR_CUP"],
-                            STR_POSFINAN = dc["STR_POSFINAN"],
-                            STR_TOTAL = Convert.ToDouble(dc["STR_TOTAL"]),
-                            SR_ID = Convert.ToInt32(dc["SR_ID"]),
-                            articulo = sq_item.ObtenerItem(dc["STR_CODARTICULO"]).Result[0],
-                            ceco = dc["STR_CECO"],
-                            cup = string.IsNullOrEmpty(dc["STR_CUP"]) ? null : obtenerCup(dc["STR_CUP"]),
-                            posFinanciera = new Complemento { id = dc["STR_POSFINAN"], name = dc["STR_POSFINAN"] },
-                            precioUnitario = Convert.ToDouble(dc["STR_TOTAL"]) / Convert.ToDouble(dc["STR_CANTIDAD"]),
-                            precioTotal = Convert.ToDouble(dc["STR_TOTAL"]),
-                            ctc = dc["STR_CTC"]
-
-                        };
-                    }, id.ToString()).ToList(); // DocEntry
-                }
-
-
 
                 // Obtiene Ruta
                 SQ_Complemento sQ_Complemento = new SQ_Complemento();
-                int campo = 0;
-                campo = ObtieneCampoTipoRuta();
 
                 // Obitiene EAR
                 int campEar = 0;
@@ -475,32 +418,25 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
                     return new SolicitudRD()
                     {
-                        ID = Convert.ToInt32(dc["ID"]),
-                        STR_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["STR_DOCENTRY"]),
-                        STR_NRSOLICITUD = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_NRSOLICITUD"])) ? (int?)null : Convert.ToInt32(dc["STR_NRSOLICITUD"]),
-                        STR_NRRENDICION = dc["STR_NRRENDICION"],
-                        STR_ESTADO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_ESTADO"])) ? (int?)null : Convert.ToInt32(dc["STR_ESTADO"]),
-                        STR_MOTIVO = dc["STR_MOTIVO"],
-                        STR_UBIGEO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_UBIGEO"])) ? (int?)null : Convert.ToInt32(dc["STR_UBIGEO"]),
-                        STR_RUTA = dc["STR_RUTA"],
-                        STR_RUTA_INFO = masDetalle ? (string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_RUTA"])) ? null : sQ_Complemento.ObtenerDesplegablePorId(campo.ToString(), dc["STR_RUTA"]).Result[0]) : null,
-                        STR_DIRECCION = masDetalle ? (string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_UBIGEO"])) ? null : sQ_Ubicacion.ObtenerDireccion(dc["STR_UBIGEO"]).Result[0]) : null,
-                        STR_RUTAANEXO = dc["STR_RUTAANEXO"],
-                        STR_MONEDA = dc["STR_MONEDA"],
-                        STR_TIPORENDICION = dc["STR_TIPORENDICION"],
-                        STR_TIPORENDICION_INFO = masDetalle ? (string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_TIPORENDICION"])) ? null : sQ_Complemento.ObtenerDesplegablePorId(campEar.ToString(), dc["STR_TIPORENDICION"]).Result[0]) : null,
-                        STR_TOTALSOLICITADO = Convert.ToDouble(dc["STR_TOTALSOLICITADO"]),
-                        STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"],
-                        STR_EMPLDASIG = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_EMPLDASIG"])) ? (int?)null : Convert.ToInt32(dc["STR_EMPLDASIG"]),
-                        STR_EMPLDREGI = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_EMPLDREGI"])) ? (int?)null : Convert.ToInt32(dc["STR_EMPLDREGI"]),
-                        STR_FECHAREGIS = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy"),
-                        STR_FECHAINI = string.IsNullOrWhiteSpace(dc["STR_FECHAINI"]) ? "" : Convert.ToDateTime(dc["STR_FECHAINI"]).ToString("dd/MM/yyyy"),
-                        STR_FECHAFIN = string.IsNullOrWhiteSpace(dc["STR_FECHAFIN"]) ? "" : Convert.ToDateTime(dc["STR_FECHAFIN"]).ToString("dd/MM/yyyy"),
-                        STR_FECHAVENC = string.IsNullOrWhiteSpace(dc["STR_FECHAVENC"]) ? "" : Convert.ToDateTime(dc["STR_FECHAVENC"]).ToString("dd/MM/yyyy"),
-                        STR_EMPLEADO_ASIGNADO = masDetalle ? sQ_Usuario.getUsuario(Convert.ToInt32(dc["STR_EMPLDASIG"])).Result[0] : null,
-                        STR_ORDENVIAJE = dc["STR_ORDENVIAJE"],
-                        STR_AREA = dc["STR_AREA"],
-                        SOLICITUD_DET = masDetalle ? listDet : null,
+                        ID = string.IsNullOrWhiteSpace(Convert.ToString(dc["ID"])) ? (int?)null : Convert.ToInt32(dc["ID"]),
+                        RML_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["RML_DOCENTRY"]),
+                        RML_NRSOLICITUD = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_NRSOLICITUD"])) ? (int?)null : Convert.ToInt32(dc["RML_NRSOLICITUD"]),
+                        RML_ESTADO = sQ_Complemento.ObtenerEstado(Convert.ToInt32(dc["RML_ESTADO"])),
+                       // RML_ESTADO_INFO = dc["RML_ESTADO_INFO"],
+                        RML_MOTIVO = dc["RML_MOTIVO"],
+                        RML_RUTAANEXO = dc["RML_RUTAANEXO"],
+                        RML_MONEDA = sQ_Complemento.ObtenerMoneda(dc["RML_MONEDA"]),
+                        RML_TIPORENDICION = sQ_Complemento.ObtenerDesplegableId(campEar.ToString(), dc["RML_TIPORENDICION"]),
+                        RML_DESCRIPCION = dc["RML_DESCRIPCION"],
+                        RML_TOTALSOLICITADO = Convert.ToDecimal(dc["RML_TOTALSOLICITADO"]),
+                        RML_EMPLDASIG = sQ_Usuario.getEmpleado(dc["RML_EMPLDASIG"]),
+                        RML_EMPLDREGI = sQ_Usuario.getEmpleado(dc["RML_EMPLDREGI"]),
+                        RML_FECHAREGIS = string.IsNullOrWhiteSpace(dc["RML_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["RML_FECHAREGIS"]).ToString("dd/MM/yyyy"),
+                        RML_NRRENDICION = dc["RML_NRRENDICION"],
+                        RML_MOTIVOMIGR = dc["RML_MOTIVOMIGR"],
+                        RML_COMENTARIOS = dc["RML_COMENTARIOS"],
+                        RML_AREA = dc["RML_AREA"]
+                        //CREATE = dc["RML_CREATE"]
                     };
                 }, id.ToString()).ToList();
 
@@ -525,18 +461,18 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     finalizado = Convert.ToInt32(dc["Finalizado"]),
                     empleadoId = Convert.ToInt32(dc["Empleado Id"]),
                     nombreEmpleado = dc["Nombre Empleado"],
-                    fechaRegistro = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? null : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy")
+                    fechaRegistro = string.IsNullOrWhiteSpace(dc["RML_FECHAREGIS"]) ? null : Convert.ToDateTime(dc["RML_FECHAREGIS"]).ToString("dd/MM/yyyy")
                 };
             }, tipoUsuario, idSolicitud, estado).ToList();
 
             return listaAprobadores;
         }
 
-        public ConsultationResponse<AprobadorResponse> EnviarSolicitudAprobacion(string idSolicitud, int usuarioId, string tipord, string area, double monto, int estado, List<P_borrador> borradores)
+        public ConsultationResponse<AprobadorResponse> EnviarSolicitudAprobacion(string idSolicitud, int usuarioId, string tipord, string area, double monto, int estado)
         {
             // Obtiene Aprobadores
             List<AprobadorResponse> response = new List<AprobadorResponse>();
-            string valor = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_aprobadores), tipord, area, monto.ToString("F2"));
+            string valor = hash.GetValueSqlDrct(SQ_QueryManager.Generar(SQ_Query.get_aprobadores), tipord, area, monto.ToString("F2"));
             List<Aprobador> aprobadors;
             try
             {
@@ -547,15 +483,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
                 hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertAprobadores), idSolicitud, usuarioId.ToString(), null, null, 0, estado == 1 ? aprobadores[0] : aprobadores[1]);
 
-                // Asegura presupuesto 
-                if (estado == 1)
-                {
-                    for (int i = 0; i < borradores.Count; i++)
-                    {
-                        //string idTTp = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_pendienteBorradorId));
-                        hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.post_pendientesBorrador), borradores[i].STR_TOTAL.ToString("F2"), "Y", borradores[i].STR_CENTCOST, borradores[i].STR_POSFIN, idSolicitud, borradores[i].STR_FECHAREGIS);
-                    }
-                };   // Inserta en la tabla de presupuesto
                 if (estado == 1) hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "2", "", idSolicitud);                                        // Actualiza el estado
 
                 aprobadors = new List<Aprobador>();
@@ -616,7 +543,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         finalizado = Convert.ToInt32(dc["Finalizado"]),
                         empleadoId = Convert.ToInt32(dc["Empleado Id"]),
                         nombreEmpleado = dc["Nombre Empleado"],
-                        fechaRegistro = Convert.ToDateTime(dc["STR_FECHAREGIS"])
+                        fechaRegistro = Convert.ToDateTime(dc["RML_FECHAREGIS"])
                     };
                 }, id.ToString()).ToList();
 
@@ -645,13 +572,14 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             List<CreateResponse> lista = new List<CreateResponse>();
             List<Aprobador> listaAprobados = null;
             SolicitudRD solicitudRD = new SolicitudRD();
+            SQ_Usuario sQ_Usuario = new SQ_Usuario();
             string nuevoEstado = "0"; // Depende si va una solicitud o va ultima
                                       // Dependiendo de si ya es la segunda Aceptación de la solicitud o si solo tiene una migraría a
                                       // 3: "En Autorizacion SR"  o directamente 4: Autorizado SR
             try
             {
                 solicitudRD = ObtenerSolicitud(solicitudId, "PWB").Result[0]; // Parametro Area y Id de la solicitud
-                string valor = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_aprobadores), solicitudRD.STR_TIPORENDICION, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
+                string valor = hash.GetValueSqlDrct(SQ_QueryManager.Generar(SQ_Query.get_aprobadores), solicitudRD.RML_TIPORENDICION.id, solicitudRD.RML_AREA, solicitudRD.RML_TOTALSOLICITADO.ToString("F2"));
 
                 if (valor == "-1")
                     throw new Exception("No se encontró Aprobadores con la solicitud enviada");
@@ -666,8 +594,17 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
                 if (existeAprobador)
                 {
-                    if (aprobadores.Count == 1 | solicitudRD.STR_ESTADO == 3)
+                    if (aprobadores.Count == 1 | solicitudRD.RML_ESTADO.id == "3")
                     {
+                        CreateResponse createResponse = new CreateResponse();
+                        createResponse.RML_APROBACIONFINALIZADA = 1;
+
+                        hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "4", "", solicitudId);
+
+                        return Global.ReturnOk(lista, "");
+
+                        /*
+
                         EnviarEmail envio = new EnviarEmail();
 
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadores), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, solicitudId, 0);
@@ -677,49 +614,46 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         if (response.IsSuccessful)
                         {
                             CreateResponse createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
-                            createResponse.AprobacionFinalizada = 1;
+                            createResponse.RML_APROBACIONFINALIZADA = 1;
 
                             // Inserts despues de crear la SR en SAP 
                             hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "6", "", solicitudId);                                       // Actualiza Estado
                             //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_intermedia), createResponse.DocEntry);                                             // Inserta en la tabla intemedia de EAR para generar codigo
-                            string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.get_numeroRendicion), createResponse.DocEntry);   // Obtiene el número de Rendición con el DocEntry
+                            string codigoRendicion = "";
+
+                            Usuario solicitante = sQ_Usuario.getUsuario(solicitudRD.RML_EMPLDASIG.empleadoID);
+                            //codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.get_numeroRendicion), createResponse.DocEntry);   // Obtiene el número de Rendición con el DocEntry
                             hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, codigoRendicion, solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón
-
-                            // Obtiene Aprobadores para actualizar
-                            //listaAprobados = ObtieneAprobadores(solicitudId.ToString()).Result;
-                            //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaSRenSAP), solicitudId, solicitudRD.STR_EMPLEADO_ASIGNADO.empID, listaAprobados[0].aprobadorNombre, listaAprobados[1].aprobadorNombre, createResponse.DocEntry);    // Actualiza en SAP el codigo de SR y el de Empleado Asignado y los autorizadores                                                                                                                                                                                     // Quita de activos en la tabla de pendientes de Borrador
-                            hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_pendientesBorrador), "N", solicitudId);
-
                             lista.Add(createResponse);
 
                             // Envio de Correo
-
-
-                            envio.EnviarInformativo(solicitudRD.STR_EMPLEADO_ASIGNADO.email, FormatearNombreCompleto(solicitudRD.STR_EMPLEADO_ASIGNADO.Nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.STR_FECHAREGIS, true, "");
+                            envio.EnviarInformativo(solicitante.email, FormatearNombreCompleto(solicitante.Nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.RML_FECHAREGIS, true, "");
                             return Global.ReturnOk(lista, "");
                         }
                         else
                         {
                             string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
                             hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "7", mensaje.Replace("'", ""), solicitudId);
-                            envio.EnviarError(true, null, solicitudRD.ID.ToString(), solicitudRD.STR_FECHAREGIS);
+                            envio.EnviarError(true, null, solicitudRD.ID.ToString(), solicitudRD.RML_FECHAREGIS);
                             throw new Exception(mensaje);
                         }
+
+                        */
                     }
                     else
                     {
                         CreateResponse createresponse = new CreateResponse()
                         {
-                            AprobacionFinalizada = 0
+                            RML_APROBACIONFINALIZADA = 0
                         };
-                        //createresponse.aprobacionfinalizada = 0;
+                        //createresponse.RML_APROBACIONFINALIZADA = 0;
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadores), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, solicitudId, 0);
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), 3, null, solicitudId);
 
                         lista.Add(createresponse);
 
                         // Envia la solicitud al siguiente aprobador
-                        EnviarSolicitudAprobacion(solicitudId.ToString(), (int)solicitudRD.STR_EMPLDASIG, solicitudRD.STR_TIPORENDICION, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO, 2, null);
+                      //  EnviarSolicitudAprobacion(solicitudId.ToString(), (int)solicitudRD.RML_EMPLDASIG, solicitudRD.RML_TIPORENDICION, solicitudRD.RML_AREA, solicitudRD.RML_TOTALSOLICITADO, 2, null);
 
                         return Global.ReturnOk(lista, "");
                     }
@@ -774,11 +708,11 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     return new Aprobador()
                     {
                         aprobadorNombre = dc["Nombres"],
-                        aprobadorId = string.IsNullOrEmpty(dc["STR_USUARIOAPROBADORID"]) ? 0 : Convert.ToInt32(dc["STR_USUARIOAPROBADORID"]),
-                        finalizado = Convert.ToInt32(dc["APROBACIONFINALIZADA"]),
-                        area = Convert.ToInt32(dc["STR_AREA"]),
-                        fechaRegistro = string.IsNullOrWhiteSpace(dc["FECHAAPROBACION"]) ? "" : DateTime.Parse(dc["FECHAAPROBACION"]).ToString("dd/MM/yyyy"),
-                        aprobadores = obtieneAprobadoresDet(dc["STR_AREA"], dc["STR_USUARIOAPROBADORID"], string.IsNullOrWhiteSpace(dc["FECHAAPROBACION"]) ? "" : DateTime.Parse(dc["FECHAAPROBACION"]).ToString("dd/MM/yyyy"))
+                        aprobadorId = string.IsNullOrEmpty(dc["RML_USUARIOAPROBADORID"]) ? 0 : Convert.ToInt32(dc["RML_USUARIOAPROBADORID"]),
+                        finalizado = Convert.ToInt32(dc["RML_APROBACIONFINALIZADA"]),
+                        area = Convert.ToInt32(dc["RML_AREA"]),
+                        fechaRegistro = string.IsNullOrWhiteSpace(dc["RML_FECHAAPROBACION"]) ? "" : DateTime.Parse(dc["RML_FECHAAPROBACION"]).ToString("dd/MM/yyyy"),
+                        aprobadores = obtieneAprobadoresDet(dc["RML_AREA"], dc["RML_USUARIOAPROBADORID"], string.IsNullOrWhiteSpace(dc["RML_FECHAAPROBACION"]) ? "" : DateTime.Parse(dc["RML_FECHAAPROBACION"]).ToString("dd/MM/yyyy"))
                     };
                 }, idSolicitud).ToList();
 
@@ -804,7 +738,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             try
             {
                 solicitudRD = ObtenerSolicitud(Convert.ToInt32(solicitudId), "PWB").Result[0]; // Parametro Area y Id de la solicitud
-                string valor = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_aprobadores), solicitudRD.STR_TIPORENDICION, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
+                string valor = hash.GetValueSqlDrct(SQ_QueryManager.Generar(SQ_Query.get_aprobadores), solicitudRD.RML_TIPORENDICION.id, solicitudRD.RML_AREA, solicitudRD.RML_TOTALSOLICITADO.ToString("F2"));
 
                 if (valor == "-1")
                     throw new Exception("No se encontró Aprobadores con la solicitud enviada");
@@ -826,20 +760,17 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     EnviarEmail envio = new EnviarEmail();
 
                     usuario = new Usuario();
-                    usuario = sQ_Usuario.getUsuario(listaAprobados[0].empleadoId).Result[0];
-
-                    if (usuario.email == null | usuario.email == "")
-                    {
-                        throw new Exception("No se encontró correo del empleado");
-                    }
-                    envio.EnviarInformativo(usuario.email, usuario.Nombres, true, listaAprobados[0].idSolicitud.ToString(),
-                        "", listaAprobados[0].fechaRegistro, false, comentarios);
+                    usuario = sQ_Usuario.getUsuario(listaAprobados[0].empleadoId);
 
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.dlt_aprobadoresSr), solicitudId);
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), nuevoEstado, "", solicitudId);
-                    hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_pendientesBorrador), "N", solicitudId);
-                    hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.dlt_pendientesBorrador), solicitudId);
 
+                    if (!string.IsNullOrEmpty(usuario.email))
+                    {
+                        envio.EnviarInformativo(usuario.email, usuario.Nombres, true, listaAprobados[0].idSolicitud.ToString(),
+                                             "", listaAprobados[0].fechaRegistro, false, comentarios);
+                    }
+                
                     return Global.ReturnOk(lista, "No se rechazo correctamente");
                 }
                 else
@@ -865,79 +796,11 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             {
                 solicitud = ObtenerSolicitud(id, "PWB", true).Result[0];
 
-                if (solicitud.STR_UBIGEO == null) CamposVacios.Add("Dirección");
-                if (string.IsNullOrEmpty(solicitud.STR_RUTA)) CamposVacios.Add("Ruta");
-                if (string.IsNullOrEmpty(solicitud.STR_RUTAANEXO)) CamposVacios.Add("Adjuntos");
-                if (string.IsNullOrEmpty(solicitud.STR_FECHAFIN)) CamposVacios.Add("Fecha Fin");
-                if (string.IsNullOrEmpty(solicitud.STR_FECHAINI)) CamposVacios.Add("Fecha de Inicio");
-                if (solicitud.STR_TIPORENDICION != "ORV") if (string.IsNullOrEmpty(solicitud.STR_FECHAVENC)) CamposVacios.Add("Fecha de Vencimiento");
-                if (string.IsNullOrEmpty(solicitud.STR_MONEDA)) CamposVacios.Add("Moneda");
-                if (string.IsNullOrEmpty(solicitud.STR_TIPORENDICION)) CamposVacios.Add("Tipo de Rendición");
-
+                if (solicitud.RML_TIPORENDICION == null) throw new Exception("NO se seleccionó el tipo de operación");
+                if (solicitud.RML_COMENTARIOS == null) throw new Exception("Falta Agregar comentarios");
+                if (solicitud.RML_DESCRIPCION == null) throw new Exception("Falta Agregar Descripción");
+                if (solicitud.RML_TOTALSOLICITADO == null || solicitud.RML_TOTALSOLICITADO == 0) throw new Exception("Falta completar el monto Solicitado");
                 // Valida Cent Costo
-
-
-
-                if (solicitud.STR_TIPORENDICION != "ORV")
-                {
-                    if (solicitud.SOLICITUD_DET.Count == 0)
-                    {
-                        CamposVacios.Add("Lineas de Detalle");
-                    }
-                    else
-                    {
-                        solicitud.SOLICITUD_DET.ForEach((e) =>
-                        {
-                            if (e.articulo == null) { CamposVacios.Add("Nivel detalle"); return; }
-                            if (e.STR_CANTIDAD == 0) { CamposVacios.Add("Nivel detalle"); return; }
-                            // if (e.centCostos.Count == 0) { CamposVacios.Add("Nivel detalle"); return; }
-                            if (e.ceco == null) { CamposVacios.Add("Nivel detlale"); return; }
-                            if (e.cup == null) { CamposVacios.Add("Nivel detalle"); return; }
-                            if (e.posFinanciera == null) { CamposVacios.Add("Nivel detalle"); return; }
-
-                            bool exisCeco = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_validaCECO), e.ceco) != "0";
-
-                            if (!exisCeco) { CamposVacios.Add("Centro de Costo no existe"); return; }
-
-                        });
-
-                        if (!CamposVacios.Any((text) => text == "Nivel detalle"))
-                        {
-                            SolicitudRDdet det = solicitud.SOLICITUD_DET[0];
-
-                            // Valida presupuesto solo si tiene contenido a nivel detalle - si no termine 
-                            preRq = new PresupuestoRq()
-                            {
-                                //centCostos = det.centCostos[0]?.name,
-                                centCostos = det.ceco,
-                                posFinanciera = det.posFinanciera.name,
-                                anio = DateTime.Now.Year.ToString(),
-                                precio = -(decimal)solicitud.STR_TOTALSOLICITADO,
-                            };
-                            var lestPrep = sQ_Complemento.ObtienePresupuesto(preRq).Result;
-
-                            if (lestPrep.Count == 0)
-                            {
-                                throw new Exception("No se tiene presupuesto");
-                            }
-                            else
-                            {
-                                var s = lestPrep[0];
-
-                                if (s.name == "-1")
-                                {
-                                    throw new Exception("No hay presupuesto suficiente");
-                                }
-                            }
-                        }
-                    }
-                };
-                if (CamposVacios.Count > 0)
-                {
-                    string CamposErroneos = string.Join(", ", CamposVacios);
-                    respIncorrect += $" Faltan completar campos de " + CamposErroneos;
-                    throw new Exception(respIncorrect);
-                };
 
                 Complemento complemento = new Complemento()
                 {
@@ -976,7 +839,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
 
                     CreateResponse createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
-                    createResponse.AprobacionFinalizada = 1;
+                    createResponse.RML_APROBACIONFINALIZADA = 1;
                     nuevoEstado = "6";
 
                     // Inserts despues de crear la SR en SAP 
@@ -988,14 +851,14 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     // Obtiene Aprobadores para actualizar
                     //listaAprobados = new List<Aprobador>();
                     //listaAprobados = ObtieneAprobadores(solicitudId.ToString()).Result;
-                    //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaSRenSAP), solicitudId, solicitudRD.STR_EMPLDREGI, listaAprobados[0].aprobadorNombre, listaAprobados[1].aprobadorNombre, createResponse.DocEntry);    // Actualiza en SAP el codigo de SR y el de Empleado Asignado
+                    //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaSRenSAP), solicitudId, solicitudRD.RML_EMPLDREGI, listaAprobados[0].aprobadorNombre, listaAprobados[1].aprobadorNombre, createResponse.DocEntry);    // Actualiza en SAP el codigo de SR y el de Empleado Asignado
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_pendientesBorrador), "N", solicitudId);
 
                     lista.Add(createResponse);
 
 
 
-                    envio.EnviarInformativo(solicitudRD.STR_EMPLEADO_ASIGNADO.email, FormatearNombreCompleto(solicitudRD.STR_EMPLEADO_ASIGNADO.Nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.STR_FECHAREGIS, true, "");
+                    envio.EnviarInformativo(solicitudRD.RML_EMPLEADO_ASIGNADO.email, FormatearNombreCompleto(solicitudRD.RML_EMPLEADO_ASIGNADO.Nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.RML_FECHAREGIS, true, "");
                     return Global.ReturnOk(lista, "");
                 }
                 else
@@ -1003,7 +866,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     nuevoEstado = "7";
                     string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), nuevoEstado, mensaje.Replace("'", ""), solicitudId);
-                    //envio.EnviarError(true, null, solicitudRD.ID.ToString(), solicitudRD.STR_FECHAREGIS);
+                    //envio.EnviarError(true, null, solicitudRD.ID.ToString(), solicitudRD.RML_FECHAREGIS);
                     throw new Exception(mensaje);
                 }
             }
@@ -1037,86 +900,68 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             List<DetalleSerializar> detalleSerializars = new List<DetalleSerializar>();
 
             //int series = Convert.ToInt32(ConfigurationManager.AppSettings["SerieCodeEAR"]);
+            // oBTENER A LOS USUARIOS DE APROBADOR y empleado
+            Usuario creador = sQ_Usuario.getUsuario(sr.RML_EMPLDREGI.empleadoID);
+            Usuario solicitante = sQ_Usuario.getUsuario(sr.RML_EMPLDASIG.empleadoID);
+           // Usuario aprobador = sQ_Usuario.getUsuario(sr.RML_EMPLDASIG.empleadoID);
 
-
-            Usuario usuario = sQ_Usuario.getUsuario((int)sr.STR_EMPLDASIG).Result[0];
-            AttatchmentSerializer adj = ObtenerAdjuntos(sr.STR_RUTAANEXO);
+            //AttatchmentSerializer adj = ObtenerAdjuntos(sr.RML_RUTAANEXO);
             List<Aprobador> aprobadores = new List<Aprobador>();
             aprobadores = ObtieneAprobadores(sr.ID.ToString()).Result;
 
-            if (sr.STR_TIPORENDICION != "ORV")
+            DetalleSerializar detalleSerializar = new DetalleSerializar
             {
-                sr.SOLICITUD_DET.ForEach((e) =>
-                {
-                    DetalleSerializar detalleSerializar = new DetalleSerializar
-                    {
-                        ItemCode = e.STR_CODARTICULO,
-                        Quantity = e.STR_CANTIDAD,
-                        Price = e.precioTotal / e.STR_CANTIDAD,
-                        Currency = sr.STR_MONEDA,
-                        //CostingCode = e.centCostos[0].name,
-                        CostingCode = e.ceco,
-                        CostingCode2 = e.posFinanciera.id,
-                        U_CNCUP = e.cup.U_CUP,
-                        TaxCode = "EXO"
-                    };
-                    detalleSerializars.Add(detalleSerializar);
-
-                });
-            }
-            else
-            {
-                string conceptOrd = ConfigurationManager.AppSettings["concepto_orden_viaje"].ToString();
-
-                DetalleSerializar detalleSerializar = new DetalleSerializar
-                {
-                    ItemCode = conceptOrd,
-                    Quantity = 1,
-                };
-                detalleSerializars.Add(detalleSerializar);
-            }
+                ItemDescription = sr.RML_DESCRIPCION,
+               // AccountCode = "cuenta contable",    // Obtener Cuenta Contable
+                RequiredDate = DateTime.ParseExact(sr.RML_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),
+                LineVendor = solicitante.provAsociado,  // Obtener Proveedor,
+                U_CE_IMSL =  sr.RML_TOTALSOLICITADO
+            };
+            detalleSerializars.Add(detalleSerializar);
 
             SolicitudRDSerializer body = new SolicitudRDSerializer()
             {
-                Series = ObtenerSerieOPRQ(),
-                RequriedDate = DateTime.ParseExact(sr.STR_FECHAINI, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), //DateTime.Parse(sr.STR_FECHAINI).ToString("yyyy-MM-dd"),
-                RequesterEmail = usuario.email,
-                AttachmentEntry = adj.AbsoluteEntry,
-                U_STR_TIPOEAR = sr.STR_TIPORENDICION,
-                U_DEPARTAMENTO = sr.STR_DIRECCION.Departamento,
-                U_PROVINCIA = sr.STR_DIRECCION.Provincia,
-                U_DISTRITO = sr.STR_DIRECCION.Distrito,
-                U_STR_TIPORUTA = sr.STR_RUTA_INFO.Nombre,
-                U_FECINI = DateTime.ParseExact(sr.STR_FECHAINI, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.STR_FECHAINI).ToString("yyyy-MM-dd"),
-                U_FECFIN = DateTime.ParseExact(sr.STR_FECHAFIN, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.STR_FECHAFIN).ToString("yyyy-MM-dd"),
-                Requester = sr.STR_EMPLDASIG.ToString(),
-                RequesterName = sr.STR_EMPLEADO_ASIGNADO.Nombres.ToString(),
-                RequesterBranch = sr.STR_EMPLEADO_ASIGNADO.SubGerencia,
-                RequesterDepartment = sr.STR_EMPLEADO_ASIGNADO.dept,
+               // Series = ObtenerSerieOPRQ(),
+                RequriedDate = DateTime.ParseExact(sr.RML_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), //DateTime.Parse(sr.RML_FECHAINI).ToString("yyyy-MM-dd"),
+                RequesterEmail = solicitante.email,
+                //AttachmentEntry = adj.AbsoluteEntry,
+                //U_RML_TIPOEAR = sr.RML_TIPORENDICION,
+                //U_DEPARTAMENTO = sr.RML_DIRECCION.Departamento,
+                //U_PROVINCIA = sr.RML_DIRECCION.Provincia,
+                //U_DISTRITO = sr.RML_DIRECCION.Distrito,
+                //U_RML_TIPORUTA = sr.RML_RUTA_INFO.Nombre,
+                //U_FECINI = DateTime.ParseExact(sr.RML_FECHAINI, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.RML_FECHAINI).ToString("yyyy-MM-dd"),
+                //U_FECFIN = DateTime.ParseExact(sr.RML_FECHAFIN, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.RML_FECHAFIN).ToString("yyyy-MM-dd"),
+                Requester = solicitante.empID.ToString(),
+                RequesterName = sr.RML_EMPLDASIG.nombre,
+                RequesterBranch = solicitante.SubGerencia,
+                RequesterDepartment = solicitante.SubGerencia,
                 ReqType = 171,
-                DocDate = DateTime.ParseExact(sr.STR_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.STR_FECHAREGIS).ToString("yyyy-MM-dd"),
-                DocDueDate = string.IsNullOrEmpty(sr.STR_FECHAVENC) ? null : DateTime.ParseExact(sr.STR_FECHAVENC, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.STR_FECHAVENC).ToString("yyyy-MM-dd"),
-                Comments = sr.STR_MOTIVO,
-                DocCurrency = sr.STR_MONEDA,
+                DocDate = DateTime.ParseExact(sr.RML_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.RML_FECHAREGIS).ToString("yyyy-MM-dd"),
+                DocDueDate = string.IsNullOrEmpty(sr.RML_FECHAREGIS) ? null : DateTime.ParseExact(sr.RML_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.RML_FECHAVENC).ToString("yyyy-MM-dd"),
+                Comments = sr.RML_COMENTARIOS,
+                DocCurrency = sr.RML_MONEDA.id,
                 DocumentLines = detalleSerializars,
-                DocType = "dDocument_Items",
+                // DocType = "dDocument_Items",
+                DocType = "dDocument_Service",
                 DocRate = 1.0,
-                U_CE_MNDA = sr.STR_MONEDA,
+                U_CE_MNDA = sr.RML_MONEDA.id, 
+                U_CE_TPRN = sr.RML_TIPORENDICION.id,
                 U_STR_WEB_COD = (int)sr.ID,
                 U_STR_WEB_AUTPRI = aprobadores[0].aprobadorNombre,
                 U_STR_WEB_AUTSEG = aprobadores.Count > 1 ? aprobadores[1].aprobadorNombre : null,
-                // U_ELE_Tipo_ER = solicitudRD.STR_TIPORENDICION_INFO.Nombre,
+                // U_ELE_Tipo_ER = solicitudRD.RML_TIPORENDICION_INFO.Nombre,
                 Printed = "psYes",
                 AuthorizationStatus = "dasGenerated",
-                U_ELE_SEDE = sr.STR_EMPLEADO_ASIGNADO.fax,
-                U_ELE_SUBGER = sr.STR_EMPLEADO_ASIGNADO.SubGerencia.ToString(),
+               // U_ELE_SEDE = sr.RML_EMPLEADO_ASIGNADO.fax,
+               // U_ELE_SUBGER = sr.RML_EMPLEADO_ASIGNADO.SubGerencia.ToString(),
                 TaxCode = "EXO",
                 TaxLiable = "tYES",
                 // NUEVOS CAMPOS
-                U_STR_WEB_ORDV = sr.STR_ORDENVIAJE,
-                U_STR_WEB_EMPASIG = sr.STR_EMPLDREGI.ToString(),
-                U_STR_WEB_PRIID = aprobadores[0].aprobadorId.ToString(),
-                U_STR_WEB_SEGID = aprobadores.Count > 1 ? aprobadores[1].aprobadorId.ToString() : null,
+                //U_RML_WEB_ORDV = sr.RML_ORDENVIAJE,
+                U_STR_WEB_EMPASIG = creador.empID.ToString(),
+                //U_RML_WEB_PRIID = aprobadores[0].aprobadorId.ToString(),
+                //U_RML_WEB_SEGID = aprobadores.Count > 1 ? aprobadores[1].aprobadorId.ToString() : null,
             };
 
             B1SLEndpoint sl = new B1SLEndpoint();

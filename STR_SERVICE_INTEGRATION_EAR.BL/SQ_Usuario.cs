@@ -47,9 +47,10 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         empID = Convert.ToInt32(dc["RML_USUARIOSAP"]),
                         Nombres = dc["Nombres"],
                         activo = Convert.ToInt32(dc["RML_ACTIVO"]),
-                        TipoUsuario = Convert.ToInt32(dc["RML_RODL_ID"]),
+                        TipoUsuario = new Complemento() { id = dc["RML_IDROL"], name = dc["RML_NOMBRE_ROL"] },
                         SubGerencia = Convert.ToInt32(dc["branch"]),
-                        sex = dc["sex"]
+                        sex = dc["sex"],
+                        numeroEAR = dc["U_CE_CEAR"]
                     };
                 }, nombreDB, user.username).ToList();
 
@@ -61,44 +62,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             }
         }
 
-        public ConsultationResponse<Usuario> getUsuarios()
-        {
-            var respOk = "OK";
-            var respIncorrect = "No se encuentra Usuarios";
-
-            SqlADOHelper hash = new SqlADOHelper();
-
-            string bd = ConfigurationManager.AppSettings["CompanyDBINT"];
-
-            try
-            {
-                List<Usuario> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_usuarios), dc =>
-                {
-                    return new Usuario
-                    {
-                        empID = Convert.ToInt32(dc["empID"]),
-                        Nombres = dc["Nombres"]
-                    };
-                }, bd).ToList();
-
-                return new ConsultationResponse<Usuario>
-                {
-                    CodRespuesta = list.Count() > 0 ? "00" : "22",
-                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
-                    Result = list
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ConsultationResponse<Usuario>
-                {
-                    CodRespuesta = "99",
-                    DescRespuesta = ex.Message,
-
-                };
-            }
-        }
-        public ConsultationResponse<Usuario> getUsuario(int id)
+        public Usuario getUsuario(int id)
         {
             var respOk = "OK";
             var respIncorrect = "No se encuentra usuario registrado en SAP";
@@ -112,20 +76,46 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
                     return new Usuario
                     {
-                        empID = Convert.ToInt32(dc["empID"]),
-                        //sex = dc["sex"],
-                        //jobTitle = dc["jobTitle"],
-                        //TipoUsuario = Convert.ToInt32(dc["U_STR_TIPO_USUARIO"]),
-                        //Nombres = dc["Nombres"],
-                        //SubGerencia = Convert.ToInt32(dc["branch"]),
-                        //dept = Convert.ToInt32(dc["dept"]),
-                        //email = dc["email"],
-                        //fax = dc["fax"],
-                        //numeroEAR = dc["U_CE_CEAR"]
+                        empID = Convert.ToInt32(dc["RML_USUARIOSAP"]),
+                        Nombres = dc["Nombres"],
+                        activo = Convert.ToInt32(dc["RML_ACTIVO"]),
+                        TipoUsuario = new Complemento() { id = dc["RML_IDROL"], name = dc["RML_NOMBRE_ROL"] },
+                        SubGerencia = Convert.ToInt32(dc["branch"]),
+                        sex = dc["sex"],
+                        provAsociado = dc["U_CE_PVAS"],
+                        numeroEAR = dc["U_CE_CEAR"]
                     };
-                }, id.ToString()).ToList();
+                }, nombreDB, id.ToString()).ToList();
 
-                return new ConsultationResponse<Usuario>
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public ConsultationResponse<EmpleadoSAP> getUsuarios()
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Usuarios";
+
+            SqlADOHelper hash = new SqlADOHelper();
+
+            string bd = ConfigurationManager.AppSettings["CompanyDBINT"];
+
+            try
+            {
+                List<EmpleadoSAP> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_usuarios), dc =>
+                {
+                    return new EmpleadoSAP
+                    {
+                        empleadoID = Convert.ToInt32(dc["empID"]),
+                        nombre = dc["Nombres"]
+                    };
+                }, bd).ToList();
+
+                return new ConsultationResponse<EmpleadoSAP>
                 {
                     CodRespuesta = list.Count() > 0 ? "00" : "22",
                     DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
@@ -134,7 +124,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             }
             catch (Exception ex)
             {
-                return new ConsultationResponse<Usuario>
+                return new ConsultationResponse<EmpleadoSAP>
                 {
                     CodRespuesta = "99",
                     DescRespuesta = ex.Message,
@@ -142,6 +132,32 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 };
             }
         }
+        public EmpleadoSAP getEmpleado(string id)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encuentra Usuarios";
+
+            SqlADOHelper hash = new SqlADOHelper();
+
+            try
+            {
+                List<EmpleadoSAP> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_empleado), dc =>
+                {
+                    return new EmpleadoSAP
+                    {
+                        empleadoID = Convert.ToInt32(dc["empID"]),
+                        nombre = dc["Nombres"]
+                    };
+                }, id).ToList();
+
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+       
 
         public ConsultationResponse<Usuario> getUsuario2(string id)
         {
@@ -160,7 +176,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         empID = Convert.ToInt32(dc["empID"]),
                         //sex = dc["sex"],
                         //jobTitle = dc["jobTitle"],
-                        //TipoUsuario = Convert.ToInt32(dc["U_STR_TIPO_USUARIO"]),
+                        //TipoUsuario = Convert.ToInt32(dc["U_RML_TIPO_USUARIO"]),
                         //Nombres = dc["Nombres"],
                         //SubGerencia = Convert.ToInt32(dc["branch"]),
                         //dept = Convert.ToInt32(dc["dept"]),

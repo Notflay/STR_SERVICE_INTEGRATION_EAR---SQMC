@@ -16,7 +16,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/solicitud")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [TokenAuthorization]
+   // [TokenAuthorization]
     public class SolicitudController : ApiController
     {
         [HttpGet]
@@ -153,7 +153,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         public IHttpActionResult SolicitaAprobacion(int id, Rq_Aprobacion request)
         {
             Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
-            var response = sq_SolicitudRd.EnviarSolicitudAprobacion(id.ToString(), request.usuarioId, request.tipord, request.area, request.monto, request.estado, request.p_Borradores);
+            var response = sq_SolicitudRd.EnviarSolicitudAprobacion(id.ToString(), request.usuarioId, request.tipord, request.area, request.monto, request.estado);
 
             if (response != null && response.CodRespuesta == "99")
             {
@@ -198,7 +198,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         public IHttpActionResult RechazarSolicitud(int id, string aprobadorId, Complemento comentarios, string areaAprobador)
         {
             Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
-            var response = sq_SolicitudRd.RechazarSolicitud(id.ToString(), aprobadorId, comentarios?.Nombre, areaAprobador);
+            var response = sq_SolicitudRd.RechazarSolicitud(id.ToString(), aprobadorId, comentarios?.name, areaAprobador);
 
             if (response != null && response.CodRespuesta == "99")
             {

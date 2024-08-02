@@ -4,7 +4,14 @@
 		<hana>SELECT "{0}" FROM OHEM WHERE "empID" = '{1}'</hana>
 	</query>
 	<query nameid="InformacionUsuario" definition="I">
-		<hana>SELECT "empID","firstName" || ' ' || "lastName" AS "Nombres","sex","U_RML_TIPO_USUARIO","jobTitle","branch","dept","email","fax","U_CE_CEAR" FROM "OHEM" where "empID" = '{0}'</hana>
+		<hana>
+			SELECT RML_USERNAME,RML_CONTRASENIA,RML_USUARIOSAP,RML_ACTIVO,RML_ROL_ID,firstName + ' ' + lastName AS "Nombres", sex, branch,
+			dept,fax,email,CostCenter, T3.RML_IDROL, T3.RML_NOMBRE_ROL, T2.U_CE_PVAS, T2.U_CE_CEAR
+			FROM RML_WEB_USUARIOS  T1
+			INNER JOIN {0}.dbo.OHEM T2 ON T1.RML_USUARIOSAP = T2.empID
+			INNER JOIN RML_WEB_ROL T3 ON T3.RML_IDROL = T1.RML_ROL_ID
+			WHERE T1.RML_USUARIOSAP = '{1}'
+		</hana>
 	</query>
 	<query nameid="InformacionUsuario2" definition="I">
 		<hana>SELECT "empID","firstName" || ' ' || "lastName" AS "Nombres","sex","U_RML_TIPO_USUARIO","jobTitle","branch","dept","email","fax","U_CE_CEAR","CostCenter" FROM "OHEM" where "U_RML_PW_USERNAME" = '{0}'</hana>
@@ -15,9 +22,11 @@
 	<query nameid="ObtenerInformacionUsuario" definition="I">
 		<hana>
 			SELECT RML_USERNAME,RML_CONTRASENIA,RML_USUARIOSAP,RML_ACTIVO,RML_ROL_ID,firstName + ' ' + lastName AS "Nombres", sex, branch,
-			dept,fax,email,CostCenter
+			dept,fax,email,CostCenter, T3.RML_IDROL, T3.RML_NOMBRE_ROL, T2.U_CE_PVAS, T2.U_CE_CEAR
 			FROM RML_WEB_USUARIOS  T1
-			INNER JOIN {0}.dbo.OHEM T2 ON T1.RML_USUARIOSAP = T2.empID WHERE T1.RML_USERNAME = '{1}'
+			INNER JOIN {0}.dbo.OHEM T2 ON T1.RML_USUARIOSAP = T2.empID
+			INNER JOIN RML_WEB_ROL T3 ON T3.RML_IDROL = T1.RML_ROL_ID
+			WHERE T1.RML_USERNAME = '{1}'
 		</hana>
 	</query>
 	<query nameid="ObtenerContraseniaUsuario" definition="I">
@@ -25,11 +34,47 @@
 			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'
 		</hana>
 	</query>
+	<query nameid="ObtenerMonedas" definition="I">
+		<hana>
+			SELECT "CurrCode","CurrName" FROM OCRN where Locked = 'N'
+		</hana>
+	</query>
+	<query nameid="ObtenerMoneda" definition="I">
+		<hana>
+			SELECT "CurrCode","CurrName" FROM OCRN where CurrCode = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtenerWliable" definition="I">
+		<hana>
+			SELECT WTCode,WTName,Rate FROM OWHT WHERE Inactive = 'N' AND LEFT(WTName,1) = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtenerWliableID" definition="I">
+		<hana>
+			SELECT WTCode,WTName,Rate FROM OWHT WHERE Inactive = 'N' AND WTCode = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtenerTablaIR" definition="I">
+		<hana>
+			SELECT * FROM RML_RETENCION_IMPST
+		</hana>
+	</query>
+	<query nameid="ObtenerTablaIRId" definition="I">
+		<hana>
+			SELECT * FROM RML_RETENCION_IMPST WHERE RML_ID = '{0}'
+		</hana>
+	</query>
 	<query nameid="ObtenerUsuarios" definition="I">
 		<hana>
 			SELECT "empID","firstName" + ' ' + "lastName" AS "Nombres" FROM "OHEM"  T0
 			INNER JOIN {0}.dbo.RML_WEB_USUARIOS T1 ON T1.RML_USUARIOSAP = T0."empID"
 			WHERE Active = 'Y'  AND RML_ROL_ID = 1
+		</hana>
+	</query>
+	<query nameid="obtenerEmpleado" definition="I">
+		<hana>
+			SELECT "empID","firstName" + ' ' + "lastName" AS "Nombres" FROM "OHEM"
+			WHERE "empID" = '{0}'
 		</hana>
 	</query>
 	<query nameid="ObtenerDepartamentos" definition="I">
@@ -71,22 +116,59 @@
 		</hana>
 	</query>
 	<query nameid="ObtenerEstados" definition="I">
-		<hana>SELECT * FROM "RML_WEB_ESTADOS" WHERE ID {0}</hana>
+		<hana>EXEC RML_WEB_OBTENERESTADOS {0},{1},{2}</hana>
 	</query>
 	<query nameid="ObtenerEstado" definition="I">
 		<hana>SELECT * FROM "RML_WEB_ESTADOS" WHERE "ID" = {0}</hana>
 	</query>
 	<query nameid="ObtenerCeCo" definition="I">
-		<hana>SELECT T0."CostCenter" FROM OHEM T0 WHERE T0."empID" = '{0}'</hana>
+		<hana>
+			SELECT OcrCode,OcrName FROM OOCR WHERE DimCode = {0} AND Active = 'Y'
+		</hana>
+	</query>
+	<query nameid="ObtenerCeCoId" definition="I">
+		<hana>
+			SELECT OcrCode,OcrName FROM OOCR WHERE OcrCode = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtenerTipoOperacion" definition="I">
+		<hana>
+			SELECT U_NUM, U_descrp FROM dbo.[@OK1_T12]
+		</hana>
+	</query>
+	<query nameid="ObtenerTipoOperacionID" definition="I">
+		<hana>
+			SELECT U_NUM, U_descrp FROM dbo.[@OK1_T12] AND U_NUM = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtieneCuentaContable" definition="I">
+		<hana>
+			SELECT Segment_0, Segment_1,Segment_2,AcctCode,AcctName FROM OACT where LEFT("Segment_0",'1') = '6'
+		</hana>
+	</query> 
+	<query nameid="ObtieneCuentaContableId" definition="I">
+		<hana>
+			SELECT Segment_0, Segment_1,Segment_2,AcctCode,AcctName FROM OACT where AcctCode = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtieneAlmacenes" definition="I">
+		<hana>
+			SELECT WhsCode,WhsName FROM OWHS WHERE Inactive = 'N'
+		</hana>
+	</query>
+	<query nameid="ObtieneAlmacenesId" definition="I">
+		<hana>
+			SELECT WhsCode,WhsName FROM OWHS WHERE WhsCode = '{0}'
+		</hana>
 	</query>
 	<query nameid="ObtenerPosFinanciera" definition="I">
 		<hana>SELECT "U_RML_PRTPRE" FROM OITM WHERE "ItemCode" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerComboTipos" definition="I">
-		<hana>SELECT "IndexID" AS "Id","FldValue" AS "Nombre","Descr" AS "Descripcion" FROM "UFD1" WHERE "TableID" = 'OPRQ' and "FieldID" = '{0}'</hana>
+		<hana>SELECT "FldValue" AS "Nombre","Descr" AS "Descripcion" FROM "UFD1" WHERE "TableID" = 'OPRQ' and "FieldID" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerComboTiposPorId" definition="I">
-		<hana>SELECT "IndexID" AS "Id","FldValue" AS "Nombre","Descr" AS "Descripcion" FROM "UFD1" WHERE "TableID" = 'OPRQ' and "FieldID" = '{0}' and "FldValue" = '{1}'</hana>
+		<hana>SELECT "FldValue" AS "Nombre","Descr" AS "Descripcion" FROM "UFD1" WHERE "TableID" = 'OPRQ' and "FieldID" = '{0}' and "FldValue" = '{1}'</hana>
 	</query>
 	<query nameid="ObtenerTpoDocumentos" definition="I">
 		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141'</hana>
@@ -116,19 +198,24 @@
 		<hana>SELECT "DocEntry" as "IdDocumento","U_RML_Tipo_Doc" AS "TipoDocumento","U_RML_Serie_Doc" as "SerieDoc","U_RML_Corr_Doc" AS "CorrDocumento","U_RML_Fecha_Doc" AS "FechaDocumento","U_RML_Fecha_Vencimiento" AS "FechaVencimiento","U_RML_Ruc" AS "Ruc", "U_RML_Tipo_Agente" AS "TipoProveedor", "U_RML_Moneda" AS "Moneda", "U_RML_Operacion" AS "TipoOperacion","U_RML_PartidaFlujo" AS "PartidaFlujo", "U_RML_Proveedor" AS "Proveedor","U_RML_Comentarios" AS "Comentarios","U_RML_Valida_Sunat" AS "ExisteEnSunat?", "U_RML_Anexo_Adjunto" AS "AnexoAdjunto" FROM "@RML_WEB_DOC" WHERE "DocEntry" = '{0}'</hana>
 	</query>-->
 	<query nameid="InsertaIntermadiaEAR" definition="I">
-		<hana>insert into OPRQ_NUMEAR(DOCENTRY,SEDE,TIPO,NUMEROEAR) select  "DocEntry","fax", "U_RML_TIPOEAR", (select IFNULL(MAX(NUMEROEAR),0)+1 from OPRQ_NUMEAR where "SEDE" = T1."fax" and "TIPO" = T0."U_RML_TIPOEAR")  from OPRQ T0 inner join OHEM T1 on T0."Requester" = trim(T1."empID")  where (select 'Y' from NNM1 where "ObjectCode" = '1470000113' and "Series" = T0."Series" and "SeriesName" like '%EAR%') = 'Y' and T0."DocEntry" = '{0}';</hana>
+		<hana>insert into OPRQ_NUMEAR(DOCENTRY,SEDE,TIPO,NUMEROEAR) select  "DocEntry","fax", "U_RML_TIPOEAR", (select ISNULL(MAX(NUMEROEAR),0)+1 from OPRQ_NUMEAR where "SEDE" = T1."fax" and "TIPO" = T0."U_RML_TIPOEAR")  from OPRQ T0 inner join OHEM T1 on T0."Requester" = trim(T1."empID")  where (select 'Y' from NNM1 where "ObjectCode" = '1470000113' and "Series" = T0."Series" and "SeriesName" like '%EAR%') = 'Y' and T0."DocEntry" = '{0}';</hana>
 	</query>
 	<query nameid="InsertaSoliRendicion" definition="I">
-		<hana>INSERT INTO RML_WEB_SR(RML_EMPLDREGI,RML_NRSolicitud,RML_NRRendicion,RML_Estado,RML_EmpldAsig,RML_FechaRegis,RML_Ubigeo,RML_RUTA,RML_RutaAnexo,RML_Motivo,RML_FechaIni,RML_FechaFin,RML_FechaVenc,RML_Moneda,RML_TipoRendicion,RML_IdAprobacion,RML_TotalSolicitado,RML_MotivoMigr,RML_DocEntry,RML_ORDENVIAJE,RML_AREA,RML_NOMBRES) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}')</hana>
+		<hana>EXEC RML_POST_WEB_SR '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}'</hana>
 	</query>
 	<query nameid="InsertRegiRMLoDoc" definition="I">
-		<hana>INSERT INTO RML_WEB_DOC(RML_RENDICION,RML_FECHA_CONTABILIZA,RML_FECHA_DOC,RML_FECHA_VENCIMIENTO,RML_PROVEEDOR,RML_RUC,RML_TIPO_AGENTE,RML_MONEDA,RML_COMENTARIOS,RML_TIPO_DOC,RML_SERIE_DOC,RML_CORR_DOC,RML_VALIDA_SUNAT,RML_ANEXO_ADJUNTO,RML_OPERACION,RML_PARTIDAFLUJO,RML_TOTALDOC,RML_RAZONSOCIAL,RML_RD_ID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')</hana>
+		<hana>
+			  EXEC RML_POST_WEB_DOC '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}'
+		</hana>
 	</query>
 	<query nameid="InsertRegiRMLoDocDt" definition="I">
-		<hana>INSERT INTO RML_WEB_DOC_DET(RML_CODARTICULO,RML_CONCEPTO,RML_SUBTOTAL,RML_INDIC_IMPUESTO,RML_PROYECTO,RML_CENTCOSTO,RML_POS_FINANCIERA,RML_CUP,RML_ALMACEN,RML_CANTIDAD,RML_TPO_OPERACION,RML_DOC_ID) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')</hana>
+		<hana>
+			INSERT INTO RML_WEB_DOC_DET (RML_DOC_ID,RML_CODARTICULO,RML_CANTIDAD,RML_PRECIO,RML_SUBTOTAL,
+			RML_INDIC_IMPUESTO,RML_DIM1,RML_DIM3,RML_ALMACEN,RML_CUENTA_CNTBL) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')
+		</hana>
 	</query>
 	<query nameid="InsertRendicion" definition="I">
-		<hana>INSERT INTO "RML_WEB_RD" VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')</hana>
+		<hana>INSERT INTO "RML_WEB_RD" VALUES '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}'</hana>
 	</query>
 	<query nameid="ObtenerSolicitudRendicion" definition="I">
 		<hana>SELECT * FROM "RML_WEB_SR" WHERE ID = '{0}'</hana>
@@ -179,42 +266,66 @@
 		<hana>INSERT INTO RML_WEB_SR_DET2(RML_CentCosto,RML_DET_ID) VALUES ('{0}','{1}')</hana>
 	</query>
 	<query nameid="ActualizarSoliRendicion" definition="I">
-		<hana>UPDATE RML_WEB_SR SET "RML_EMPLDREGI" = '{0}', "RML_NRSOLICITUD" = '{1}', "RML_NRRENDICION" = '{2}', "RML_ESTADO" = '{3}', "RML_EMPLDASIG" = '{4}', "RML_FECHAREGIS"  = '{5}', "RML_UBIGEO" = '{6}', "RML_RUTA" = '{7}', "RML_RUTAANEXO" = '{8}', "RML_MOTIVO" = '{9}', "RML_FECHAINI" = '{10}', "RML_FECHAFIN" = '{11}', "RML_FECHAVENC" = '{12}', "RML_MONEDA" = '{13}', "RML_TIPORENDICION" = '{14}', "RML_IDAPROBACION" = '{15}', "RML_TOTALSOLICITADO" = '{16}', "RML_MOTIVOMIGR" = '{17}', "RML_DOCENTRY" = '{18}',"RML_ORDENVIAJE" = '{19}'  WHERE ID = '{20}'</hana>
+		<hana>
+			UPDATE RML_WEB_SR SET
+			RML_EMPLDASIG = '{0}',RML_NRSOLICITUD = '{1}', RML_NRRENDICION = '{2}', RML_ESTADO = '{3}', RML_RUTAANEXO = '{4}',
+			RML_MONEDA = '{5}', RML_TIPORENDICION = '{6}', RML_DESCRIPCION = '{7}', RML_COMENTARIOS = '{8}', RML_TOTALSOLICITADO = '{9}',
+			RML_AREA = '{10}',RML_NOMBRES = '{11}', RML_DOCENTRY = '{12}',  RML_MOTIVOMIGR = '{13}'
+			WHERE ID = '{14}'
+		</hana>
 	</query>
 	<query nameid="ActualizarSoliRendicionDet" definition="I">
 		<hana>UPDATE "RML_WEB_SR_DET" SET "RML_CODARTICULO" = '{0}',"RML_CONCEPTO" = '{1}',"RML_TOTAL" = '{2}',"RML_CANTIDAD" = '{3}',"RML_POSFINAN" = '{4}',"RML_CUP" = '{5}',"RML_CECO" = '{6}' WHERE "ID" = '{7}'</hana>
 	</query>
 	<query nameid="ActualizarDocumento" definition="I">
-		<hana>UPDATE "RML_WEB_DOC" SET RML_RENDICION = '{0}', RML_FECHA_CONTABILIZA = '{1}',RML_FECHA_DOC = '{2}',RML_FECHA_VENCIMIENTO = '{3}',RML_PROVEEDOR = '{4}',RML_RUC = '{5}',RML_TIPO_AGENTE = '{6}',RML_MONEDA = '{7}',RML_COMENTARIOS = '{8}',RML_TIPO_DOC = '{9}',RML_SERIE_DOC = '{10}',RML_CORR_DOC = '{11}',RML_VALIDA_SUNAT = '{12}',RML_ANEXO_ADJUNTO = '{13}',RML_OPERACION = '{14}',RML_PARTIDAFLUJO = '{15}',RML_TOTALDOC = '{16}',RML_RAZONSOCIAL = '{17}' WHERE ID = '{18}'</hana>
+		<hana>
+			UPDATE "RML_WEB_DOC" SET RML_FECHA_CONTABILIZA = '{0}',RML_FECHA_DOC = '{1}',RML_FECHA_VENCIMIENTO = '{2}',RML_PROVEEDOR = '{3}',RML_RAZONSOCIAL = '{4}',RML_RUC = '{5}',RML_MONEDA = '{6}',RML_COMENTARIOS = '{7}',RML_TIPO_DOC = '{8}',RML_SERIE_DOC = '{9}',RML_CORR_DOC = '{10}',RML_VALIDA_SUNAT = '{11}',RML_TOTALDOC = '{12}',RML_ANEXO_ADJUNTO = '{13}',RML_RETE_IMPST = '{14}', RML_WLIABLE = '{15}' WHERE ID = '{16}'
+		</hana>
 	</query>
 	<query nameid="ActualizarDocumentoDet" definition="I">
-		<hana>UPDATE "RML_WEB_DOC_DET" SET RML_CODARTICULO = '{0}',RML_CONCEPTO = '{1}',RML_SUBTOTAL = '{2}',RML_INDIC_IMPUESTO = '{3}',RML_PROYECTO = '{4}',RML_CENTCOSTO = '{5}',RML_POS_FINANCIERA = '{6}',RML_CUP = '{7}',RML_ALMACEN = '{8}',RML_CANTIDAD = '{9}',RML_TPO_OPERACION = '{10}' WHERE ID = '{11}'</hana>
+		<hana>
+			UPDATE RML_WEB_DOC_DET
+			SET
+			RML_CODARTICULO = '{1}',
+			RML_CANTIDAD = '{2}',
+			RML_PRECIO = '{3}',
+			RML_SUBTOTAL = '{4}',
+			RML_INDIC_IMPUESTO = '{5}',
+			RML_DIM1 = '{6}',
+			RML_DIM3 = '{7}',
+			RML_ALMACEN = '{8}',
+			RML_CUENTA_CNTBL = '{9}'
+			WHERE
+			ID = '{0}';
+		</hana>
 	</query>
 	<query nameid="ActualizarRendicion" definition="I">
 		<hana>UPDATE "RML_WEB_RD" SET "RML_NRAPERTURA" = '{0}',"RML_NRCARGA" = '{1}',"RML_ESTADO" = '{2}',"RML_TOTALRENDIDO" = '{3}',"RML_DOCENTRY" = '{4}',"RML_MOTIVOMIGR" = '{5}' WHERE ID = '{6}'</hana>
 	</query>
 	<query nameid="ActualizarRDTotal" definition="I">
-		<hana>UPDATE "RML_WEB_RD" SET "RML_TOTALRENDIDO" = (SELECT IFNULL(SUM("RML_TOTALDOC"),'0.0')  FROM "RML_WEB_DOC" WHERE "RML_RD_ID" =  '{0}') WHERE "ID" = '{1}'</hana>
+		<hana>UPDATE "RML_WEB_RD" SET "RML_TOTALRENDIDO" = (SELECT ISNULL(SUM("RML_TOTALDOC"),'0.0')  FROM "RML_WEB_DOC" WHERE "RML_RD_ID" =  '{0}') WHERE "ID" = '{1}'</hana>
 	</query>
 	<query nameid="ActualizarDOCTotal" definition="I">
-		<hana>UPDATE "RML_WEB_DOC" SET "RML_TOTALDOC" = (SELECT IFNULL(SUM("RML_SUBTOTAL"),'0.0')  FROM "RML_WEB_DOC_DET" WHERE "RML_DOC_ID" =  '{0}') WHERE "ID" = '{1}'</hana>
+		<hana>UPDATE "RML_WEB_DOC" SET "RML_TOTALDOC" = (SELECT ISNULL(SUM("RML_SUBTOTAL"),'0.0')  FROM "RML_WEB_DOC_DET" WHERE "RML_DOC_ID" =  '{0}') WHERE "ID" = '{1}'</hana>
 	</query>
 	<query nameid="ActualizarDOCValidaSunat" definition="I">
 		<hana>UPDATE "RML_WEB_DOC" SET "RML_VALIDA_SUNAT" = '{0}' WHERE ID = '{1}'</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadores1" definition="I">
-		<hana>SELECT T0."RML_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T4."RML_FECHAREGIS",T4."RML_ESTADO" "Estado"FROM "RML_WEB_APR_SR" T0 INNER JOIN OHEM T1 ON T1."empID"  = T0."RML_USUARIOAPROBADORID"INNER JOIN OHEM T3 ON T3."empID" = T0."RML_USUARIOID" INNER JOIN "RML_WEB_SR" T4 ON T4."ID" = T0."RML_ID_SR" WHERE T0."RML_ID_SR" = '{0}'</hana>
+		<hana>SELECT T0."RML_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."RML_APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T4."RML_FECHAREGIS",T4."RML_ESTADO" "Estado"FROM "RML_WEB_APR_SR" T0 INNER JOIN OHEM T1 ON T1."empID"  = T0."RML_USUARIOAPROBADORID"INNER JOIN OHEM T3 ON T3."empID" = T0."RML_USUARIOID" INNER JOIN "RML_WEB_SR" T4 ON T4."ID" = T0."RML_ID_SR" WHERE T0."RML_ID_SR" = '{0}'</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadores" definition="I">
 		<hana>
-			SELECT DISTINCT T0."RML_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T2."RML_FECHAREGIS",T2."RML_ESTADO" "Estado" FROM "RML_WEB_APR_SR" T0 INNER JOIN OHEM T1 ON T1."branch" = "RML_AREA" INNER JOIN "RML_WEB_SR" T2 ON T2."ID" = T0."RML_ID_SR"  INNER JOIN OHEM T3 ON T3."empID" = T0."RML_USUARIOID" WHERE T1."U_RML_TIPO_USUARIO" = '{0}' AND T2."ID" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'
+			EXEC RML_GET_INFOAPROBADORES '{0}','{1}','{2}'
 		</hana>
 	</query>
 	<query nameid="ObtenSolicitudAprobar" definition="I">
 		<hana>SELECT * FROM RML_WEB_APR_SR WHERE RML_ID_SR = ''  AND RML_AREA = '' AND APROBACIONFINALZIADA = ''</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadoresRD" definition="I">
-		<hana>SELECT DISTINCT T0."RML_ID_RD" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T2."RML_FECHAREGIS",T2."RML_ESTADO" "Estado" FROM "RML_WEB_APR_RD" T0 INNER JOIN OHEM T1 ON T1."branch" = "RML_AREA" INNER JOIN "RML_WEB_RD" T2 ON T2."ID" = T0."RML_ID_RD" INNER JOIN OHEM T3 ON T3."empID" = T0."RML_USUARIOID" WHERE T1."U_RML_TIPO_USUARIO" = '{0}' AND T2."ID" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'</hana>
+		<hana>
+			EXEC RML_GET_INFOAPROBADORESRD '{0}','{1}','{2}'
+		</hana>
 	</query>
 	<query nameid="BorrarSRDetCent" definition="I">
 		<hana>DELETE FROM "RML_WEB_SR_DET2" WHERE "RML_DET_ID" = '{0}'</hana>
@@ -238,19 +349,19 @@
 		<hana>SELECT TOP 1 "ID" As "Id" FROM "RML_WEB_DOC" WHERE "RML_RD_ID" = {0}  ORDER BY "ID" DESC</hana>
 	</query>
 	<query nameid="InsertaTablaAprobadoresSR" definition="I">
-		<hana>INSERT INTO "RML_WEB_APR_SR" VALUES('{0}','{1}','{2}','{3}','{4}','{5}')</hana>
+		<hana>INSERT INTO "RML_WEB_APR_SR" VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')</hana>
 	</query>
 	<query nameid="InsertaTablaAprobadoresRD" definition="I">
-		<hana>INSERT INTO "RML_WEB_APR_RD" VALUES('{0}','{1}','{2}','{3}','{4}','{5}')</hana>
+		<hana>INSERT INTO "RML_WEB_APR_RD" VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')</hana>
 	</query>
 	<query nameid="ActualizaablaAprobadoresSR1" definition="I">
-		<hana>UPDATE "RML_WEB_APR_SR" SET "FECHAAPROBACION" = '{0}', "APROBACIONFINALIZADA" = '{1}' WHERE "RML_USUARIOAPROBADORID" = '{2}' AND "RML_ID_SR" = '{3}'</hana>
+		<hana>UPDATE "RML_WEB_APR_SR" SET "RML_FECHAAPROBACION" = '{0}', "RML_APROBACIONFINALIZADA" = '{1}' WHERE "RML_USUARIOAPROBADORID" = '{2}' AND "RML_ID_SR" = '{3}'</hana>
 	</query>
 	<query nameid="ActualizaablaAprobadoresSR" definition="I">
-		<hana>UPDATE "RML_WEB_APR_SR" SET "RML_USUARIOAPROBADORID" = '{0}',"FECHAAPROBACION" = '{1}', "APROBACIONFINALIZADA" = '{2}' WHERE "RML_AREA" = '{3}' AND "RML_ID_SR" = '{4}' AND "APROBACIONFINALIZADA" = '{5}'</hana>
+		<hana>UPDATE "RML_WEB_APR_SR" SET "RML_USUARIOAPROBADORID" = '{0}',"RML_FECHAAPROBACION" = '{1}', "RML_APROBACIONFINALIZADA" = '{2}' WHERE "RML_AREA" = '{3}' AND "RML_ID_SR" = '{4}' AND "RML_APROBACIONFINALIZADA" = '{5}'</hana>
 	</query>
 	<query nameid="ActualizaablaAprobadoresRD" definition="I">
-		<hana>UPDATE "RML_WEB_APR_RD" SET "RML_USUARIOAPROBADORID" = '{0}',"FECHAAPROBACION" = '{1}', "APROBACIONFINALIZADA" = '{2}' WHERE "RML_AREA" = '{3}' AND "RML_ID_RD" = '{4}' AND "APROBACIONFINALIZADA" = '{5}'</hana>
+		<hana>UPDATE "RML_WEB_APR_RD" SET "RML_USUARIOAPROBADORID" = '{0}',"RML_FECHAAPROBACION" = '{1}', "RML_APROBACIONFINALIZADA" = '{2}' WHERE "RML_AREA" = '{3}' AND "RML_ID_RD" = '{4}' AND "RML_APROBACIONFINALIZADA" = '{5}'</hana>
 	</query>
 	<query nameid="CambiaEstadoSR" definition="I">
 		<hana>UPDATE "RML_WEB_SR" SET "RML_ESTADO" = '{0}', "RML_MOTIVOMIGR" = '{1}' WHERE "ID" = '{2}'</hana>
@@ -283,7 +394,7 @@
 		<hana>SELECT TOP 1 "AttachPath" as "Ruta" FROM OADP</hana>
 	</query>
 	<query nameid="ObtenerItem" definition="I">
-		<hana>SELECT T0."ItemCode" as "id", T0."ItemName" as "name",CT."OverCode2"  AS "posFinanciera", CT."AcctCode" AS "CTA" FROM OITM T0 inner join OITW T1 on T1."ItemCode"=T0."ItemCode" inner join OACT CT on CT."AcctCode"=T1."ExpensesAc" WHERE T0."ItemCode" = '{0}' GROUP BY T0."ItemCode", T0."ItemName",CT."OverCode2",CT."AcctCode"</hana>
+		<hana>SELECT ItemCode, ItemName FROM OITM WHERE ItemCode = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerProyectos" definition="I">
 		<hana>SELECT "PrjCode" as "id","PrjName" as "name" FROM OPRJ  WHERE "Active" = 'Y'</hana>
@@ -292,61 +403,70 @@
 		<hana>SELECT "PrjCode" as "id","PrjName" as "name" FROM OPRJ  WHERE "Active" = 'Y' AND "PrjCode" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerIndicadores" definition="I">
-		<hana>SELECT "Code" as "id","Name" as "name" FROM OSTA</hana>
+		<hana>SELECT "Code","Name","Rate" FROM OSTA</hana>
 	</query>
 	<query nameid="ObtenerIndicador" definition="I">
-		<hana>SELECT "Code" as "id","Name" as "name" FROM OSTA WHERE "Code" = '{0}'</hana>
+		<hana>SELECT "Code","Name","Rate"  FROM OSTA WHERE "Code" = '{0}'</hana>
 	</query>
 	<query nameid="ListarSolicitudRendicion" definition="I">
-		<hana>CALL RML_PW_LISTARSR ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
+		<hana>EXEC RML_PW_LISTARSR '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}'</hana>
 	</query>
 	<query nameid="ListardRendicion" definition="I">
-		<hana>CALL RML_PW_LISTARRD ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
+		<hana>EXEC RML_PW_LISTARRD '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}'</hana>
 	</query>
 	<query nameid="ListarAprobadoresCabecera" definition="I">
-		<hana>SELECT  DISTINCT T1."firstName" || ' ' || T1."lastName" AS "Nombres",T0."RML_USUARIOAPROBADORID",T0."APROBACIONFINALIZADA",T0."FECHAAPROBACION",T0."RML_AREA" FROM "RML_WEB_APR_SR"  T0 LEFT JOIN OHEM T1 ON T0."RML_USUARIOAPROBADORID"  = T1."empID" WHERE T0."RML_ID_SR" = '{0}'</hana>
+		<hana>
+			SELECT  DISTINCT T1."firstName" + ' ' + T1."lastName" AS "Nombres",T0."RML_USUARIOAPROBADORID",
+			T0."RML_APROBACIONFINALIZADA",T0."RML_FECHAAPROBACION",T0."RML_AREA" FROM "RML_WEB_APR_SR"  T0
+			LEFT JOIN SOQUIMIC_TEST_ADDON.dbo.OHEM T1 ON T0."RML_USUARIOAPROBADORID"  = T1."empID" WHERE T0."RML_ID_SR" = '{0}'
+		</hana>
 	</query>
 	<query nameid="ListarAprobadoresDetalle" definition="I">
-		<hana>SELECT "empID","firstName" ||' '||"lastName" AS "lastName" FROM OHEM WHERE "U_RML_TIPO_USUARIO" = 2 AND "branch" = '{0}'</hana>
+		<hana>
+			SELECT "empID","firstName" +' '+"lastName" AS "lastName" FROM SOQUIMIC_TEST_ADDON.dbo.OHEM T0
+			inner join RML_WEB_USUARIOS T1 ON T1.RML_USUARIOSAP = T0.empID
+			WHERE T1.RML_ROL_ID = 2 AND "branch" = '{0}'
+		</hana>
 	</query>
 	<query nameid="ListarAprobadoresCabeceraRd" definition="I">
-		<hana>SELECT  DISTINCT T1."firstName" || ' ' || T1."lastName" AS "Nombres",T0."RML_USUARIOAPROBADORID",T0."APROBACIONFINALIZADA",T0."FECHAAPROBACION",T0."RML_AREA" FROM "RML_WEB_APR_RD"  T0 LEFT JOIN OHEM T1 ON T0."RML_USUARIOAPROBADORID"  = T1."empID" WHERE T0."RML_ID_RD" = '{0}'</hana>
+		<hana>
+			SELECT  DISTINCT T1."firstName"+ ' ' + T1."lastName" AS "Nombres",T0."RML_USUARIOAPROBADORID",T0."RML_APROBACIONFINALIZADA",T0."RML_FECHAAPROBACION",
+			T0."RML_AREA" FROM "RML_WEB_APR_RD"  T0 LEFT JOIN SOQUIMIC_TEST_ADDON.dbo.OHEM T1 ON T0."RML_USUARIOAPROBADORID"  = T1."empID" WHERE T0."RML_ID_RD" = '{0}'
+		</hana>
 	</query>
 	<query nameid="ListarAprobadoresDetalleRd" definition="I">
-		<hana>SELECT "empID","firstName" ||' '||"lastName" AS "lastName" FROM OHEM WHERE "U_RML_TIPO_USUARIO" IN(2,3) AND "branch" = '{0}'</hana>
+		<hana>
+			SELECT "empID","firstName" +' '+"lastName" AS "lastName" FROM SOQUIMIC_TEST_ADDON.dbo.OHEM T1
+			INNER JOIN RML_WEB_USUARIOS T0 ON T0.RML_USUARIOSAP = T1.empID
+			WHERE T0.RML_ROL_ID IN(2,3) AND "branch" = '{0}'
+		</hana>
 	</query>
 	<query nameid="ObtenCUP" definition="I">
 		<hana>SELECT T0."U_CUP", T0."U_DESCRIPTION", T0."U_COSTCENTER_ID" AS "CRP", T0."U_HEADING_ID" AS "Partida" FROM "@RML_BGT_NBOX"  T0 WHERE T0."U_CUP" = '{0}'</hana>
 	</query>
 	<query nameid="ListardItems" definition="I">
-		<hana>CALL RML_PW_LISTARITEMS ('{0}','{1}')</hana>
+		<hana>EXEC RML_PW_LISTARITEMS '{0}'</hana>
 	</query>
 	<query nameid="ListardCup" definition="I">
-		<hana>CALL RML_PW_LISTACUP ('{0}','{1}','{2}')</hana>
+		<hana>EXEC RML_PW_LISTACUP '{0}','{1}','{2}'</hana>
 	</query>
 	<query nameid="ListarPrecioUnitario" definition="I">
-		<hana>CALL RML_PW_OBTENERPRECIO ('{0}','{1}','{2}')</hana>
+		<hana>EXEC RML_PW_OBTENERPRECIO '{0}','{1}','{2}'</hana>
 	</query>
 	<query nameid="ObtieneAprobadores" definition="I">
-		<hana>CALL RML_PW_VALIDA_APROB ('{0}','{1}','{2}')</hana>
+		<hana>EXEC RML_PW_VALIDA_APROB '{0}','{1}','{2}'</hana>
 	</query>
 	<query nameid="ObtenerPresupuesto" definition="I">
-		<hana>CALL RML_PEAR_VAL_PPTO ('{0}','{1}','{2}','{3}')</hana>
+		<hana>EXEC RML_PEAR_VAL_PPTO '{0}','{1}','{2}','{3}'</hana>
 	</query>
 	<query nameid="ObtenerPresupuestoPrd" definition="I">
-		<hana>CALL RML_PEAR_VAL_PPTO2 ('{0}','{1}','{2}','{3}')</hana>
+		<hana>EXEC RML_PEAR_VAL_PPTO2 ('{0}','{1}','{2}','{3}')</hana>
 	</query>
 	<query nameid="ObtieneTtPendienteBorr" definition="I">
-		<hana>SELECT TOP 1 IFNULL("Code",0) + 1 "Code" FROM "@RML_WEB_TTPEND" ORDER BY CAST("Code" AS INT) DESC</hana>
+		<hana>SELECT TOP 1 ISNULL("Code",0) + 1 "Code" FROM "@RML_WEB_TTPEND" ORDER BY CAST("Code" AS INT) DESC</hana>
 	</query>
 	<query nameid="InsertTotalPendientesBorr" definition="I">
 		<hana>INSERT INTO "RML_WEB_TTPEND" VALUES('{0}','{1}','{2}','{3}','{4}','{5}')</hana>
-	</query>
-	<query nameid="UpdateTotalPendientesBorr" definition="I">
-		<hana>UPDATE "RML_WEB_TTPEND" SET "RML_PENDIENTE" = '{0}'  WHERE "RML_IDPW" = '{1}'</hana>
-	</query>
-	<query nameid="DelteTotalPendientesBorr" definition="I">
-		<hana>DELETE FROM "RML_WEB_TTPEND" WHERE "RML_IDPW" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerSerieOPRQ" definition="I">
 		<hana>SELECT TOP 1 "Series" FROM NNM1 WHERE "Indicator" = '{0}' AND "ObjectCode" = '1470000113' AND"SeriesName" LIKE '%{1}%'</hana>

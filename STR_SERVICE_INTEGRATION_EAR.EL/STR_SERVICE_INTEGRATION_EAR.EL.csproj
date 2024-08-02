@@ -77,11 +77,14 @@
     <Compile Include="Responses\ComprobanteResponses.cs" />
     <Compile Include="Responses\CreateDocument.cs" />
     <Compile Include="Responses\CreateResponse.cs" />
+    <Compile Include="Responses\CuentaContable.cs" />
     <Compile Include="Responses\Cup.cs" />
     <Compile Include="Responses\Direccion.cs" />
     <Compile Include="Responses\Complemento.cs" />
+    <Compile Include="Responses\EmpleadoSAP.cs" />
     <Compile Include="Responses\ErrorSL.cs" />
     <Compile Include="Responses\FileRS.cs" />
+    <Compile Include="Responses\Impuesto.cs" />
     <Compile Include="Responses\InfoRuc.cs" />
     <Compile Include="Responses\Item.cs" />
     <Compile Include="Responses\LoginElecResponse.cs" />

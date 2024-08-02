@@ -10,7 +10,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/tipoear")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [TokenAuthorization]
+    //[TokenAuthorization]
     public class TipoController : ApiController
     {
         [Route]

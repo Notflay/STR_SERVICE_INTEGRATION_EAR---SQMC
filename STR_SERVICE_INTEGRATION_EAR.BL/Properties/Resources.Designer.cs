@@ -64,10 +64,10 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL.Properties {
         ///   Busca una cadena traducida similar a &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;root&gt;
         ///	&lt;query nameid=&quot;CreaTablaSys&quot; definition=&quot;P&quot;&gt;
-        ///		&lt;sql&gt;STR_SP_CREARTABLASYS &apos;LOC&apos;&lt;/sql&gt;
+        ///		&lt;sql&gt;RML_SP_CREARTABLASYS &apos;LOC&apos;&lt;/sql&gt;
         ///	&lt;/query&gt;
         ///	&lt;query nameid=&quot;UpdPagoDetraccion&quot; definition=&quot;P&quot;&gt;
-        ///		&lt;sql&gt;STR_SP_ActualizaPagoDetraccion&lt;/sql&gt;
+        ///		&lt;sql&gt;RML_SP_ActualizaPagoDetraccion&lt;/sql&gt;
         ///		&lt;params&gt;&apos;{0}&apos;&lt;/params&gt;
         ///	&lt;/query&gt;
         ///&lt;/root&gt;

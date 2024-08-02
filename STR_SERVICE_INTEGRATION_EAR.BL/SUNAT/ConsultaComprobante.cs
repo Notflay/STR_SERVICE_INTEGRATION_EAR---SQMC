@@ -60,7 +60,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public ComprobanteResponses ValidarDocumento(ComprobanteRequest comprobante)
         {
             // 
-            bool prod = ConfigurationManager.AppSettings["Prod"] == "1";
+            bool prod = ConfigurationManager.AppSettings["ValidacionSunatActiva"] == "1";
 
             string url = $"https://api.sunat.gob.pe/v1/contribuyente/contribuyentes/{ruc}/validarcomprobante";
             ComprobanteResponses resultContent = new ComprobanteResponses();

@@ -13,24 +13,24 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
     public class Sq_Item
     {
         SqlADOHelper hash = new SqlADOHelper();
-        public ConsultationResponse<Item> ObtenerItems(string ear, string sede)
+        public ConsultationResponse<Item> ObtenerItems(string tipo)
         {
             var respIncorrect = "No se encuentra Items";
 
             try
             {
-                List<Item> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_items), dc =>
+                List<Item> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_items), dc =>
                 {
                     return new Item()
                     {
                         ItemCode = dc["ItemCode"],
                         ItemName = dc["ItemName"],
-                        id = dc["ItemCode"],
-                        name = dc["ItemName"],
-                        posFinanciera = dc["POSFINANCIERA"],
-                        CTA = dc["CTA"]
+                        //id = dc["ItemCode"],
+                        //name = dc["ItemName"],
+                        //posFinanciera = dc["POSFINANCIERA"],
+                        //CTA = dc["CTA"]
                     };
-                }, ear, sede).ToList();
+                }, tipo).ToList();
 
                 return Global.ReturnOk(list, respIncorrect);
             }
@@ -46,17 +46,17 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
             try
             {
-                List<Item> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_item), dc =>
+                List<Item> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_item), dc =>
                 {
                     return new Item()
                     {
-                        ItemCode = dc["id"],
-                        ItemName = dc["name"],
-                        id = dc["id"],
-                        name = dc["name"],
-                       // POSFINANCIERA = dc["posFinanciera"],
-                        posFinanciera = dc["posFinanciera"],
-                        CTA = dc["CTA"]
+                        ItemCode = dc["ItemCode"],
+                        ItemName = dc["ItemName"],
+                       // id = dc["id"],
+                       // name = dc["name"],
+                       //// POSFINANCIERA = dc["posFinanciera"],
+                       // posFinanciera = dc["posFinanciera"],
+                        //CTA = dc["CTA"]
 
                     };
                 }, itemCode).ToList();
@@ -164,18 +164,92 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             }
         }
 
-        public ConsultationResponse<Complemento> ObtenerIndicadores()
+        public ConsultationResponse<Impuesto> ObtenerIndicadores()
         {
             var respIncorrect = "No se encontró indicadores";
 
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_indicadores), dc =>
+                List<Impuesto> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_indicadores), dc =>
+                {
+                    return new Impuesto()
+                    {
+                        code = dc["Code"],
+                        descripcion = dc["Name"],
+                        rate = Convert.ToDecimal(dc["Rate"])
+                    };
+                }, string.Empty).ToList();
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Impuesto>(ex);
+            }
+        }
+        public ConsultationResponse<CuentaContable> ObtenerCuentasContable()
+        {
+            var respIncorrect = "No se encontró indicadores";
+
+            try
+            {
+                List<CuentaContable> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_cuentacontable), dc =>
+                {
+                    return new CuentaContable()
+                    {
+                        Segment_0 = dc["Segment_0"],
+                        Segment_1 = dc["Segment_1"],
+                        Segment_2 = dc["Segment_2"],
+                        AcctCode = dc["AcctCode"],
+                        AcctName = dc["AcctName"]
+                    };
+                }, string.Empty).ToList();
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<CuentaContable>(ex);
+            }
+        }
+
+        public CuentaContable ObtenerCuentasContable(string acct)
+        {
+            var respIncorrect = "No se encontró indicadores";
+
+            try
+            {
+                List<CuentaContable> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_cuentacontableId), dc =>
+                {
+                    return new CuentaContable()
+                    {
+                        Segment_0 = dc["Segment_0"],
+                        Segment_1 = dc["Segment_1"],
+                        Segment_2 = dc["Segment_2"],
+                        AcctCode = dc["AcctCode"],
+                        AcctName = dc["AcctName"]
+                    };
+                }, acct).ToList();
+
+                return list[0];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public ConsultationResponse<Complemento> ObtenerAlmacenes()
+        {
+            var respIncorrect = "No se encontró indicadores";
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_almacenes), dc =>
                 {
                     return new Complemento()
                     {
-                        id = dc["id"],
-                        name = dc["name"]
+                        id = dc["WhsCode"],
+                        name = dc["WhsName"]
                     };
                 }, string.Empty).ToList();
 
@@ -186,27 +260,49 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 return Global.ReturnError<Complemento>(ex);
             }
         }
+            public Complemento ObtenerAlmacen(string id)
+            {
+                var respIncorrect = "No se encontró indicadores";
 
-        public ConsultationResponse<Complemento> ObtenerIndicador(string id)
+                try
+                {
+                    List<Complemento> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_almacenesId), dc =>
+                    {
+                        return new Complemento()
+                        {
+                            id = dc["WhsCode"],
+                            name = dc["WhsName"]
+                        };
+                    }, id).ToList();
+
+                    return list[0];
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        public Impuesto ObtenerIndicador(string id)
         {
             var respIncorrect = "No se encontró indicador";
 
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_indicador), dc =>
+                List<Impuesto> list = hash.GetResultAsTypeDirecta(SQ_QueryManager.Generar(SQ_Query.get_indicador), dc =>
                 {
-                    return new Complemento()
+                    return new Impuesto()
                     {
-                        id = dc["id"],
-                        name = dc["name"]
+                        code = dc["Code"],
+                        descripcion = dc["Name"],
+                        rate = Convert.ToDecimal(dc["Rate"])
                     };
                 }, id).ToList();
 
-                return Global.ReturnOk(list, respIncorrect);
+                return list[0];
             }
             catch (Exception ex)
             {
-                return Global.ReturnError<Complemento>(ex);
+                return null;
             }
         }
 

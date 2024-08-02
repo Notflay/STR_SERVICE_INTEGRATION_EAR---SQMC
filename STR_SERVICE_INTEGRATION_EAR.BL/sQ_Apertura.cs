@@ -28,30 +28,30 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     return new SolicitudRD()
                     {
                         ID = Convert.ToInt32(dc["ID"]),
-                        STR_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["STR_DOCENTRY"]),
-                        STR_NRSOLICITUD = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_NRSOLICITUD"])) ? (int?)null : Convert.ToInt32(dc["STR_NRSOLICITUD"]),
-                        STR_ESTADO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_ESTADO"])) ? (int?)null : Convert.ToInt32(dc["STR_ESTADO"]),
-                        STR_MOTIVO = dc["STR_MOTIVO"],
-                        STR_UBIGEO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_UBIGEO"])) ? (int?)null : Convert.ToInt32(dc["STR_UBIGEO"]),
-                        STR_RUTA = dc["STR_RUTA"],
-                        STR_RUTAANEXO = dc["STR_RUTAANEXO"],
-                        STR_MONEDA = dc["STR_MONEDA"],
-                        STR_TIPORENDICION = dc["STR_TIPORENDICION"],
-                        STR_TOTALSOLICITADO = Convert.ToDouble(dc["STR_TOTALSOLICITADO"]),
-                        STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"],
-                        STR_EMPLDASIG = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_EMPLDASIG"])) ? (int?)null : Convert.ToInt32(dc["STR_EMPLDASIG"]),
-                        STR_EMPLDREGI = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_EMPLDREGI"])) ? (int?)null : Convert.ToInt32(dc["STR_EMPLDREGI"]),
-                        STR_FECHAREGIS = dc["STR_FECHAREGIS"],
-                        STR_FECHAINI = dc["STR_FECHAINI"],
-                        STR_FECHAFIN = dc["STR_FECHAFIN"],
-                        STR_FECHAVENC = dc["STR_FECHAVENC"],
+                        RML_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["RML_DOCENTRY"]),
+                        RML_NRSOLICITUD = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_NRSOLICITUD"])) ? (int?)null : Convert.ToInt32(dc["RML_NRSOLICITUD"]),
+                        //RML_ESTADO = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_ESTADO"])) ? (int?)null : Convert.ToInt32(dc["RML_ESTADO"]),
+                        //RML_MOTIVO = dc["RML_MOTIVO"],
+                        //RML_UBIGEO = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_UBIGEO"])) ? (int?)null : Convert.ToInt32(dc["RML_UBIGEO"]),
+                        //RML_RUTA = dc["RML_RUTA"],
+                        //RML_RUTAANEXO = dc["RML_RUTAANEXO"],
+                        //RML_MONEDA = dc["RML_MONEDA"],
+                        //RML_TIPORENDICION = dc["RML_TIPORENDICION"],
+                        //RML_TOTALSOLICITADO = Convert.ToDouble(dc["RML_TOTALSOLICITADO"]),
+                        //RML_MOTIVOMIGR = dc["RML_MOTIVOMIGR"],
+                        //RML_EMPLDASIG = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_EMPLDASIG"])) ? (int?)null : Convert.ToInt32(dc["RML_EMPLDASIG"]),
+                        //RML_EMPLDREGI = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_EMPLDREGI"])) ? (int?)null : Convert.ToInt32(dc["RML_EMPLDREGI"]),
+                        //RML_FECHAREGIS = dc["RML_FECHAREGIS"],
+                        //RML_FECHAINI = dc["RML_FECHAINI"],
+                        RML_FECHAFIN = dc["RML_FECHAFIN"],
+                        RML_FECHAVENC = dc["RML_FECHAVENC"],
 
                     };
                 }, apertura.NroSolicitud.ToString()).ToList();
 
                 var s = list[0].ID;
 
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertRendicion),s, apertura.NumeroApertura,apertura.IDSolicitud,null,"8", list[0].STR_EMPLDASIG, list[0].STR_EMPLDREGI, 0, DateTime.Now.ToString("yyyy-MM-dd"), null, null, list[0].STR_TOTALSOLICITADO);
+                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertRendicion),s, apertura.NumeroApertura,apertura.IDSolicitud,null,"8", list[0].RML_EMPLDASIG, list[0].RML_EMPLDREGI, 0, DateTime.Now.ToString("yyyy-MM-dd"), null, null, list[0].RML_TOTALSOLICITADO);
 
                 return null;
             }

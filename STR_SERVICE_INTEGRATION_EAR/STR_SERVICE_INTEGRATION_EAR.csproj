@@ -298,6 +298,7 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\DireccionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RendicionController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />

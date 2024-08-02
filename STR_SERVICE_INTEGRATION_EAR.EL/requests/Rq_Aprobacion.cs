@@ -14,15 +14,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
         public double monto { get; set; }
         public int conta { get; set; }
         public int estado { get; set; }
-        public List<P_borrador> p_Borradores { get; set; }
+        //public List<P_borrador> p_Borradores { get; set; }
     }
 
     public class P_borrador
     {
-        public double STR_TOTAL { get; set; }
-        public string STR_PENDIENTE { get; set; }
-        public string STR_CENTCOST { get; set; }
-        public string STR_POSFIN { get; set; }
-        public string STR_FECHAREGIS { get; set; }
+        public double RML_TOTAL { get; set; }
+        public string RML_PENDIENTE { get; set; }
+        public string RML_CENTCOST { get; set; }
+        public string RML_POSFIN { get; set; }
+        public string RML_FECHAREGIS { get; set; }
     }
 }

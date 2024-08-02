@@ -9,17 +9,17 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
 {
     public class DocumentoDet
     {
-        public int ID { get; set; }
-        public Item STR_CODARTICULO { get; set; }
-        public double STR_SUBTOTAL { get; set; }
-        public Complemento STR_INDIC_IMPUESTO { get; set; }
-        public Complemento STR_PROYECTO { get; set; }
-        public CentroCosto STR_CENTCOSTO { get; set; }
-        public Complemento STR_POS_FINANCIERA { get; set; }
-        public Cup STR_CUP { get; set; }
-        public string STR_ALMACEN { get; set; }
-        public int STR_CANTIDAD { get; set; }
-        public string STR_TPO_OPERACION { get; set; }
-        public int STR_DOC_ID { get; set; }
+        public string ID { get; set; }
+        public Item RML_CODARTICULO { get; set; }
+        public decimal RML_SUBTOTAL { get; set; }
+        public Impuesto RML_INDIC_IMPUESTO { get; set; }
+        public Complemento RML_DIM1 { get; set; }
+        public Complemento RML_DIM3 { get; set; }
+        public Complemento RML_ALMACEN { get; set; }
+        public CuentaContable RML_CUENTA_CNTBL { get; set; }
+        public int RML_CANTIDAD { get; set; }
+        public string RML_TPO_OPERACION { get; set; }
+        public decimal RML_PRECIO { get; set; }
+        public int? RML_DOC_ID { get; set; }
     }
 }

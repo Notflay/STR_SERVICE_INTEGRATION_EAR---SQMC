@@ -19,19 +19,19 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
     {
         bool Prod = ConfigurationManager.AppSettings["Prod"].ToString() == "1";
 
-        [HttpGet]
-        [Route("{id}")]
-        public IHttpActionResult ObtieneUsuario(int id)
-        {
-            SQ_Usuario consulta = new SQ_Usuario();
-            var response = consulta.getUsuario(id);
+        //[HttpGet]
+        //[Route("{id}")]
+        //public IHttpActionResult ObtieneUsuario(int id)
+        //{
+        //    SQ_Usuario consulta = new SQ_Usuario();
+        //    var response = consulta.getUsuario(id);
 
-            if (response.CodRespuesta == "99")
-            {
-                return BadRequest(response.DescRespuesta);
-            }
-            return Ok(response);
-        }
+        //    if (response.CodRespuesta == "99")
+        //    {
+        //        return BadRequest(response.DescRespuesta);
+        //    }
+        //    return Ok(response);
+        //}
         [HttpGet]
         public IHttpActionResult ObtenerUsuarios()
         {

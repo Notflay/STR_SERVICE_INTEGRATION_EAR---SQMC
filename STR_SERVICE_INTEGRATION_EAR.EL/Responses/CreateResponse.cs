@@ -12,6 +12,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Responses
         public int DocEntry { get; set; }
         public int DocNum { get; set; }
         //[JsonIgnore]
-        public int AprobacionFinalizada { get; set; }
+        public int RML_APROBACIONFINALIZADA { get; set; }
     }
 }
