@@ -1,10 +1,10 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sap.Data.Hana;
 
 namespace STR_SERVICE_INTEGRATION_EAR.SQ
 {
@@ -14,15 +14,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
     {
         public IEnumerable<T> GetResultAsType<T>(string qry, GetValues<T> getValues, params string[] prms)
         {
-            SqlConnectionManager hcm = new SqlConnectionManager();
-            SqlConnection hc = null;
+            HanaConnectionManager hcm = new HanaConnectionManager();
+            HanaConnection hc = null;
 
             try
             {
                 hc = hcm.GetConnection();
-                SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                HanaCommand cmd = new HanaCommand(GetSqlQry(qry, prms), hc);
                 hcm.OpenConnection();
-                SqlDataReader hdr = cmd.ExecuteReader();
+                HanaDataReader hdr = cmd.ExecuteReader();
                 //List<T> lstTemp = new List<T>();
                 while (hdr.Read())
                 {
@@ -55,15 +55,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
 
         public IEnumerable<T> GetResultAsTypeDirecta<T>(string qry, GetValues<T> getValues, params string[] prms)
         {
-            SqlConnectionManager hcm = new SqlConnectionManager();
-            SqlConnection hc = null;
+            HanaConnectionManager hcm = new HanaConnectionManager();
+            HanaConnection hc = null;
 
             try
             {
                 hc = hcm.GetConnectionDirecta();
-                SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                HanaCommand cmd = new HanaCommand(GetSqlQry(qry, prms), hc);
                 hcm.OpenConnection();
-                SqlDataReader hdr = cmd.ExecuteReader();
+                HanaDataReader hdr = cmd.ExecuteReader();
                 //List<T> lstTemp = new List<T>();
                 while (hdr.Read())
                 {
@@ -96,15 +96,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
 
         public string insertValueSql(string qry, params object[] prms)
         {
-            SqlConnectionManager hcm = new SqlConnectionManager();
-            SqlConnection hc = null;
+            HanaConnectionManager hcm = new HanaConnectionManager();
+            HanaConnection hc = null;
             string result = null;
             try
             {
                 hc = hcm.GetConnection();
-                SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                HanaCommand cmd = new HanaCommand(GetSqlQry(qry, prms), hc);
                 hcm.OpenConnection();
-                SqlDataReader hdr = cmd.ExecuteReader();
+                HanaDataReader hdr = cmd.ExecuteReader();
                 while (hdr.Read())
                 {
                     result = hdr["ID"].ToString();
@@ -138,15 +138,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
 
         public string GetValueSql(string qry, params string[] prms)
         {
-            SqlConnectionManager hcm = new SqlConnectionManager();
-            SqlConnection hc = null;
+            HanaConnectionManager hcm = new HanaConnectionManager();
+            HanaConnection hc = null;
             string result = null;
             try
             {
                 hc = hcm.GetConnection();
-                SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                HanaCommand cmd = new HanaCommand(GetSqlQry(qry, prms), hc);
                 hcm.OpenConnection();
-                SqlDataReader hdr = cmd.ExecuteReader();
+                HanaDataReader hdr = cmd.ExecuteReader();
                 while (hdr.Read())
                 {
                     result = hdr.GetString(0);
@@ -161,15 +161,15 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
         }
         public string GetValueSqlDrct(string qry, params string[] prms)
         {
-            SqlConnectionManager hcm = new SqlConnectionManager();
-            SqlConnection hc = null;
+            HanaConnectionManager hcm = new HanaConnectionManager();
+            HanaConnection hc = null;
             string result = null;
             try
             {
                 hc = hcm.GetConnectionDirecta();
-                SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                HanaCommand cmd = new HanaCommand(GetSqlQry(qry, prms), hc);
                 hcm.OpenConnection();
-                SqlDataReader hdr = cmd.ExecuteReader();
+                HanaDataReader hdr = cmd.ExecuteReader();
                 while (hdr.Read())
                 {
                     result = hdr.GetString(0);

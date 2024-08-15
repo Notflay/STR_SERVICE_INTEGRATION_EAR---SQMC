@@ -8,7 +8,7 @@
 			SELECT RML_USERNAME,RML_CONTRASENIA,RML_USUARIOSAP,RML_ACTIVO,RML_ROL_ID,firstName + ' ' + lastName AS "Nombres", sex, branch,
 			dept,fax,email,CostCenter, T3.RML_IDROL, T3.RML_NOMBRE_ROL, T2.U_CE_PVAS, T2.U_CE_CEAR
 			FROM RML_WEB_USUARIOS  T1
-			INNER JOIN {0}.dbo.OHEM T2 ON T1.RML_USUARIOSAP = T2.empID
+			INNER JOIN {0}.OHEM T2 ON T1.RML_USUARIOSAP = T2.empID
 			INNER JOIN RML_WEB_ROL T3 ON T3.RML_IDROL = T1.RML_ROL_ID
 			WHERE T1.RML_USUARIOSAP = '{1}'
 		</hana>
@@ -24,7 +24,7 @@
 			SELECT RML_USERNAME,RML_CONTRASENIA,RML_USUARIOSAP,RML_ACTIVO,RML_ROL_ID,firstName + ' ' + lastName AS "Nombres", sex, branch,
 			dept,fax,email,CostCenter, T3.RML_IDROL, T3.RML_NOMBRE_ROL, T2.U_CE_PVAS, T2.U_CE_CEAR
 			FROM RML_WEB_USUARIOS  T1
-			INNER JOIN {0}.dbo.OHEM T2 ON T1.RML_USUARIOSAP = T2.empID
+			INNER JOIN {0}.OHEM T2 ON T1.RML_USUARIOSAP = T2.empID
 			INNER JOIN RML_WEB_ROL T3 ON T3.RML_IDROL = T1.RML_ROL_ID
 			WHERE T1.RML_USERNAME = '{1}'
 		</hana>
@@ -67,7 +67,7 @@
 	<query nameid="ObtenerUsuarios" definition="I">
 		<hana>
 			SELECT "empID","firstName" + ' ' + "lastName" AS "Nombres" FROM "OHEM"  T0
-			INNER JOIN {0}.dbo.RML_WEB_USUARIOS T1 ON T1.RML_USUARIOSAP = T0."empID"
+			INNER JOIN {0}.RML_WEB_USUARIOS T1 ON T1.RML_USUARIOSAP = T0."empID"
 			WHERE Active = 'Y'  AND RML_ROL_ID = 1
 		</hana>
 	</query>
@@ -116,49 +116,49 @@
 		</hana>
 	</query>
 	<query nameid="ObtenerEstados" definition="I">
-		<hana>EXEC RML_WEB_OBTENERESTADOS {0},{1},{2}</hana>
+		<hana>CALL RML_WEB_OBTENERESTADOS ('{0}','{1}','{2}')</hana>
 	</query>
 	<query nameid="ObtenerEstado" definition="I">
-		<hana>SELECT * FROM "RML_WEB_ESTADOS" WHERE "ID" = {0}</hana>
+		<hana>SELECT * FROM "RML_WEB_ESTADOS" WHERE "ID" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerCeCo" definition="I">
 		<hana>
-			SELECT OcrCode,OcrName FROM OOCR WHERE DimCode = {0} AND Active = 'Y'
+			SELECT "OcrCode","OcrName" FROM OOCR WHERE "DimCode" = '{0}' AND "Active" = 'Y'
 		</hana>
 	</query>
 	<query nameid="ObtenerCeCoId" definition="I">
 		<hana>
-			SELECT OcrCode,OcrName FROM OOCR WHERE OcrCode = '{0}'
+			SELECT "OcrCode","OcrName" FROM OOCR WHERE "OcrCode" = '{0}'
 		</hana>
 	</query>
 	<query nameid="ObtenerTipoOperacion" definition="I">
 		<hana>
-			SELECT U_NUM, U_descrp FROM dbo.[@OK1_T12]
+			SELECT "U_num", "U_descrp" FROM "@OK1_T12"
 		</hana>
 	</query>
 	<query nameid="ObtenerTipoOperacionID" definition="I">
 		<hana>
-			SELECT U_NUM, U_descrp FROM dbo.[@OK1_T12] AND U_NUM = '{0}'
+			SELECT "U_num", "U_descrp" FROM "@OK1_T12" AND "U_num" = '{0}'
 		</hana>
 	</query>
 	<query nameid="ObtieneCuentaContable" definition="I">
 		<hana>
-			SELECT Segment_0, Segment_1,Segment_2,AcctCode,AcctName FROM OACT where LEFT("Segment_0",'1') = '6'
+			SELECT "Segment_0", "Segment_1","Segment_2","AcctCode","AcctName" FROM OACT where LEFT("Segment_0",'1') = '6'
 		</hana>
-	</query> 
+	</query>
 	<query nameid="ObtieneCuentaContableId" definition="I">
 		<hana>
-			SELECT Segment_0, Segment_1,Segment_2,AcctCode,AcctName FROM OACT where AcctCode = '{0}'
+			SELECT "Segment_0", "Segment_1","Segment_2","AcctCode","AcctName" FROM OACT where "AcctCode" = '{0}'
 		</hana>
 	</query>
 	<query nameid="ObtieneAlmacenes" definition="I">
 		<hana>
-			SELECT WhsCode,WhsName FROM OWHS WHERE Inactive = 'N'
+			SELECT "WhsCode","WhsName" FROM OWHS WHERE "Inactive" = 'N'
 		</hana>
 	</query>
 	<query nameid="ObtieneAlmacenesId" definition="I">
 		<hana>
-			SELECT WhsCode,WhsName FROM OWHS WHERE WhsCode = '{0}'
+			SELECT  "WhsCode","WhsName" FROM OWHS WHERE "WhsCode" = '{0}'
 		</hana>
 	</query>
 	<query nameid="ObtenerPosFinanciera" definition="I">
@@ -177,7 +177,7 @@
 		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141' AND  T0."U_BPP_TDTD" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerProveedores" definition="I">
-		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S'</hana>
+		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "frozenFor" = 'N' </hana>
 	</query>
 	<query nameid="ObtenerProveedor" definition="I">
 		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "CardCode" = '{0}'</hana>
@@ -201,11 +201,11 @@
 		<hana>insert into OPRQ_NUMEAR(DOCENTRY,SEDE,TIPO,NUMEROEAR) select  "DocEntry","fax", "U_RML_TIPOEAR", (select ISNULL(MAX(NUMEROEAR),0)+1 from OPRQ_NUMEAR where "SEDE" = T1."fax" and "TIPO" = T0."U_RML_TIPOEAR")  from OPRQ T0 inner join OHEM T1 on T0."Requester" = trim(T1."empID")  where (select 'Y' from NNM1 where "ObjectCode" = '1470000113' and "Series" = T0."Series" and "SeriesName" like '%EAR%') = 'Y' and T0."DocEntry" = '{0}';</hana>
 	</query>
 	<query nameid="InsertaSoliRendicion" definition="I">
-		<hana>EXEC RML_POST_WEB_SR '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}'</hana>
+		<hana>CALL RML_POST_WEB_SR ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')</hana>
 	</query>
 	<query nameid="InsertRegiRMLoDoc" definition="I">
 		<hana>
-			  EXEC RML_POST_WEB_DOC '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}'
+			CALL RML_POST_WEB_DOC ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')
 		</hana>
 	</query>
 	<query nameid="InsertRegiRMLoDocDt" definition="I">
@@ -215,7 +215,7 @@
 		</hana>
 	</query>
 	<query nameid="InsertRendicion" definition="I">
-		<hana>INSERT INTO "RML_WEB_RD" VALUES '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}'</hana>
+		<hana>INSERT INTO "RML_WEB_RD" VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')</hana>
 	</query>
 	<query nameid="ObtenerSolicitudRendicion" definition="I">
 		<hana>SELECT * FROM "RML_WEB_SR" WHERE ID = '{0}'</hana>
@@ -312,11 +312,16 @@
 		<hana>UPDATE "RML_WEB_DOC" SET "RML_VALIDA_SUNAT" = '{0}' WHERE ID = '{1}'</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadores1" definition="I">
-		<hana>SELECT T0."RML_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."RML_APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T4."RML_FECHAREGIS",T4."RML_ESTADO" "Estado"FROM "RML_WEB_APR_SR" T0 INNER JOIN OHEM T1 ON T1."empID"  = T0."RML_USUARIOAPROBADORID"INNER JOIN OHEM T3 ON T3."empID" = T0."RML_USUARIOID" INNER JOIN "RML_WEB_SR" T4 ON T4."ID" = T0."RML_ID_SR" WHERE T0."RML_ID_SR" = '{0}'</hana>
+		<hana>
+			SELECT T0."RML_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email"
+			"Email Aprobador",T0."RML_APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T4."RML_FECHAREGIS",
+			T4."RML_ESTADO" "Estado"FROM "RML_WEB_APR_SR" T0 INNER JOIN OHEM T1 ON T1."empID"  = T0."RML_USUARIOAPROBADORID" INNER JOIN OHEM T3 ON T3."empID" = T0."RML_USUARIOID"
+			INNER JOIN "RML_WEB_SR" T4 ON T4."ID" = T0."RML_ID_SR" WHERE T0."RML_ID_SR" = '{0}'
+		</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadores" definition="I">
 		<hana>
-			EXEC RML_GET_INFOAPROBADORES '{0}','{1}','{2}'
+			CALL RML_GET_INFOAPROBADORES ('{0}','{1}','{2}')
 		</hana>
 	</query>
 	<query nameid="ObtenSolicitudAprobar" definition="I">
@@ -324,7 +329,7 @@
 	</query>
 	<query nameid="ObtieneInfoAprobadoresRD" definition="I">
 		<hana>
-			EXEC RML_GET_INFOAPROBADORESRD '{0}','{1}','{2}'
+			CALL RML_GET_INFOAPROBADORESRD ('{0}','{1}','{2}')
 		</hana>
 	</query>
 	<query nameid="BorrarSRDetCent" definition="I">
@@ -341,7 +346,7 @@
 	</query>
 	<query nameid="BorrarDocumento" definition="I">
 		<hana>DELETE FROM "RML_WEB_DOC" WHERE "ID" = '{0}'</hana>
-	</query>	
+	</query>
 	<query nameid="ObtieneIdSR" definition="I">
 		<hana>SELECT TOP 1 "ID" As "Id" FROM "RML_WEB_SR" WHERE "RML_EMPLDREGI" = {0}  ORDER BY "ID" DESC</hana>
 	</query>
@@ -418,27 +423,27 @@
 		<hana>
 			SELECT  DISTINCT T1."firstName" + ' ' + T1."lastName" AS "Nombres",T0."RML_USUARIOAPROBADORID",
 			T0."RML_APROBACIONFINALIZADA",T0."RML_FECHAAPROBACION",T0."RML_AREA" FROM "RML_WEB_APR_SR"  T0
-			LEFT JOIN SOQUIMIC_TEST_ADDON.dbo.OHEM T1 ON T0."RML_USUARIOAPROBADORID"  = T1."empID" WHERE T0."RML_ID_SR" = '{0}'
+			LEFT JOIN {0}.OHEM T1 ON T0."RML_USUARIOAPROBADORID"  = T1."empID" WHERE T0."RML_ID_SR" = '{1}'
 		</hana>
 	</query>
 	<query nameid="ListarAprobadoresDetalle" definition="I">
 		<hana>
-			SELECT "empID","firstName" +' '+"lastName" AS "lastName" FROM SOQUIMIC_TEST_ADDON.dbo.OHEM T0
+			SELECT "empID","firstName" +' '+"lastName" AS "lastName" FROM {0}.OHEM T0
 			inner join RML_WEB_USUARIOS T1 ON T1.RML_USUARIOSAP = T0.empID
-			WHERE T1.RML_ROL_ID = 2 AND "branch" = '{0}'
+			WHERE T1.RML_ROL_ID = 2 AND "branch" = '{1}'
 		</hana>
 	</query>
 	<query nameid="ListarAprobadoresCabeceraRd" definition="I">
 		<hana>
 			SELECT  DISTINCT T1."firstName"+ ' ' + T1."lastName" AS "Nombres",T0."RML_USUARIOAPROBADORID",T0."RML_APROBACIONFINALIZADA",T0."RML_FECHAAPROBACION",
-			T0."RML_AREA" FROM "RML_WEB_APR_RD"  T0 LEFT JOIN SOQUIMIC_TEST_ADDON.dbo.OHEM T1 ON T0."RML_USUARIOAPROBADORID"  = T1."empID" WHERE T0."RML_ID_RD" = '{0}'
+			T0."RML_AREA" FROM "RML_WEB_APR_RD"  T0 LEFT JOIN {0}.OHEM T1 ON T0."RML_USUARIOAPROBADORID"  = T1."empID" WHERE T0."RML_ID_RD" = '{1}'
 		</hana>
 	</query>
 	<query nameid="ListarAprobadoresDetalleRd" definition="I">
 		<hana>
-			SELECT "empID","firstName" +' '+"lastName" AS "lastName" FROM SOQUIMIC_TEST_ADDON.dbo.OHEM T1
+			SELECT "empID","firstName" +' '+"lastName" AS "lastName" FROM {0}.OHEM T1
 			INNER JOIN RML_WEB_USUARIOS T0 ON T0.RML_USUARIOSAP = T1.empID
-			WHERE T0.RML_ROL_ID IN(2,3) AND "branch" = '{0}'
+			WHERE T0.RML_ROL_ID IN(2,3) AND "branch" = '{1}'
 		</hana>
 	</query>
 	<query nameid="ObtenCUP" definition="I">

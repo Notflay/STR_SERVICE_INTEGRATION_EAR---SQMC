@@ -20,12 +20,14 @@ using System.Web.WebSockets;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using CrystalDecisions.CrystalReports.Engine;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class Sq_SolicitudRd
     {
         SqlADOHelper hash = new SqlADOHelper();
+        string sociedad =  ConfigurationManager.AppSettings["CompanyDB"].ToString();
         public ConsultationResponse<Complemento> CreaSolicitudRd(SolicitudRD solicitudRD)
         {
             var respIncorrect = "Solicitud de Detalle";
@@ -601,44 +603,42 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "4", "", solicitudId);
 
+                        Task.Run(() =>
+                        {
+                            EnviarEmail envio = new EnviarEmail();
+
+                            hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadores), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, solicitudId, 0);
+                            var response = GeneraSolicitudRDenSAP(solicitudRD);
+
+                            if (response.IsSuccessful)
+                            {
+                                createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
+                                createResponse.RML_APROBACIONFINALIZADA = 1;
+
+                                // Inserts despues de crear la SR en SAP 
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "6", "", solicitudId);                                       // Actualiza Estado
+                                                                                                                                                                        //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_intermedia), createResponse.DocEntry);                                             // Inserta en la tabla intemedia de EAR para generar codigo
+                                string codigoRendicion = "";
+
+                                Usuario solicitante = sQ_Usuario.getUsuario(solicitudRD.RML_EMPLDASIG.empleadoID);
+                                //codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.get_numeroRendicion), createResponse.DocEntry);   // Obtiene el número de Rendición con el DocEntry
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, codigoRendicion, solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón
+                                lista.Add(createResponse);
+
+                                // Envio de Correo
+                                envio.EnviarInformativo(solicitante.email, FormatearNombreCompleto(solicitante.Nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.RML_FECHAREGIS, true, "");
+                                //return Global.ReturnOk(lista, "");
+                            }
+                            else
+                            {
+                                string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "7", mensaje.Replace("'", ""), solicitudId);
+                                envio.EnviarError(true, null, solicitudRD.ID.ToString(), solicitudRD.RML_FECHAREGIS);
+                              //  throw new Exception(mensaje);
+                            }
+                        });
+
                         return Global.ReturnOk(lista, "");
-
-                        /*
-
-                        EnviarEmail envio = new EnviarEmail();
-
-                        hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadores), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, solicitudId, 0);
-
-                        var response = GeneraSolicitudRDenSAP(solicitudRD);
-
-                        if (response.IsSuccessful)
-                        {
-                            CreateResponse createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
-                            createResponse.RML_APROBACIONFINALIZADA = 1;
-
-                            // Inserts despues de crear la SR en SAP 
-                            hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "6", "", solicitudId);                                       // Actualiza Estado
-                            //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_intermedia), createResponse.DocEntry);                                             // Inserta en la tabla intemedia de EAR para generar codigo
-                            string codigoRendicion = "";
-
-                            Usuario solicitante = sQ_Usuario.getUsuario(solicitudRD.RML_EMPLDASIG.empleadoID);
-                            //codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.get_numeroRendicion), createResponse.DocEntry);   // Obtiene el número de Rendición con el DocEntry
-                            hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, codigoRendicion, solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón
-                            lista.Add(createResponse);
-
-                            // Envio de Correo
-                            envio.EnviarInformativo(solicitante.email, FormatearNombreCompleto(solicitante.Nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.RML_FECHAREGIS, true, "");
-                            return Global.ReturnOk(lista, "");
-                        }
-                        else
-                        {
-                            string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
-                            hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "7", mensaje.Replace("'", ""), solicitudId);
-                            envio.EnviarError(true, null, solicitudRD.ID.ToString(), solicitudRD.RML_FECHAREGIS);
-                            throw new Exception(mensaje);
-                        }
-
-                        */
                     }
                     else
                     {
@@ -696,7 +696,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     finalizado = dc["empID"] == aprobadorId ? 1 : 0,
                     fechaRegistro = dc["empID"] == aprobadorId ? fecha : null
                 };
-            }, idArea).ToList();
+            }, sociedad,idArea).ToList();
             return aprobadors;
         }
         public ConsultationResponse<Aprobador> ObtieneAprobadores(string idSolicitud)
@@ -714,7 +714,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         fechaRegistro = string.IsNullOrWhiteSpace(dc["RML_FECHAAPROBACION"]) ? "" : DateTime.Parse(dc["RML_FECHAAPROBACION"]).ToString("dd/MM/yyyy"),
                         aprobadores = obtieneAprobadoresDet(dc["RML_AREA"], dc["RML_USUARIOAPROBADORID"], string.IsNullOrWhiteSpace(dc["RML_FECHAAPROBACION"]) ? "" : DateTime.Parse(dc["RML_FECHAAPROBACION"]).ToString("dd/MM/yyyy"))
                     };
-                }, idSolicitud).ToList();
+                }, sociedad,idSolicitud).ToList();
 
 
                 return Global.ReturnOk(aprobadors, "");

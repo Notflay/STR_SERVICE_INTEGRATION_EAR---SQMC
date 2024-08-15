@@ -5,36 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
+using Sap.Data.Hana;
 
 
 namespace STR_SERVICE_INTEGRATION_EAR.SQ
 {
-    public class SqlConnectionManager
+    public class HanaConnectionManager
     {
-        private SqlConnection sqlConnection = null;
+        private HanaConnection hanaConnection = null;
         //private HanaConnection hanaConnection = null;
 
-        public SqlConnection GetConnection()
+        public HanaConnection GetConnection()
         {
-            sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["sqlIntermedia"].ConnectionString);
-            return sqlConnection; 
+            hanaConnection = new HanaConnection(ConfigurationManager.ConnectionStrings["hanaIntermedia"].ConnectionString);
+            return hanaConnection; 
         }
 
-        public SqlConnection GetConnectionDirecta()
+        public HanaConnection GetConnectionDirecta()
         {
-            sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["sqlDirecta"].ConnectionString);
-            return sqlConnection;
+            hanaConnection = new HanaConnection(ConfigurationManager.ConnectionStrings["hanaDirecta"].ConnectionString);
+            return hanaConnection;
         }
 
         public void OpenConnection()
         {
-            sqlConnection.Open();
+            hanaConnection.Open();
         }
 
         public void CloseConnection()
         {
-            sqlConnection.Close();
-            sqlConnection = null;
+            hanaConnection.Close();
+            hanaConnection = null;
         }
     }
 }

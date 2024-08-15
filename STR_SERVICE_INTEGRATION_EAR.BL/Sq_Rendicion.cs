@@ -21,13 +21,14 @@ using System.IO;
 using System.Globalization;
 using System.Web;
 using Path = System.IO.Path;
+using System.Configuration;
 
 namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
     public class Sq_Rendicion
     {
         SqlADOHelper hash = new SqlADOHelper();
-
+        string sociedad = ConfigurationManager.AppSettings["CompanyDB"].ToString();
         public ConsultationResponse<Rendicion> ListarSolicitudesS(string usrCreate, string usrAsig, int perfil, string fecIni, string fecFin, string nrRendi, string estado, string area)
         {
             var respIncorrect = "No trajo la lista de solicitudes de rendición";
@@ -599,6 +600,42 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadoresRD), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, rendicionId, 0);
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "14", "", rendicionId);
 
+                        CreateResponse createResponse = new CreateResponse();
+                        createResponse.RML_APROBACIONFINALIZADA = 1;
+                        list.Add(createResponse);
+
+                        Task.Run(() =>
+                        {
+                            EnviarEmail envio = new EnviarEmail();
+                            rendicion = ObtenerRendicion(rendicionId.ToString()).Result[0];
+                            var response = GenerarRegistroDeRendicion(rendicion);
+                            listaAprobados = ObtieneAprobadores(rendicion.ID.ToString()).Result;
+
+                            if (response.IsSuccessful)
+                            {
+                              
+                                createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
+                                createResponse.RML_APROBACIONFINALIZADA = 1;
+
+                                // Inserts despues de crear EAR en SAP
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "16", "", rendicionId);
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaRD), createResponse.DocEntry, createResponse.DocNum, rendicion.ID);
+                                // hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaRdenSAP), listaAprobados[1].aprobadorNombre, listaAprobados.Count > 2 ? listaAprobados[2].aprobadorNombre : null, listaAprobados[0].aprobadorNombre, createResponse.DocEntry);
+
+                                list.Add(createResponse);
+
+                                envio.EnviarInformativo(rendicion.RML_EMPLEADO_ASIGNADO.email, rendicion.RML_EMPLEADO_ASIGNADO.Nombres, false,
+                                    rendicion.ID.ToString(), rendicion.RML_NRRENDICION, DateTime.Now.ToString("dd/MM/yyyy"), true, "");
+                                
+                            }
+                            else
+                            {
+                                string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "17", mensaje.Replace("'", ""), rendicionId);
+                                envio.EnviarError(false, rendicion.RML_NRRENDICION, rendicion.ID.ToString(), rendicion.RML_FECHAREGIS);
+                                //throw new Exception(mensaje);
+                            }
+                        });
                         /*
                         // Envio de correo
                         EnviarEmail envio = new EnviarEmail();
@@ -771,7 +808,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     finalizado = dc["empID"] == aprobadorId ? 1 : 0,
                     fechaRegistro = dc["empID"] == aprobadorId ? fecha : null
                 };
-            }, idArea).ToList();
+            }, sociedad).ToList();
             return aprobadors;
         }
 
@@ -790,7 +827,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         fechaRegistro = string.IsNullOrWhiteSpace(dc["RML_FECHAAPROBACION"]) ? "" : DateTime.Parse(dc["RML_FECHAAPROBACION"]).ToString("dd/MM/yyyy"),
                         aprobadores = obtieneAprobadoresDet(dc["RML_AREA"], dc["RML_USUARIOAPROBADORID"], string.IsNullOrWhiteSpace(dc["RML_FECHAAPROBACION"]) ? "" : DateTime.Parse(dc["RML_FECHAAPROBACION"]).ToString("dd/MM/yyyy"))
                     };
-                }, idRendicion).ToList();
+                }, sociedad, idRendicion).ToList();
 
 
                 return Global.ReturnOk(aprobadors, "");
