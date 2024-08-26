@@ -177,7 +177,7 @@
 		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141' AND  T0."U_BPP_TDTD" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerProveedores" definition="I">
-		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S'</hana>
+		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "frozenFor" = 'N' </hana>
 	</query>
 	<query nameid="ObtenerProveedor" definition="I">
 		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "CardCode" = '{0}'</hana>
@@ -312,7 +312,10 @@
 		<hana>UPDATE "RML_WEB_DOC" SET "RML_VALIDA_SUNAT" = '{0}' WHERE ID = '{1}'</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadores1" definition="I">
-		<hana>SELECT T0."RML_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."RML_APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T4."RML_FECHAREGIS",T4."RML_ESTADO" "Estado"FROM "RML_WEB_APR_SR" T0 INNER JOIN OHEM T1 ON T1."empID"  = T0."RML_USUARIOAPROBADORID"INNER JOIN OHEM T3 ON T3."empID" = T0."RML_USUARIOID" INNER JOIN "RML_WEB_SR" T4 ON T4."ID" = T0."RML_ID_SR" WHERE T0."RML_ID_SR" = '{0}'</hana>
+		<hana>SELECT T0."RML_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email"
+		"Email Aprobador",T0."RML_APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T4."RML_FECHAREGIS",
+		T4."RML_ESTADO" "Estado"FROM "RML_WEB_APR_SR" T0 INNER JOIN OHEM T1 ON T1."empID"  = T0."RML_USUARIOAPROBADORID"INNER JOIN OHEM T3 ON T3."empID" = T0."RML_USUARIOID"
+		INNER JOIN "RML_WEB_SR" T4 ON T4."ID" = T0."RML_ID_SR" WHERE T0."RML_ID_SR" = '{0}'</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadores" definition="I">
 		<hana>

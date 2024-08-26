@@ -599,7 +599,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadoresRD), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, rendicionId, 0);
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "14", "", rendicionId);
 
-                        /*
+
                         // Envio de correo
                         EnviarEmail envio = new EnviarEmail();
 
@@ -609,32 +609,41 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         var response = GenerarRegistroDeRendicion(rendicion);
                         listaAprobados = ObtieneAprobadores(rendicion.ID.ToString()).Result;
 
-                        if (response.IsSuccessful)
+                        try
                         {
+                            if (response.IsSuccessful)
+                            {
 
-                            CreateResponse createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
-                            createResponse.RML_APROBACIONFINALIZADA = 1;
+                                CreateResponse createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
+                                createResponse.RML_APROBACIONFINALIZADA = 1;
 
-                            // Inserts despues de crear EAR en SAP
-                            hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "16", "", rendicionId);
-                            hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaRD), createResponse.DocEntry, createResponse.DocNum, rendicion.ID);
-                           // hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaRdenSAP), listaAprobados[1].aprobadorNombre, listaAprobados.Count > 2 ? listaAprobados[2].aprobadorNombre : null, listaAprobados[0].aprobadorNombre, createResponse.DocEntry);
+                                // Inserts despues de crear EAR en SAP
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "16", "", rendicionId);
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaRD), createResponse.DocEntry, createResponse.DocNum, rendicion.ID);
+                                // hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaRdenSAP), listaAprobados[1].aprobadorNombre, listaAprobados.Count > 2 ? listaAprobados[2].aprobadorNombre : null, listaAprobados[0].aprobadorNombre, createResponse.DocEntry);
 
-                            list.Add(createResponse);
+                                list.Add(createResponse);
 
 
-                            envio.EnviarInformativo(rendicion.RML_EMPLEADO_ASIGNADO.email, rendicion.RML_EMPLEADO_ASIGNADO.Nombres, false,
-                                rendicion.ID.ToString(), rendicion.RML_NRRENDICION, DateTime.Now.ToString("dd/MM/yyyy"), true, "");
-                            return Global.ReturnOk(list, respIncorrect);
+                                envio.EnviarInformativo(rendicion.RML_EMPLEADO_ASIGNADO.email, rendicion.RML_EMPLEADO_ASIGNADO.Nombres, false,
+                                    rendicion.ID.ToString(), rendicion.RML_NRRENDICION, DateTime.Now.ToString("dd/MM/yyyy"), true, "");
+                                return Global.ReturnOk(list, respIncorrect);
+                            }
+                            else
+                            {
+                                string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
+                                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "17", mensaje.Replace("'", ""), rendicionId);
+                                envio.EnviarError(false, rendicion.RML_NRRENDICION, rendicion.ID.ToString(), rendicion.RML_FECHAREGIS);
+                                throw new Exception(mensaje);
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
                             string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
                             hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "17", mensaje.Replace("'", ""), rendicionId);
                             envio.EnviarError(false, rendicion.RML_NRRENDICION, rendicion.ID.ToString(), rendicion.RML_FECHAREGIS);
-                            throw new Exception(mensaje);
                         }
-                        */
+
                     }
                     else if (estado == 11 & aprobadores.Count == 3)
                     {
@@ -885,8 +894,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaRD), createResponse.DocEntry, createResponse.DocNum, rendicion.ID);
 
                     //  aprobadores = ObtieneAprobadores(rendicion.ID.ToString()).Result;
-                    aprobadores = ObtieneAprobadores(rendicion.ID.ToString()).Result;
-                    hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaRdenSAP), aprobadores[1].aprobadorNombre, aprobadores.Count > 2 ? aprobadores[2].aprobadorNombre : null, aprobadores[0].aprobadorNombre, createResponse.DocEntry);
+                    //aprobadores = ObtieneAprobadores(rendicion.ID.ToString()).Result;
+                    //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaRdenSAP), aprobadores[1].aprobadorNombre, aprobadores.Count > 2 ? aprobadores[2].aprobadorNombre : null, aprobadores[0].aprobadorNombre, createResponse.DocEntry);
 
                     list.Add(createResponse);
                     // Envio de correo

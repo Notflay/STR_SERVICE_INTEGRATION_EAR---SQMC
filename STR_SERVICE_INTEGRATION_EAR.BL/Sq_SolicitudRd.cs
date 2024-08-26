@@ -596,14 +596,13 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
                     if (aprobadores.Count == 1 | solicitudRD.RML_ESTADO.id == "3")
                     {
-                        CreateResponse createResponse = new CreateResponse();
-                        createResponse.RML_APROBACIONFINALIZADA = 1;
+                        //CreateResponse createResponse = new CreateResponse();
+                        //createResponse.RML_APROBACIONFINALIZADA = 1;
 
-                        hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "4", "", solicitudId);
+                        //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "4", "", solicitudId);
 
-                        return Global.ReturnOk(lista, "");
+                        //return Global.ReturnOk(lista, "");
 
-                        /*
 
                         EnviarEmail envio = new EnviarEmail();
 
@@ -638,7 +637,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                             throw new Exception(mensaje);
                         }
 
-                        */
+                   
                     }
                     else
                     {
