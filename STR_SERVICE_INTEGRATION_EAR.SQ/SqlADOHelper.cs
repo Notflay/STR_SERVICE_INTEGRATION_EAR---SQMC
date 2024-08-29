@@ -135,12 +135,11 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
 
             return formattedSql;
         }
-
-        public string GetValueSql(string qry, params string[] prms)
+        public object GetValueSql(string qry, params string[] prms)
         {
             SqlConnectionManager hcm = new SqlConnectionManager();
             SqlConnection hc = null;
-            string result = null;
+            object result = null;
             try
             {
                 hc = hcm.GetConnection();
@@ -149,7 +148,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
                 SqlDataReader hdr = cmd.ExecuteReader();
                 while (hdr.Read())
                 {
-                    result = hdr.GetString(0);
+                    result = hdr.GetValue(0);
                 }
                 return result;
             }

@@ -477,4 +477,33 @@
 	<query nameid="ValidarCentroCosto" definition="I">
 		<hana>SELECT COUNT(*) FROM OOCR WHERE "OcrCode" = '{0}'</hana>
 	</query>
+
+	<!-- NUEVOS QUERYS -->
+	<query nameid="ObtieneUsuariosPortal" definition="I">
+		<hana>EXEC RML_GET_EMPLEADOS</hana>
+	</query>
+	<query nameid="ObtieneUsuarioPortal" definition="I">
+		<hana>EXEC RML_GET_EMPLEADO '{0}'</hana>
+	</query>
+	<query nameid="ReseteaContrasenia" definition="I">
+		<hana>EXEC RML_RESET_CONTRASENIA '{0}'</hana>
+	</query>
+	<query nameid="ActualizaEmpleado" definition="I">
+		<hana>EXEC RML_UPDT_EMPLEADO '{0}','{1}','{2}','{3}' </hana>
+	</query>
+	<query nameid="CrearEmpleado" definition="I">
+		<hana>EXEC RML_CREATE_EMPLEADO '{0}','{1}','{2}'</hana>
+	</query>
+	<query nameid="ObtenerRoles" definition="I">
+		<hana>SELECT * FROM RML_WEB_ROL</hana>
+	</query>
+	<query nameid="ObtieneValorActivo" definition="I">
+		<hana>SELECT "RML_ACTIVO" FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'</hana>
+	</query>
+	<query nameid="ValidarExistenciaUsername" definition="I">
+		<hana>SELECT COUNT(*) FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneEmpleadosPendientes" definition="I">
+		<hana>EXEC RML_GET_EMPLEADOS_PENDIENTES</hana>
+	</query>
 </root>

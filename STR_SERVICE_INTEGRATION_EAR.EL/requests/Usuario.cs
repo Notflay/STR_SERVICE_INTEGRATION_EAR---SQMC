@@ -40,4 +40,26 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
         public string CostCenter { get; set; }*/
 
     }
+    public class UsuarioInfo
+    {
+        public UsuarioSAP usuarioSAP { get; set; }
+        public UsuarioPortal usuarioPortal { get; set; }
+    }
+    public class UsuarioSAP
+    { 
+        public int EmpleadoId { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Cargo { get; set; }
+        public string Email { get; set; }
+    }
+    public class UsuarioPortal
+    {
+        public int ID { get; set; }
+        public string Nombres { get; set; }
+        public string Username { get; set; }
+        public string FechaRegistro { get; set; }
+        public Complemento Rol { get; set; }
+        public string Estado { get; set; }
+    }
 }

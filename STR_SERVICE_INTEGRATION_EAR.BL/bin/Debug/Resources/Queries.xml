@@ -177,7 +177,7 @@
 		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141' AND  T0."U_BPP_TDTD" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerProveedores" definition="I">
-		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S'</hana>
+		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "frozenFor" = 'N' </hana>
 	</query>
 	<query nameid="ObtenerProveedor" definition="I">
 		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "CardCode" = '{0}'</hana>
@@ -476,5 +476,31 @@
 	</query>
 	<query nameid="ValidarCentroCosto" definition="I">
 		<hana>SELECT COUNT(*) FROM OOCR WHERE "OcrCode" = '{0}'</hana>
+	</query>
+
+	<!-- NUEVOS QUERYS -->
+	<query nameid="ObtieneUsuariosPortal" definition="I">
+		<hana>EXEC RML_GET_EMPLEADOS</hana>
+	</query>
+	<query nameid="ObtieneUsuarioPortal" definition="I">
+		<hana>EXEC RML_GET_EMPLEADO '{0}'</hana>
+	</query>
+	<query nameid="ReseteaContrasenia" definition="I">
+		<hana>EXEC RML_RESET_CONTRASENIA '{0}'</hana>
+	</query>
+	<query nameid="ActualizaEmpleado" definition="I">
+		<hana>EXEC RML_UPDT_EMPLEADO '{0}','{1}','{2}','{3}' </hana>
+	</query>
+	<query nameid="CrearEmpleado" definition="I">
+		<hana>EXEC RML_CREATE_EMPLEADO '{0}','{1}','{2}'</hana>
+	</query>
+	<query nameid="ObtenerRoles" definition="I">
+		<hana>SELECT * FROM RML_WEB_ROL</hana>
+	</query>
+	<query nameid="ObtieneValorActivo" definition="I">
+		<hana>SELECT "RML_ACTIVO" FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'</hana>
+	</query>
+	<query nameid="ValidarExistenciaUsername" definition="I">
+		<hana>SELECT COUNT(*) FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'</hana>
 	</query>
 </root>

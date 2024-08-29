@@ -62,7 +62,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             {
                 adjuntos = new List<string>();
 
-                adjuntos = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_adjuntos), idSolicitud).Split(',').ToList();
+                adjuntos = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_adjuntos), idSolicitud).ToString().Split(',').ToList();
 
                 files = new List<FileRS>();
                 adjuntos.ForEach((e) =>
@@ -122,7 +122,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
                 hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertSrDet), detalle.articulo?.ItemCode, detalle.articulo?.ItemName, detalle.precioTotal, detalle.cantidad, detalle.posFinanciera?.name, detalle.cup?.U_CUP, detalle.SR_ID, detalle.ceco, detalle.ctc);
 
-                string id = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_idSrDet), string.Empty);
+                string id = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_idSrDet), string.Empty).ToString();
 
                 /*
                 if (detalle.centCostos.Count > 0)

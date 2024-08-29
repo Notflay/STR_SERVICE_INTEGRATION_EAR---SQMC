@@ -49,6 +49,20 @@ namespace STR_SERVICE_INTEGRATION_EAR.SL.B1SL
 
                 return  client.Execute(request);
         }
+        public IRestResponse httpPATCH(string uri, string sessionId, string json)
+        {
+
+            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+            var client = new RestClient(baseURL);
+            var request = new RestRequest(uri, Method.PATCH);
+            request.AddHeader("content-type", "application/json");
+            request.AddCookie("B1SESSION", sessionId);
+            request.AddCookie("ROUTEID", ".node1");
+            //request.AddCookie("ROUTEID", ".node3");
+            request.AddParameter("application/json", json, ParameterType.RequestBody);
+
+            return client.Execute(request);
+        }
 
         public IRestResponse httpGET(string uri, string sessionId)          // Traer ITEM
         {

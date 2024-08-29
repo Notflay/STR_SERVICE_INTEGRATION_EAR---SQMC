@@ -126,5 +126,16 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public static readonly string get_listaAprobadoresDetRd = "ListarAprobadoresDetalleRd";
 
         public static readonly string get_validaCECO = "ValidarCentroCosto";
+
+        // NUEVOS QUERYS
+        public static readonly string get_usuariosPortal = "ObtieneUsuariosPortal";
+        public static readonly string get_usuarioPortal = "ObtieneUsuarioPortal";
+        public static readonly string get_valorUsrActivo = "ObtieneValorActivo";
+        public static readonly string get_rolesPortal = "ObtenerRoles";
+        public static readonly string get_usuarioExiste = "ValidarExistenciaUsername";
+        public static readonly string upd_resetUsuario = "ReseteaContrasenia";
+        public static readonly string upd_actualizUsuario = "ActualizaEmpleado";
+        public static readonly string post_creaUsuario = "CrearEmpleado";
+        public static readonly string get_empleadosPendientes = "ObtieneEmpleadosPendientes";
     }
 }

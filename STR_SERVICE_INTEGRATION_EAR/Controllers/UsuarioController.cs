@@ -10,6 +10,7 @@ using System;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using STR_SERVICE_INTEGRATION_EAR.EL.Requests;
 
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
@@ -37,6 +38,90 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         {
             SQ_Usuario consulta = new SQ_Usuario();
             var response = consulta.getUsuarios();
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("portal-pendientes")]
+        public IHttpActionResult ObtenerUsuariosPendientes()
+        {
+            SQ_Usuario consulta = new SQ_Usuario();
+            var response = consulta.getUsuariosPend();
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+        [HttpPut]
+        public IHttpActionResult ActualizarUsuario(UsuarioInfo po_user)
+        {
+            SQ_Usuario consulta = new SQ_Usuario();
+            var response = consulta.Sb_ActualizUsuario(po_user);
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+        [HttpPost]
+        public IHttpActionResult CrearUsuario(UsuarioInfo po_user)
+        {
+            SQ_Usuario consulta = new SQ_Usuario();
+            var response = consulta.Fn_CrearUsuarioEmpleado(po_user);
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("portal")]
+        public IHttpActionResult ObtenerUsuariosPortal()
+        {
+            SQ_Usuario consulta = new SQ_Usuario();
+            var response = consulta.Fn_UsuariosPortal();
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+        [HttpPut]
+        [Route("resetear-contrasenia/{id:int}")]
+        public IHttpActionResult ResetearContrasenia(int id)
+        {
+            SQ_Usuario consulta = new SQ_Usuario();
+            var response = consulta.Sb_ResetearContrasenia(id);
+
+            if (response == "99")
+            {
+                return BadRequest("Error al reiniciar la contraseña.");
+            }
+
+            return Ok();
+        }
+        [HttpGet]
+        [Route("portal/{id}")]
+        public IHttpActionResult ObtetenerUsuarioPortal(int id)
+        {
+            SQ_Usuario consulta = new SQ_Usuario();
+            var response = consulta.Fn_UsuarioPortal(id);
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("roles")]
+        public IHttpActionResult ObtenerUsuarioRoles()
+        {
+            SQ_Usuario consulta = new SQ_Usuario();
+            var response = consulta.Fn_Roles();
             if (response.CodRespuesta == "99")
             {
                 return BadRequest(response.DescRespuesta);

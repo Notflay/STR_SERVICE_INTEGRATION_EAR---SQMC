@@ -49,6 +49,21 @@ namespace STR_SERVICE_INTEGRATION_EAR.SL
             return rslt;
 
         }
+        public IRestResponse ActualizarEmpleado(string strJson, int ID) 
+        {
+            var rslt = default(RestSharp.IRestResponse);
+            rslt = sLInteract.httpPATCH($"EmployeesInfo({ID})", SessionId, strJson);
+
+            return rslt;
+        }
+
+        public IRestResponse CrearEmpleado(string strJson)
+        {
+            var rslt = default(RestSharp.IRestResponse);
+            rslt = sLInteract.httpPOST($"EmployeesInfo", SessionId, strJson);
+
+            return rslt;
+        }
 
         public IRestResponse CreateCargaDocumentos(string strJSON)
         {

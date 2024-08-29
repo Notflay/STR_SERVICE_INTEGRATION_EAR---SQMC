@@ -819,7 +819,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             {
                 adjuntos = new List<string>();
 
-                adjuntos = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_adjuntosDoc), idRendicion).Split(',').ToList();
+                adjuntos = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_adjuntosDoc), idRendicion).ToString().Split(',').ToList();
 
                 files = new List<FileRS>();
                 adjuntos.ForEach((e) =>
