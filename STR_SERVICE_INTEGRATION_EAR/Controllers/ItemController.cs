@@ -6,12 +6,13 @@ using STR_SERVICE_INTEGRATION_EAR.EL.Requests;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/items")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     // [TokenAuthorization]
     public class ObtenerController : ApiController
     {
         [Route]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult Get(string tipo)
         {
             Sq_Item item = new Sq_Item();
@@ -20,6 +21,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [Route("ceco")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetCeco(string code)
         {
             SQ_Complemento item = new SQ_Complemento();
@@ -28,6 +30,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [Route("operacion")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetOperacion()
         {
             SQ_Complemento item = new SQ_Complemento();
@@ -36,6 +39,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [Route("cuentas")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetCuentas()
         {
             Sq_Item item = new Sq_Item();
@@ -44,6 +48,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [Route("almacenes")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetAlmacenes()
         {
             Sq_Item item = new Sq_Item();
@@ -53,6 +58,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("{id}")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetUnico(string id)
         {
             Sq_Item item = new Sq_Item();
@@ -62,6 +68,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("listaCup")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult Get(int ceco, int posFinanciera, int anio)
         {
             Sq_Item item = new Sq_Item();
@@ -72,6 +79,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("listarPrecio")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult Get(string provincia, string distrito, string itemcode)
         {
             Sq_Item item = new Sq_Item();
@@ -82,6 +90,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("combo/{ItemCode}")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetItem(string ItemCode)
         {
 
@@ -93,6 +102,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("proyectos")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetProyectos()
         {
             Sq_Item sq_Item = new Sq_Item();
@@ -106,6 +116,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("indicadores")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetIndicadores()
         {
             Sq_Item sq_Item = new Sq_Item();
@@ -119,6 +130,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("presupuesto")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetPresupuesto(string ceco, string posf, string anio, decimal prec)
         {
             SQ_Complemento sq = new SQ_Complemento();

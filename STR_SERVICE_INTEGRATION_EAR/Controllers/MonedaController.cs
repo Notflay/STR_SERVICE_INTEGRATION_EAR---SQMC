@@ -14,12 +14,13 @@ using System.Web.Http.Cors;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/moneda")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     //[TokenAuthorization]
     public class MonedaController : ApiController
     {
         [Route]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult Get()
         {
             SQ_Complemento sQ_Complemento = new SQ_Complemento();
@@ -33,6 +34,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [Route("wtliable")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetWliable(string tipo)
         {
             SQ_Complemento sQ_Complemento = new SQ_Complemento();
@@ -46,6 +48,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [Route("tablair")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetRetencion()
         {
             SQ_Complemento sQ_Complemento = new SQ_Complemento();

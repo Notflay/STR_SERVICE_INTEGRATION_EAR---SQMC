@@ -9,12 +9,13 @@ using System.Web.Http.Cors;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/tipoear")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     //[TokenAuthorization]
     public class TipoController : ApiController
     {
         [Route]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult Get()
         {
             // Obtiene Campo ID
@@ -30,6 +31,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("documentos")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetDocumentos()
         {
             // Obtiene Campo ID
@@ -43,6 +45,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("documentos/{id}")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetDocumentos(string id)
         {
             // Obtiene Campo ID
@@ -56,6 +59,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("plantilla")]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetPlantilla()
         {
             // Obtiene Campo ID

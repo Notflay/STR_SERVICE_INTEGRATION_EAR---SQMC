@@ -323,13 +323,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="AuthorizeRoleAttribute.cs" />
-    <Compile Include="Controllers\AperturaController.cs" />
+    <Compile Include="MiddleWares\AuthorizeRoleAttribute.cs" />
     <Compile Include="Controllers\ConfiguracionController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\DireccionController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RendicionController.cs" />
@@ -344,8 +342,9 @@
     <Compile Include="Global\EncrypHelper.cs" />
     <Compile Include="Global\Global.cs" />
     <Compile Include="Global\TokenAuthorizationAttribute.cs" />
+    <Compile Include="MiddleWares\LoggingMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="MiddleWares\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

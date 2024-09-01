@@ -2,6 +2,7 @@
 using STR_SERVICE_INTEGRATION_EAR.EL.Requests;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -10,7 +11,6 @@ using System.Web.Http.Cors;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/configuracion")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ConfiguracionController : ApiController
     {
         [HttpGet]

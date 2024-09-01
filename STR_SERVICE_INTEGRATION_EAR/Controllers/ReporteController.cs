@@ -11,12 +11,13 @@ using System.Net;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/reporte")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     [TokenAuthorization]
     public class ReporteController : ApiController
     {
         [HttpPost]
         [Route]
+        [Authorize]
         public HttpResponseMessage Post(string id, string numRendicion, string tipo)
         {
             Sq_Reporte sq_Reporte = new Sq_Reporte();
@@ -27,6 +28,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpPost]
         [Route]
+        [Authorize]
         public HttpResponseMessage PostEAR(string numRendicion)
         {
             Sq_Reporte sq_Reporte = new Sq_Reporte();

@@ -21,6 +21,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
             {
                 hc = hcm.GetConnection();
                 SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                Global.WriteToFile(string.Format(qry, prms));
                 hcm.OpenConnection();
                 SqlDataReader hdr = cmd.ExecuteReader();
                 //List<T> lstTemp = new List<T>();
@@ -62,6 +63,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
             {
                 hc = hcm.GetConnectionDirecta();
                 SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                Global.WriteToFile(string.Format(qry, prms));
                 hcm.OpenConnection();
                 SqlDataReader hdr = cmd.ExecuteReader();
                 //List<T> lstTemp = new List<T>();
@@ -103,6 +105,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
             {
                 hc = hcm.GetConnection();
                 SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                Global.WriteToFile(string.Format(qry, prms));
                 hcm.OpenConnection();
                 SqlDataReader hdr = cmd.ExecuteReader();
                 while (hdr.Read())
@@ -144,6 +147,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
             {
                 hc = hcm.GetConnection();
                 SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                Global.WriteToFile(string.Format(qry, prms));
                 hcm.OpenConnection();
                 SqlDataReader hdr = cmd.ExecuteReader();
                 while (hdr.Read())
@@ -167,6 +171,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.SQ
             {
                 hc = hcm.GetConnectionDirecta();
                 SqlCommand cmd = new SqlCommand(GetSqlQry(qry, prms), hc);
+                Global.WriteToFile(string.Format(qry, prms));
                 hcm.OpenConnection();
                 SqlDataReader hdr = cmd.ExecuteReader();
                 while (hdr.Read())

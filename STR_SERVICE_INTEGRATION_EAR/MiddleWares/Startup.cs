@@ -16,7 +16,8 @@ namespace STR_SERVICE_INTEGRATION_EAR
         public void Configuration(IAppBuilder app)
         {
             var key = Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["secret"]); // Clave secreta del JWT
-          
+
+            app.Use<LoggingMiddleware>();
             app.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions
             {
                 AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active,

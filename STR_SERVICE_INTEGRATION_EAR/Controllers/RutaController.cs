@@ -9,12 +9,13 @@ using System.Web.Http.Cors;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/ruta")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     [TokenAuthorization]
     public class RutaController : ApiController
     {
         [Route]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult Get()
         {
             int campo = 0;

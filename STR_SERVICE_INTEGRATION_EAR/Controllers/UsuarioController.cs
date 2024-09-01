@@ -16,7 +16,7 @@ using System.Security.Claims;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/usuario")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     public class UsuarioController : ApiController
     {
         bool Prod = ConfigurationManager.AppSettings["Prod"].ToString() == "1";
@@ -35,6 +35,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         //    return Ok(response);
         //}
         [HttpGet]
+        [Authorize]
+        [Authorize]
         public IHttpActionResult ObtenerUsuarios()
         {
             SQ_Usuario consulta = new SQ_Usuario();
@@ -47,6 +49,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpGet]
         [Route("portal-pendientes")]
+        [Authorize]
         public IHttpActionResult ObtenerUsuariosPendientes()
         {
             SQ_Usuario consulta = new SQ_Usuario();
@@ -58,6 +61,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
             return Ok(response);
         }
         [HttpPut]
+        [Authorize]
         public IHttpActionResult ActualizarUsuario(UsuarioInfo po_user)
         {
             SQ_Usuario consulta = new SQ_Usuario();
@@ -70,6 +74,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpPut]
         [Route("actualizar-contrasenia")]
+        [Authorize]
         public IHttpActionResult ActualizarContrasenia(int id, string oldPass, string newPass)
         {
             try
@@ -85,6 +90,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
             }
         }
         [HttpPost]
+        [Authorize]
         public IHttpActionResult CrearUsuario(UsuarioInfo po_user)
         {
             SQ_Usuario consulta = new SQ_Usuario();
@@ -110,6 +116,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpPut]
         [Route("resetear-contrasenia/{id:int}")]
+        [Authorize]
         public IHttpActionResult ResetearContrasenia(int id)
         {
             SQ_Usuario consulta = new SQ_Usuario();
@@ -124,6 +131,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpGet]
         [Route("portal/{id}")]
+        [Authorize]
         public IHttpActionResult ObtetenerUsuarioPortal(int id)
         {
             SQ_Usuario consulta = new SQ_Usuario();
@@ -136,6 +144,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpGet]
         [Route("roles")]
+        [Authorize]
         public IHttpActionResult ObtenerUsuarioRoles()
         {
             SQ_Usuario consulta = new SQ_Usuario();
@@ -194,6 +203,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpGet]
         [Route("ceco/{id}")]
+        [Authorize]
         public IHttpActionResult ObtieneCentroCosto(int id)
         {
             SQ_Usuario sq_consulta = new SQ_Usuario();

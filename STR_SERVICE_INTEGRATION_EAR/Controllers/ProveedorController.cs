@@ -14,12 +14,13 @@ using System.Web.Http.Cors;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/proveedor")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     //[TokenAuthorization]
     public class ProveedorController : ApiController
     {
         [Route]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult Get()
         {
             SQ_Proveedor sQ_Proveedor = new SQ_Proveedor();
@@ -34,6 +35,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("ruc/{id}")]
         [HttpGet]
+        [Authorize]
         public async Task<IHttpActionResult> GetAsync(string id)
         {
             SQ_Proveedor sQ_Proveedor = new SQ_Proveedor();
@@ -48,6 +50,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [Route("comprobante")]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult GetComprobante(ComprobanteRequest comprobante)
         {
             Sv_Sunat sV_sunat = new Sv_Sunat();

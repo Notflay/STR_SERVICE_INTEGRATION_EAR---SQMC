@@ -17,13 +17,14 @@ using STR_SERVICE_INTEGRATION_EAR.EL.Responses;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/rendicion")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     //[TokenAuthorization]
     public class RendicionController : ApiController
     {
 
         [HttpGet]
         [Route("lista")]
+        [Authorize]
         public IHttpActionResult Get(string usrCreate, string usrAsign, int perfil, string fecini, string fecfin, string nrrendi, string estados, string area)
         {
 
@@ -39,6 +40,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize]
         public IHttpActionResult Get(string id)
         {
 
@@ -54,6 +56,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpGet]
         [Route("documento/{id}")]
+        [Authorize]
         public IHttpActionResult GetDocumento(string id)
         {
 
@@ -69,6 +72,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpPost]
         [Route("documento")]
+        [Authorize]
         public IHttpActionResult Post(Documento documento)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -84,6 +88,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpPatch]
         [Route]
+        [Authorize]
         public IHttpActionResult Update(Rendicion rendicion)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -98,6 +103,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpPost]
         [Route("aprobacion/{id}")]
+        [Authorize]
         public IHttpActionResult CreateAprobacion(int id, string idSolicitud, int usuarioId, int estado, string areaAprobador)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -112,6 +118,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpPatch]
         [Route("aprobacion/acepta")]
+        [Authorize]
         public IHttpActionResult AceptaSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -126,6 +133,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpPatch]
         [Route("documento")]
+        [Authorize]
         public IHttpActionResult Update(Documento documento)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -140,6 +148,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpPatch]
         [Route("documento/snt/{id}")]
+        [Authorize]
         public IHttpActionResult Updatesnt(int id, string estado)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -154,6 +163,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpDelete]
         [Route("documento")]
+        [Authorize]
         public IHttpActionResult Delete(int id, int rdId)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -167,6 +177,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpPost]
         [Route("documento/validacion/{id}")]
+        [Authorize]
         public IHttpActionResult Validacion(int id)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -181,6 +192,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpDelete]
         [Route("documento/detalle")]
+        [Authorize]
         public IHttpActionResult DeleteDet(int id, int docId)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -195,6 +207,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpGet]
         [Route("documento/plantilla")]
+        [Authorize]
         public HttpResponseMessage DescargarPlantilla()
         {
             SQ_Complemento sQ_Complemento = new SQ_Complemento();
@@ -205,6 +218,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpPost]
         [Route("documento/plantilla/{id}")]
+        [Authorize]
         public async Task<IHttpActionResult> PostUpload(int id)
         {
             SQ_Complemento sQ_Complemento = new SQ_Complemento();
@@ -238,6 +252,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpPatch]
         [Route("aprobacion/reintentar/{id}")]
+        [Authorize]
         public IHttpActionResult ReintentarSR(int id)
         {
             Sq_Rendicion sq_SolicitudRd = new Sq_Rendicion();
@@ -253,6 +268,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpGet]
         [Route("aprobadores")]
+        [Authorize]
         public IHttpActionResult ObtieneAprobadores(int idRendicion)
         {
             Sq_Rendicion sq_SolicitudRd = new Sq_Rendicion();
@@ -268,6 +284,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpPatch]
         [Route("aprobacion/rechazar")]
+        [Authorize]
         public IHttpActionResult RechazarSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
         {
             Sq_Rendicion sq_SolicitudRd = new Sq_Rendicion();
@@ -283,6 +300,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 
         [HttpGet]
         [Route("adjuntos/{id}")]
+        [Authorize]
         public IHttpActionResult ObtieneAdjuntos(int id)
         {
             Sq_Rendicion sq_SolicitudRd = new Sq_Rendicion();
