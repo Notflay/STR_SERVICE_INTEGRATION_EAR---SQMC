@@ -21,7 +21,7 @@
 	</query>
 	<query nameid="ObtenerInformacionUsuario" definition="I">
 		<hana>
-			SELECT RML_USERNAME,RML_CONTRASENIA,RML_USUARIOSAP,RML_ACTIVO,RML_ROL_ID,firstName + ' ' + lastName AS "Nombres", sex, branch,
+			SELECT T1.ID,RML_USERNAME,RML_CONTRASENIA,RML_USUARIOSAP,RML_ACTIVO,RML_ROL_ID,firstName + ' ' + lastName AS "Nombres", sex, branch,
 			dept,fax,email,CostCenter, T3.RML_IDROL, T3.RML_NOMBRE_ROL, T2.U_CE_PVAS, T2.U_CE_CEAR
 			FROM RML_WEB_USUARIOS  T1
 			INNER JOIN {0}.dbo.OHEM T2 ON T1.RML_USUARIOSAP = T2.empID
@@ -32,6 +32,11 @@
 	<query nameid="ObtenerContraseniaUsuario" definition="I">
 		<hana>
 			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtenerContraseniaUsuarioId" definition="I">
+		<hana>
+			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE ID = '{0}'
 		</hana>
 	</query>
 	<query nameid="ObtenerMonedas" definition="I">
@@ -503,7 +508,13 @@
 	<query nameid="ValidarExistenciaUsername" definition="I">
 		<hana>SELECT COUNT(*) FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'</hana>
 	</query>
+	<query nameid="ValidarExistenciaPorID" definition="I">
+		<hana>SELECT COUNT(*) FROM RML_WEB_USUARIOS WHERE RML_USUARIOSAP = '{0}'</hana>
+	</query>
 	<query nameid="ObtieneEmpleadosPendientes" definition="I">
 		<hana>EXEC RML_GET_EMPLEADOS_PENDIENTES</hana>
+	</query>
+	<query nameid="ActualizarContrasenia" definition="I">
+		<hana>EXEC RML_UPDT_CONTRASENIA '{0}','{1}'</hana>
 	</query>
 </root>

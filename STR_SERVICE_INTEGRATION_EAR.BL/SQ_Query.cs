@@ -9,6 +9,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
     public class SQ_Query
     {
         public static readonly string get_tokenPass = "ObtenerContraseniaUsuario";
+        public static readonly string get_passForId = "ObtenerContraseniaUsuarioId";
         public static readonly string get_infoUser = "ObtenerInformacionUsuario";
         public static readonly string get_monedas = "ObtenerMonedas";
         public static readonly string get_moneda = "ObtenerMoneda";
@@ -133,8 +134,10 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public static readonly string get_valorUsrActivo = "ObtieneValorActivo";
         public static readonly string get_rolesPortal = "ObtenerRoles";
         public static readonly string get_usuarioExiste = "ValidarExistenciaUsername";
+        public static readonly string get_usuarioExisteID = "ValidarExistenciaPorID";
         public static readonly string upd_resetUsuario = "ReseteaContrasenia";
         public static readonly string upd_actualizUsuario = "ActualizaEmpleado";
+        public static readonly string upd_actualizarContrasenia = "ActualizarContrasenia";
         public static readonly string post_creaUsuario = "CrearEmpleado";
         public static readonly string get_empleadosPendientes = "ObtieneEmpleadosPendientes";
     }

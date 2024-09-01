@@ -11,6 +11,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using STR_SERVICE_INTEGRATION_EAR.EL.Requests;
+using System.Security.Claims;
 
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
@@ -67,6 +68,22 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
             }
             return Ok(response);
         }
+        [HttpPut]
+        [Route("actualizar-contrasenia")]
+        public IHttpActionResult ActualizarContrasenia(int id, string oldPass, string newPass)
+        {
+            try
+            {
+                SQ_Usuario consulta = new SQ_Usuario();
+                string resultado = consulta.Fn_CambiarContrasenia(id, oldPass, newPass);
+
+                return Ok(new { mensaje = resultado });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost]
         public IHttpActionResult CrearUsuario(UsuarioInfo po_user)
         {
@@ -80,6 +97,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         }
         [HttpGet]
         [Route("portal")]
+        [AuthorizeRole("4")] // Cualquier usuario autenticado
         public IHttpActionResult ObtenerUsuariosPortal()
         {
             SQ_Usuario consulta = new SQ_Usuario();

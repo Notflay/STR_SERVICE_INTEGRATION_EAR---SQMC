@@ -87,14 +87,43 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 encryptedPassword = Convert.ToBase64String(encryptedBytes);
 
                 Console.WriteLine("Contraseña cifrada: " + encryptedPassword);
-
             }
             if (encryptedPassword == passActual)
                 return true;
             return false;
         }
+        public string ObtenerCredencialCifrad(string pass)
+        {
+            // Contraseña que deseas encriptar (en texto claro)
+            string plainTextPassword = pass;
 
+            // Convertir la clave secreta y el IV de cadenas a bytes
+            List<Byte[]> lista = SetKey(clave_secret, aesIV);
 
+            byte[] secretKeyBytes = lista[0];
+            byte[] ivBytes = lista[1];
+
+            string encryptedPassword;
+            // Crear un objeto Aes para cifrar
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = secretKeyBytes;
+                aesAlg.IV = ivBytes;
+
+                // Crear un cifrador
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                // Convertir la contraseña en texto claro a bytes
+                byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainTextPassword);
+
+                // Cifrar la contraseña
+                byte[] encryptedBytes = encryptor.TransformFinalBlock(plainTextBytes, 0, plainTextBytes.Length);
+
+                // Convertir la contraseña cifrada a Base64 (para almacenamiento)
+                encryptedPassword = Convert.ToBase64String(encryptedBytes);
+            }
+            return encryptedPassword;
+        }
         public static List<Byte[]> SetKey(string securityAESSecret, string securityAESIV)
         {
 

@@ -23,7 +23,5 @@ namespace STR_SERVICE_INTEGRATION_EAR
                 defaults: new { id = RouteParameter.Optional }
             );
         }
-
-
     }
 }

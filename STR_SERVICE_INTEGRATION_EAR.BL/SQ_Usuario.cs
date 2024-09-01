@@ -9,12 +9,16 @@ using STR_SERVICE_INTEGRATION_EAR.EL.Commons;
 using System.Collections;
 using STR_SERVICE_INTEGRATION_EAR.EL.Requests;
 using STR_SERVICE_INTEGRATION_EAR.EL.Responses;
+using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
 using System.Net.Http;
 using Newtonsoft.Json;
 using DocumentFormat.OpenXml.Math;
 using RestSharp;
 using STR_SERVICE_INTEGRATION_EAR.SL;
+using System.Security.Policy;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace STR_SERVICE_INTEGRATION_EAR.BL
 {
@@ -31,21 +35,23 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
             try
             {
-                // Obtiene VALOR de la contraseña - Si no hay nada Es incorrecta
+                // Obtiene VALOR de la contraseña - Si no hay nada es incorrecta
                 string passActual = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_tokenPass), user.username).ToString();
 
                 if (string.IsNullOrWhiteSpace(passActual)) throw new Exception(respIncorrect);
 
-                // Obtiencontraseña y hace la validación
+                // Obtiene contraseña y hace la validación
                 Encript validacion = new Encript();
                 bool reslt = validacion.ValidarCredenciales(passActual, user.password);
 
                 if (!reslt) throw new Exception(respIncorrect);
 
+                // Obtiene la información del usuario
                 List<Usuario> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_infoUser), dc =>
                 {
                     return new Usuario()
                     {
+                        ID = Convert.ToInt32(dc["ID"]),
                         empID = Convert.ToInt32(dc["RML_USUARIOSAP"]),
                         Nombres = dc["Nombres"],
                         activo = Convert.ToInt32(dc["RML_ACTIVO"]),
@@ -56,14 +62,88 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     };
                 }, nombreDB, user.username).ToList();
 
-                if (list.Count > 0)
-                    if (list.FirstOrDefault().activo == 0) throw new Exception("Usuario deshabilitado");
+                if (list.Count == 0)
+                    throw new Exception(respIncorrect);
 
-                return Global.ReturnOk(list, respIncorrect);
+                if (list.FirstOrDefault().activo == 0)
+                    throw new Exception("Usuario deshabilitado");
+
+                // Si el usuario es válido, generar el token
+                Usuario usuario = list.FirstOrDefault();
+                string token = GenerarJwtToken(usuario.ID, usuario.TipoUsuario.id);
+
+                // Incluir el token en la respuesta
+                return new ConsultationResponse<Usuario>
+                {
+                    CodRespuesta = "00",
+                    DescRespuesta = respOk,
+                    Result = new List<Usuario> { usuario },
+                    Token = token // Asumiendo que tu modelo tiene un campo para el token
+                };
             }
             catch (Exception ex)
             {
                 return Global.ReturnError<Usuario>(ex);
+            }
+        }
+        private string GenerarJwtToken(int userId, string roleId)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["secret"]); // Utiliza una clave secreta adecuada
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                new Claim("id", userId.ToString()),
+                new Claim("rol", roleId)
+             }),
+                Expires = DateTime.UtcNow.AddHours(1), // El token expira en 1 hora
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
+        public string Fn_CambiarContrasenia(int id, string oldPass, string newPass)
+        {
+            SqlADOHelper hash = new SqlADOHelper();
+            // Mensaje de error
+            try
+            {
+                string passActual = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_passForId), id.ToString()).ToString();
+                if (string.IsNullOrEmpty(passActual))
+                    throw new Exception("No se tiene contraseña a editar");
+
+                if (string.IsNullOrEmpty(oldPass))
+                    throw new Exception("Contraseña antigua vacía");
+
+                if (string.IsNullOrEmpty(newPass))
+                    throw new Exception("Contraseña nueva vacía");
+
+                // Validar que la nueva contraseña tenga entre 5 y 20 caracteres
+                if (newPass.Length < 5 || newPass.Length > 20)
+                    throw new Exception("La nueva contraseña debe tener entre 5 y 20 caracteres");
+
+                if (oldPass.Length < 5 || oldPass.Length > 20)
+                    throw new Exception("La nueva contraseña debe tener entre 5 y 20 caracteres");
+
+                Encript validacion = new Encript();
+                string _oldPass = validacion.ObtenerCredencialCifrad(oldPass);
+
+                if (_oldPass != passActual)
+                    throw new Exception("Contraseña incorrecta");
+
+                string _newPass = validacion.ObtenerCredencialCifrad(newPass);
+
+                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_actualizarContrasenia), id.ToString(), _newPass);
+
+                return "Contraseña actualizada exitosamente";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);  // Código de error
             }
         }
         public Usuario getUsuario(int id)
@@ -98,7 +178,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 return null;
             }
         }
-
         public ConsultationResponse<EmpleadoSAP> getUsuarios()
         {
             var respOk = "OK";
@@ -388,7 +467,9 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     ID = Convert.ToInt32(dc["ID"]),
                     //Nombres = dc["Nombres"].ToString(),
                     Username = dc["RML_USERNAME"].ToString(),
-                    FechaRegistro = dc["RML_FECHA_REGIRMLO"].ToString(),
+                    FechaRegistro = string.IsNullOrEmpty(dc["RML_FECHA_REGIRMLO"].ToString())
+                            ? null
+                            : Convert.ToDateTime(dc["RML_FECHA_REGIRMLO"]).ToString("dd/MM/yyyy"),
                     Rol = new Complemento { id = dc["RML_ROL_ID"], name = dc["RML_NOMBRE_ROL"] },
                     Estado = dc["Estado"].ToString()
                 };
@@ -480,18 +561,33 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     };
                 }
 
+                UsuarioSAP sapActualizado = new UsuarioSAP();
                 // Actualizar en SAP
-                UsuarioSAP sapActualizado = CrearUsuarioEnSAP(po_user.usuarioSAP);
-
-                if (sapActualizado == null)
+                if (po_user.usuarioSAP?.EmpleadoId == 0)
                 {
-                    return new ConsultationResponse<UsuarioInfo>
-                    {
-                        CodRespuesta = "21",
-                        DescRespuesta = "Error al crear el usuario en SAP"
-                    };
-                }
+                    sapActualizado = CrearUsuarioEnSAP(po_user.usuarioSAP);
 
+                    if (sapActualizado == null)
+                    {
+                        return new ConsultationResponse<UsuarioInfo>
+                        {
+                            CodRespuesta = "21",
+                            DescRespuesta = "Error al crear el usuario en SAP"
+                        };
+                    }
+                }
+                else
+                {
+                    if (VerificarSiUsuarioDeSapExistePortal((int)po_user.usuarioSAP?.EmpleadoId))
+                    {
+                        return new ConsultationResponse<UsuarioInfo>
+                        {
+                            CodRespuesta = "22",
+                            DescRespuesta = "El empleado ya fue registrado anteriormente en el portal"
+                        };
+                    }
+                    sapActualizado = po_user.usuarioSAP;
+                }
                 // Actualizar en el portal
                 UsuarioPortal portalActualizado = CrearUsuarioEnPortal(po_user.usuarioPortal, sapActualizado.EmpleadoId);
 
@@ -530,6 +626,23 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             {
                 SqlADOHelper hash = new SqlADOHelper();
                 object result = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_usuarioExiste), username);
+            
+                // Convertir el resultado a int
+                int data = result != null ? Convert.ToInt32(result) : 0;
+
+                return data > 0; // Si count > 0, el usuario ya existe
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar si el usuario existe en el portal.", ex);
+            }
+        }
+        private bool VerificarSiUsuarioDeSapExistePortal(int empleadoID)
+        {
+            try
+            {
+                SqlADOHelper hash = new SqlADOHelper();
+                object result = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_usuarioExisteID), empleadoID.ToString());
 
                 // Convertir el resultado a int
                 int data = result != null ? Convert.ToInt32(result) : 0;

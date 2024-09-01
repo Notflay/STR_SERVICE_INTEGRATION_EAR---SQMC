@@ -504,3 +504,13 @@ C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INT
 C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\obj\Debug\STR_SERV.5FEB530B.Up2Date
 C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.BL.dll
 C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\obj\Debug\STR_SERVICE_INTEGRATION_EAR.BL.pdb
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.Logging.xml
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\System.IdentityModel.Tokens.Jwt.xml

@@ -21,6 +21,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
         public string provAsociado { get; set; }
         public string CostCenter { get; set; }
         public int dept { get; set; }
+        public int ID { get; set; }
 
         /*
         public int empID { get; set; }
