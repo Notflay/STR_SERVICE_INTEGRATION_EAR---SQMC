@@ -1,0 +1,124 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear.bl\\sq_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|solutionrelative:str_service_integration_ear.bl\\sq_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\authorizeroleattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\authorizeroleattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\Controllers\\UsuarioController.cs",
+              "ViewState": "AQIAAFkAAAAAAAAAAAAQwGMAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-31T06:44:12.99Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SQ_Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Usuario.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Usuario.cs",
+              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Usuario.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Usuario.cs",
+              "ViewState": "AQIAAFMAAAAAAAAAAAApwFkAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T05:17:04.089Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WebApiConfig.cs",
+              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
+              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T05:18:06.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthorizeRoleAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\AuthorizeRoleAttribute.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\AuthorizeRoleAttribute.cs",
+              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\AuthorizeRoleAttribute.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\AuthorizeRoleAttribute.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T05:17:58.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 59,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
