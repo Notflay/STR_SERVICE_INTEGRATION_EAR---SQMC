@@ -42,6 +42,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public static readonly string get_comboTipos = "ObtenerComboTipos";
         public static readonly string get_comboTiposPorId = "ObtenerComboTiposPorId";
         public static readonly string get_proveedores = "ObtenerProveedores";
+        public static readonly string get_proveedoresEmp = "ObtenerProveedoresEmp";
         public static readonly string get_proveedor = "ObtenerProveedor";
         public static readonly string get_items = "ListardItems";
         public static readonly string get_item = "ObtenerItem";

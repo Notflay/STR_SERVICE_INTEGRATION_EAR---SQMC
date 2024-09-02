@@ -1,0 +1,6 @@
+1/09/2024 02:35:18 - User: 1 -  (Role: 1) IP: ::1 Request: GET http://localhost:7799/api/items?tipo=VIA
+1/09/2024 02:35:21 - EXEC RML_PW_LISTARITEMS 'VIA'
+1/09/2024 02:35:47 - User: 1 -  (Role: 1) IP: ::1 Request: GET http://localhost:7799/api/items?tipo=VIA
+1/09/2024 02:35:47 - EXEC RML_PW_LISTARITEMS 'VIA'
+1/09/2024 02:43:18 - User: 1 -  (Role: 1) IP: ::1 Request: GET http://localhost:7799/api/items?tipo=VIA
+1/09/2024 02:43:20 - EXEC RML_PW_LISTARITEMS 'VIA'

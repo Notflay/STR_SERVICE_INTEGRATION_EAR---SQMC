@@ -232,7 +232,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         Nombre = dc["firstName"],
                         Apellido = dc["lastName"],
                         Cargo = dc["jobTitle"],
-                        Email = dc["email"],
+                        Email = dc["email"]
                     };
                 }, string.Empty).ToList();
 
@@ -488,7 +488,10 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     Nombre = dc["firstName"].ToString(),
                     Apellido = dc["lastName"].ToString(),
                     Cargo = dc["jobTitle"].ToString(),
-                    Email = dc["email"].ToString()
+                    Email = dc["email"].ToString(),
+                    ProveedorAsoc = new Proveedor { CardCode = dc["U_CE_PVAS"], CardName = dc["U_CE_PVNM"], LicTradNum = dc["LicTradNum"] },
+                    CodEar = dc["U_CE_CEAR"],
+                    RendicionesMaxima = dc["U_CE_RNDC"]
                 };
             }, id.ToString()).ToList().FirstOrDefault();
         }
@@ -708,6 +711,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 // Deserializar la respuesta del servicio a un objeto UsuarioSAP
                 employe = JsonConvert.DeserializeObject<EmployeesInfo>(response.Content);
 
+                usuarioSAP.CodEar = employe.U_CE_CEAR;
                 usuarioSAP.EmpleadoId = employe.EmployeeID;
                 return usuarioSAP; // Retornar el usuario creado
             }

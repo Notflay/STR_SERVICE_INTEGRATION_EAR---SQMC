@@ -32,7 +32,20 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
             }
             return Ok(response);
         }
+        [Route("empleados")]
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult GetProveedorEmpleados()
+        {
+            SQ_Proveedor sQ_Proveedor = new SQ_Proveedor();
+            var response = sQ_Proveedor.ObtenerProveedorEmp();
 
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
         [Route("ruc/{id}")]
         [HttpGet]
         [Authorize]

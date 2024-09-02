@@ -15,7 +15,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
     {
         [HttpGet]
         [Route("cfgeneral")]
-        [Authorize]
         public IHttpActionResult CreaCFGeneral()
         {
             // Valida si hay alguna configuración con el mismo codigo 

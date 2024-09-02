@@ -517,4 +517,7 @@
 	<query nameid="ActualizarContrasenia" definition="I">
 		<hana>EXEC RML_UPDT_CONTRASENIA '{0}','{1}'</hana>
 	</query>
+	<query nameid="ObtenerProveedoresEmp" definition="I">
+		<hana>EXEC RML_GET_PROVEEDORISEMP</hana>
+	</query>
 </root>

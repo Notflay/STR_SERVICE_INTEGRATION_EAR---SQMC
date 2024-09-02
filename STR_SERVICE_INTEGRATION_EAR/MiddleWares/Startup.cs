@@ -17,7 +17,7 @@ namespace STR_SERVICE_INTEGRATION_EAR
         {
             var key = Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["secret"]); // Clave secreta del JWT
 
-            app.Use<LoggingMiddleware>();
+           
             app.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions
             {
                 AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active,
@@ -33,6 +33,8 @@ namespace STR_SERVICE_INTEGRATION_EAR
                     ClockSkew = TimeSpan.Zero // Sin margen de tolerancia para la expiración
                 }
             });
+
+            app.Use<LoggingMiddleware>();
         }
     }
 }

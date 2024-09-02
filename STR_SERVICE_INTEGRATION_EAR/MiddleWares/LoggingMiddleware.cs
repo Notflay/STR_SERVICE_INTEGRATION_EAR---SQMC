@@ -20,20 +20,23 @@ public class LoggingMiddleware : OwinMiddleware
     private void LogRequest(IOwinContext context)
     {
         // Obtener la información del usuario desde el token JWT
-        var identity = context.Authentication.User.Identity as ClaimsIdentity;
+        var identity = context.Authentication.User?.Identity as ClaimsIdentity;
         var userId = identity?.FindFirst("id")?.Value;
         var userName = identity?.Name;
         var userRole = identity?.FindFirst("rol")?.Value;
 
-        // Obtener la dirección IP del usuario
-        var ipAddress = context.Request.RemoteIpAddress;
+        if (!string.IsNullOrEmpty(userId) && !string.IsNullOrEmpty(userRole))
+        {
+            // Obtener la dirección IP del usuario
+            var ipAddress = context.Request.RemoteIpAddress;
 
-        // Obtener la información de la solicitud
-        var request = context.Request;
-        var message = $"User: {userId} - {userName} (Role: {userRole}) " +
-                      $"IP: {ipAddress} Request: {request.Method} {request.Uri}";
+            // Obtener la información de la solicitud
+            var request = context.Request;
+            var message = $"User: {userId} - {userName} (Role: {userRole}) " +
+                          $"IP: {ipAddress} Request: {request.Method} {request.Uri}";
 
-        // Escribir el log en un archivo (puedes cambiar la ubicación y el formato según sea necesario)
-        Global.WriteToFile(message);
+            // Escribir el log en un archivo (puedes cambiar la ubicación y el formato según sea necesario)
+            Global.WriteToFile(message);
+        }
     }
 }

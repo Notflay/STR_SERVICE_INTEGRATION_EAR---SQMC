@@ -6,7 +6,7 @@ using STR_SERVICE_INTEGRATION_EAR.EL.Requests;
 namespace STR_SERVICE_INTEGRATION_EAR.Controllers
 {
     [RoutePrefix("api/items")]
-    
+    //[EnableCors(origins: "http://129.80.96.251:7072", headers:"*",methods:"*")]
     // [TokenAuthorization]
     public class ObtenerController : ApiController
     {

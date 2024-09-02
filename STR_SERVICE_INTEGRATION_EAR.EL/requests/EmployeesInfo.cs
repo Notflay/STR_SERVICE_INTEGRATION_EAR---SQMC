@@ -13,5 +13,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
         public string LastName { get; set; } = string.Empty;
         public string eMail {get; set; } = string.Empty;
         public string JobTitle { get; set; } = string.Empty;
+        public string U_CE_PVAS { get; set; } = string.Empty;
+        public string U_CE_PVNM { get; set; } = string.Empty;
+        public string U_CE_CEAR { get; set; }
     }
 }

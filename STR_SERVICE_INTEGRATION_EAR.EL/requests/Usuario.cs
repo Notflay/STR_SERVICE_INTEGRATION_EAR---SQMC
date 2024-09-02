@@ -53,6 +53,9 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
         public string Apellido { get; set; }
         public string Cargo { get; set; }
         public string Email { get; set; }
+        public string CodEar { get; set; }
+        public Proveedor ProveedorAsoc { get; set; }
+        public string RendicionesMaxima { get; set; }
     }
     public class UsuarioPortal
     {

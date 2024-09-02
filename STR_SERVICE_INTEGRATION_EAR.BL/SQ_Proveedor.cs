@@ -36,7 +36,29 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 return Global.ReturnError<Proveedor>(ex);
             }
         }
+        public ConsultationResponse<Proveedor> ObtenerProveedorEmp()
+        {
+            var respIncorrect = "No Hay Proveedores";
 
+            try
+            {
+                List<Proveedor> list = hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_proveedoresEmp), dc =>
+                {
+                    return new Proveedor()
+                    {
+                        CardCode = dc["CardCode"],
+                        CardName = dc["CardName"],
+                        LicTradNum = dc["LicTradNum"]
+                    };
+                }, string.Empty).ToList();
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Proveedor>(ex);
+            }
+        }
         public ConsultationResponse<Proveedor> ObtenerProveedor(string id)
         {
             var respIncorrect = "No Hay Proveedores";
