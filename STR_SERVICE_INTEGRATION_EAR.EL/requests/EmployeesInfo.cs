@@ -15,6 +15,9 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
         public string JobTitle { get; set; } = string.Empty;
         public string U_CE_PVAS { get; set; } = string.Empty;
         public string U_CE_PVNM { get; set; } = string.Empty;
+        public string U_CE_PVMN { get; set; }
+        public string U_CE_CTAS { get; set; }
         public string U_CE_CEAR { get; set; }
+        public int U_CE_RNDC { get; set; }
     }
 }

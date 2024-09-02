@@ -90,7 +90,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
             }
         }
         [HttpPost]
-        [Authorize]
+        [AuthorizeRole("4")] // Cualquier usuario autenticado
         public IHttpActionResult CrearUsuario(UsuarioInfo po_user)
         {
             SQ_Usuario consulta = new SQ_Usuario();

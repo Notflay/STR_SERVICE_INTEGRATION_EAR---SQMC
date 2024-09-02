@@ -520,4 +520,7 @@
 	<query nameid="ObtenerProveedoresEmp" definition="I">
 		<hana>EXEC RML_GET_PROVEEDORISEMP</hana>
 	</query>
+	<query nameid="ObtenerAcctCodeProveedor" definition="I">
+		<hana>EXEC RML_GET_ACCTCODE '{0}'</hana>
+	</query>
 </root>

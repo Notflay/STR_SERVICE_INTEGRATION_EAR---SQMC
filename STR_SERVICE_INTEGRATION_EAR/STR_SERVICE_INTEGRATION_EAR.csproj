@@ -344,6 +344,7 @@
     <Compile Include="MiddleWares\AuthorizeRoleAttribute.cs" />
     <Compile Include="MiddleWares\LoggingMiddleware.cs" />
     <Compile Include="MiddleWares\Startup.cs" />
+    <Compile Include="MiddleWares\TipoDeCambioMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

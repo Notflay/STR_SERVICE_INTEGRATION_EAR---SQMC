@@ -520,4 +520,10 @@
 	<query nameid="ObtenerProveedoresEmp" definition="I">
 		<hana>EXEC RML_GET_PROVEEDORISEMP</hana>
 	</query>
+	<query nameid="ObtenerAcctCodeProveedor" definition="I">
+		<hana>EXEC RML_GET_ACCTCODE '{0}'</hana>
+	</query>
+	<query nameid="ObtenerTipoCambio" definition="I">
+		<hana>SELECT count(*) AS CONT FROM SOQUIMIC_TEST_ADDON.dbo.ORTT WHERE RateDate = CONVERT(DATE, GETDATE());</hana>
+	</query>
 </root>

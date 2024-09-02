@@ -596,13 +596,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 {
                     if (aprobadores.Count == 1 | solicitudRD.RML_ESTADO.id == "3")
                     {
-                        //CreateResponse createResponse = new CreateResponse();
-                        //createResponse.RML_APROBACIONFINALIZADA = 1;
-
-                        //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "4", "", solicitudId);
-
-                        //return Global.ReturnOk(lista, "");
-
 
                         EnviarEmail envio = new EnviarEmail();
 
@@ -617,7 +610,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
                             // Inserts despues de crear la SR en SAP 
                             hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "6", "", solicitudId);                                       // Actualiza Estado
-                            //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_intermedia), createResponse.DocEntry);                                             // Inserta en la tabla intemedia de EAR para generar codigo
                             string codigoRendicion = "";
 
                             Usuario solicitante = sQ_Usuario.getUsuario(solicitudRD.RML_EMPLDASIG.empleadoID);
@@ -843,7 +835,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
                     // Inserts despues de crear la SR en SAP 
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), nuevoEstado, "", solicitudId);                                       // Actualiza Estado
-                    //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_intermedia), createResponse.DocEntry);                                             // Inserta en la tabla intemedia de EAR para generar codigo
                     string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.get_numeroRendicion), createResponse.DocEntry);   // Obtiene el número de Rendición con el DocEntry
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, codigoRendicion, solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón
 

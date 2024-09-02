@@ -482,6 +482,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
             return hash.GetResultAsType(SQ_QueryManager.Generar(SQ_Query.get_usuarioPortal), dc =>
             {
+
                 return new UsuarioSAP
                 {
                     EmpleadoId = Convert.ToInt32(dc["empID"]),
@@ -489,9 +490,12 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     Apellido = dc["lastName"].ToString(),
                     Cargo = dc["jobTitle"].ToString(),
                     Email = dc["email"].ToString(),
-                    ProveedorAsoc = new Proveedor { CardCode = dc["U_CE_PVAS"], CardName = dc["U_CE_PVNM"], LicTradNum = dc["LicTradNum"] },
+                    ProveedorAsoc = new Proveedor { 
+                        CardCode = string.IsNullOrEmpty(dc["U_CE_PVAS"]) ? "" : dc["U_CE_PVAS"],
+                        CardName = string.IsNullOrEmpty(dc["U_CE_PVNM"]) ? "" : dc["U_CE_PVNM"], 
+                        LicTradNum = string.IsNullOrEmpty(dc["LicTradNum"]) ? "" : dc["LicTradNum"] },
                     CodEar = dc["U_CE_CEAR"],
-                    RendicionesMaxima = dc["U_CE_RNDC"]
+                    RendicionesMaxima = string.IsNullOrWhiteSpace(Convert.ToString(dc["U_CE_RNDC"])) ? 0 : Convert.ToInt32(dc["U_CE_RNDC"]) 
                 };
             }, id.ToString()).ToList().FirstOrDefault();
         }
@@ -661,11 +665,25 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             try
             {
-                EmployeesInfo employe = new EmployeesInfo();
-                employe.FirstName = usuarioSAP.Nombre;
-                employe.LastName = usuarioSAP.Apellido;
-                employe.JobTitle = usuarioSAP.Cargo;
-                employe.eMail = usuarioSAP.Email;
+                string ls_acctCode = "";
+                // Obtener Cuenta Contable del Proveedor
+                if (usuarioSAP.ProveedorAsoc?.CardCode != null)
+                {
+                    ls_acctCode = Fn_ObtenerAcctProv(usuarioSAP.ProveedorAsoc.CardCode);
+                }
+
+                EmployeesInfo employe = new EmployeesInfo
+                {
+                    FirstName = usuarioSAP.Nombre,
+                    LastName = usuarioSAP.Apellido,
+                    JobTitle = usuarioSAP.Cargo,
+                    eMail = usuarioSAP.Email,
+                    U_CE_PVAS = usuarioSAP.ProveedorAsoc?.CardCode,
+                    U_CE_PVNM = usuarioSAP.ProveedorAsoc?.CardName,
+                    U_CE_CTAS = ls_acctCode,
+                    U_CE_PVMN = "##",
+                    U_CE_RNDC =  usuarioSAP.RendicionesMaxima
+                };
 
                 B1SLEndpoint sl = new B1SLEndpoint();
                 string json = JsonConvert.SerializeObject(employe);
@@ -685,15 +703,26 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         {
             try
             {
+                string ls_acctCode = "";
+                // Obtener Cuenta Contable del Proveedor
+                if (usuarioSAP.ProveedorAsoc?.CardCode != null)
+                {
+                    ls_acctCode = Fn_ObtenerAcctProv(usuarioSAP.ProveedorAsoc.CardCode);
+                }
                 // Crear un nuevo objeto EmployeesInfo y asignar valores
                 EmployeesInfo employe = new EmployeesInfo
                 {
                     FirstName = usuarioSAP.Nombre,
                     LastName = usuarioSAP.Apellido,
                     JobTitle = usuarioSAP.Cargo,
-                    eMail = usuarioSAP.Email
+                    eMail = usuarioSAP.Email,
+                    U_CE_PVAS = usuarioSAP.ProveedorAsoc?.CardCode,
+                    U_CE_PVNM = usuarioSAP.ProveedorAsoc?.CardName,
+                    U_CE_CTAS = ls_acctCode,
+                    U_CE_PVMN = "##",
+                    U_CE_RNDC = usuarioSAP.RendicionesMaxima
                 };
-
+                
                 // Serializar el objeto EmployeesInfo a JSON
                 string json = JsonConvert.SerializeObject(employe);
 
@@ -720,6 +749,22 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 // Manejar la excepción de manera adecuada, por ejemplo, registrar el error
                 // Aquí solo se lanza la excepción nuevamente para manejarla en un nivel superior
                 throw new Exception("Ocurrió un error al intentar crear el usuario en SAP.", ex);
+            }
+        }
+        private string Fn_ObtenerAcctProv(string ps_cardCode)
+        {
+            try
+            {
+                SqlADOHelper hash = new SqlADOHelper();
+                object obj = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_acctCodeProv), ps_cardCode);
+
+                string resul = obj == null ? "" : obj.ToString();
+
+                return resul;
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
         private bool ActualizarUsuarioEnPortal(UsuarioPortal usuarioPortal)

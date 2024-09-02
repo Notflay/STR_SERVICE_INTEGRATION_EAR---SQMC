@@ -35,6 +35,8 @@ namespace STR_SERVICE_INTEGRATION_EAR
             });
 
             app.Use<LoggingMiddleware>();
+
+            app.Use<TipoDeCambioMiddleware>();
         }
     }
 }

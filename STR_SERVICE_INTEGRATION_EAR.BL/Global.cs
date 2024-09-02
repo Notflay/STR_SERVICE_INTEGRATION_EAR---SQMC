@@ -1,4 +1,5 @@
 ﻿using STR_SERVICE_INTEGRATION_EAR.EL.Commons;
+using STR_SERVICE_INTEGRATION_EAR.SQ;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 Result = list
             };
         }
-
         public static void WriteToFile(string Message)
         {
             try

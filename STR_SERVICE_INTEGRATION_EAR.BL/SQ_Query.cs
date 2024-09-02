@@ -113,7 +113,6 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public static readonly string dlt_aprobadoresRd = "EliminarAprobadoresRendicion";
         public static readonly string upd_aprobadores = "ActualizaablaAprobadoresSR";
         public static readonly string upd_aprobadoresRD = "ActualizaablaAprobadoresRD";
-        public static readonly string post_intermedia = "InsertaIntermadiaEAR";
         public static readonly string get_numeroRendicion = "ObtieneNumeroRendicion";
         public static readonly string dlt_documento = "BorrarDocumento";
         public static readonly string dlt_documentoDet = "BorrarDocumentoDet";
@@ -136,10 +135,12 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public static readonly string get_rolesPortal = "ObtenerRoles";
         public static readonly string get_usuarioExiste = "ValidarExistenciaUsername";
         public static readonly string get_usuarioExisteID = "ValidarExistenciaPorID";
+        public static readonly string get_tipoDeCambio = "ObtenerTipoCambio";
         public static readonly string upd_resetUsuario = "ReseteaContrasenia";
         public static readonly string upd_actualizUsuario = "ActualizaEmpleado";
         public static readonly string upd_actualizarContrasenia = "ActualizarContrasenia";
         public static readonly string post_creaUsuario = "CrearEmpleado";
         public static readonly string get_empleadosPendientes = "ObtieneEmpleadosPendientes";
+        public static readonly string get_acctCodeProv = "ObtenerAcctCodeProveedor";
     }
 }
