@@ -34,11 +34,6 @@
 			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'
 		</hana>
 	</query>
-	<query nameid="ObtenerContraseniaUsuarioId" definition="I">
-		<hana>
-			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE ID = '{0}'
-		</hana>
-	</query>
 	<query nameid="ObtenerMonedas" definition="I">
 		<hana>
 			SELECT "CurrCode","CurrName" FROM OCRN where Locked = 'N'
@@ -176,7 +171,7 @@
 		<hana>SELECT "FldValue" AS "Nombre","Descr" AS "Descripcion" FROM "UFD1" WHERE "TableID" = 'OPRQ' and "FieldID" = '{0}' and "FldValue" = '{1}'</hana>
 	</query>
 	<query nameid="ObtenerTpoDocumentos" definition="I">
-		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141'</hana>
+		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141' ORDER BY T0."U_BPP_TDTD" ASC</hana>
 	</query>
 	<query nameid="ObtenerTpoDocumento" definition="I">
 		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141' AND  T0."U_BPP_TDTD" = '{0}'</hana>
@@ -525,5 +520,10 @@
 	</query>
 	<query nameid="ObtenerTipoCambio" definition="I">
 		<hana>SELECT count(*) AS CONT FROM SOQUIMIC_TEST_ADDON.dbo.ORTT WHERE RateDate = CONVERT(DATE, GETDATE());</hana>
+	</query>
+	<query nameid="ObtenerContraseniaUsuarioId" definition="I">
+		<hana>
+			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE ID = '{0}'
+		</hana>
 	</query>
 </root>
