@@ -34,11 +34,6 @@
 			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE RML_USERNAME = '{0}'
 		</hana>
 	</query>
-	<query nameid="ObtenerContraseniaUsuarioId" definition="I">
-		<hana>
-			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE ID = '{0}'
-		</hana>
-	</query>
 	<query nameid="ObtenerMonedas" definition="I">
 		<hana>
 			SELECT "CurrCode","CurrName" FROM OCRN where Locked = 'N'
@@ -525,5 +520,10 @@
 	</query>
 	<query nameid="ObtenerTipoCambio" definition="I">
 		<hana>SELECT count(*) AS CONT FROM SOQUIMIC_TEST_ADDON.dbo.ORTT WHERE RateDate = CONVERT(DATE, GETDATE());</hana>
+	</query>
+	<query nameid="ObtenerContraseniaUsuarioId" definition="I">
+		<hana>
+			SELECT RML_CONTRASENIA FROM RML_WEB_USUARIOS WHERE ID = '{0}'
+		</hana>
 	</query>
 </root>

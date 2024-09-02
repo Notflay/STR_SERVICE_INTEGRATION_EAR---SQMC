@@ -1,54 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\middlewares\\tipodecambiomiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\middlewares\\tipodecambiomiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\administrador\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\middlewares\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\middlewares\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\global\\encryphelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\global\\encryphelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\global\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\global\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\global\\tokenauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\global\\tokenauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\middlewares\\authorizeroleattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\middlewares\\authorizeroleattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear\\middlewares\\loggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\str_service_integration_ear\\middlewares\\loggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\middlewares\\loggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear.bl\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\str_service_integration_ear\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\str_service_integration_ear\\global\\encryphelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\global\\encryphelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\str_service_integration_ear\\global\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\global\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\str_service_integration_ear\\controllers\\configuracioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32DB62F-7DE0-4349-9EF8-14B6EE14002E}|STR_SERVICE_INTEGRATION_EAR\\STR_SERVICE_INTEGRATION_EAR.csproj|solutionrelative:str_service_integration_ear\\controllers\\configuracioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AEED89F-7EBC-4332-88CA-DC266DF93A23}|STR_SERVICE_INTEGRATION_EAR.SQ\\STR_SERVICE_INTEGRATION_EAR.SQ.csproj|C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\str_service_integration_ear.sq\\sqladohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEED89F-7EBC-4332-88CA-DC266DF93A23}|STR_SERVICE_INTEGRATION_EAR.SQ\\STR_SERVICE_INTEGRATION_EAR.SQ.csproj|solutionrelative:str_service_integration_ear.sq\\sqladohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AEED89F-7EBC-4332-88CA-DC266DF93A23}|STR_SERVICE_INTEGRATION_EAR.SQ\\STR_SERVICE_INTEGRATION_EAR.SQ.csproj|C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\str_service_integration_ear.sq\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEED89F-7EBC-4332-88CA-DC266DF93A23}|STR_SERVICE_INTEGRATION_EAR.SQ\\STR_SERVICE_INTEGRATION_EAR.SQ.csproj|solutionrelative:str_service_integration_ear.sq\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\str_service_integration_ear.bl\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|solutionrelative:str_service_integration_ear.bl\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear.bl\\resources\\queries.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|solutionrelative:str_service_integration_ear.bl\\resources\\queries.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear.bl\\sq_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|solutionrelative:str_service_integration_ear.bl\\sq_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|c:\\users\\partner\\source\\repos\\str_service_integration_ear---sqmc\\str_service_integration_ear.bl\\sq_query.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F38F5E-7ACD-4911-BC43-05683AE2B805}|STR_SERVICE_INTEGRATION_EAR.BL\\STR_SERVICE_INTEGRATION_EAR.BL.csproj|solutionrelative:str_service_integration_ear.bl\\sq_query.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,8 +46,38 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ConfiguracionController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Controllers\\ConfiguracionController.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\Controllers\\ConfiguracionController.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Controllers\\ConfiguracionController.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\Controllers\\ConfiguracionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T05:56:36.833Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Global.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\Global.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR.BL\\Global.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\Global.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR.BL\\Global.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowD0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T06:06:43.132Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -74,162 +92,88 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SQ_Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Usuario.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Usuario.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Usuario.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Usuario.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAAACAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T00:24:19.687Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "SQ_Query.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Query.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Query.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Query.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR.BL\\SQ_Query.cs",
-              "ViewState": "AQIAAHcAAAAAAAAAAAAQwIkAAABLAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:30:45.973Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Global.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\Global.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR.BL\\Global.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\Global.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR.BL\\Global.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAgwDQAAABHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:31:28.896Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EncrypHelper.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\EncrypHelper.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\Global\\EncrypHelper.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\EncrypHelper.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\Global\\EncrypHelper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:42:50.887Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Global.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\Global.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\Global\\Global.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\Global.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\Global\\Global.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:42:49.39Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TokenAuthorizationAttribute.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\TokenAuthorizationAttribute.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\Global\\TokenAuthorizationAttribute.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\TokenAuthorizationAttribute.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\Global\\TokenAuthorizationAttribute.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:42:47.486Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AuthorizeRoleAttribute.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\AuthorizeRoleAttribute.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\AuthorizeRoleAttribute.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\AuthorizeRoleAttribute.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\AuthorizeRoleAttribute.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:42:39.001Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LoggingMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\LoggingMiddleware.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\LoggingMiddleware.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\LoggingMiddleware.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\LoggingMiddleware.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:39:40.487Z",
+              "DocumentIndex": 0,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Web.config",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\Web.config",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Web.config",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\Web.config",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFAAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-09-01T06:45:59.003Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Startup.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\Startup.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\Startup.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\Startup.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\Startup.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACYAAAAqAAAA",
+              "Title": "LoggingMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\LoggingMiddleware.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\LoggingMiddleware.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\LoggingMiddleware.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\LoggingMiddleware.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAjwBMAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:39:39.397Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TipoDeCambioMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\TipoDeCambioMiddleware.cs",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\TipoDeCambioMiddleware.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\TipoDeCambioMiddleware.cs",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\MiddleWares\\TipoDeCambioMiddleware.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA0AAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:39:26.984Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-01T06:40:13.734Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "WebApiConfig.cs",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
               "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
               "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\App_Start\\WebApiConfig.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:42:54.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-01T06:30:48.047Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Queries.xml",
-              "DocumentMoniker": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\Resources\\Queries.xml",
-              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR.BL\\Resources\\Queries.xml",
-              "ToolTip": "C:\\Users\\partner\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.BL\\Resources\\Queries.xml",
-              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR.BL\\Resources\\Queries.xml",
-              "ViewState": "AQIAAPQBAAAAAAAAAAAIwA0CAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2024-09-02T05:23:31.102Z",
-              "EditorCaption": ""
+              "DocumentIndex": 3,
+              "Title": "EncrypHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\EncrypHelper.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\Global\\EncrypHelper.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\EncrypHelper.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\Global\\EncrypHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T06:30:45.171Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Global.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.SQ\\Global.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR.SQ\\Global.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.SQ\\Global.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR.SQ\\Global.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T06:28:59.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Global.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\Global.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR\\Global\\Global.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR\\Global\\Global.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR\\Global\\Global.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T06:28:41.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SqlADOHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.SQ\\SqlADOHelper.cs",
+              "RelativeDocumentMoniker": "STR_SERVICE_INTEGRATION_EAR.SQ\\SqlADOHelper.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\STR_SERVICE_INTEGRATION_EAR---SQMC\\STR_SERVICE_INTEGRATION_EAR.SQ\\SqlADOHelper.cs",
+              "RelativeToolTip": "STR_SERVICE_INTEGRATION_EAR.SQ\\SqlADOHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T06:27:51.716Z"
             }
           ]
         },
