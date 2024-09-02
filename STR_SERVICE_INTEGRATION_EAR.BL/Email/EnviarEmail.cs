@@ -192,20 +192,24 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public void EnvioDocumento(MailMessage msg)
         {
 
+            // Obtener el PORT y HOST
+            string host = ConfigurationManager.AppSettings["correo_host"].ToString();
+            int port = int.Parse(ConfigurationManager.AppSettings["correo_port"].ToString());
+            bool enableSsl = ConfigurationManager.AppSettings["correo_ssl"] == "1";
+
             msg.BodyEncoding = Encoding.UTF8;
             msg.Priority = MailPriority.Normal;
 
             SmtpClient client = new SmtpClient();
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential(CorreoEmisor, CorreoClave);
-            client.Port = 587;
+            client.Host = host;
+            client.Port = port;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Host = "smtp.gmail.com";
             client.EnableSsl = true;
 
             client.Send(msg);
             client.Dispose();
-
         }
 
         static string LeerArchivoHtml(string rutaArchivo)
