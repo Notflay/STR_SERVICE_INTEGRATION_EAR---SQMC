@@ -2075,6 +2075,7 @@ C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVI
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR\bin\EPPlus.Interfaces.dll
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR\bin\EPPlus.System.Drawing.dll
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR\bin\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR\bin\log4net.dll
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR\bin\stdole.dll
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR\bin\STR_SERVICE_INTEGRATION_EAR.BL.pdb
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR\bin\STR_SERVICE_INTEGRATION_EAR.BL.dll.config

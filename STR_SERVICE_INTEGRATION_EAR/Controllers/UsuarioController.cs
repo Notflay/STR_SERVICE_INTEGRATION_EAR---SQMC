@@ -7,7 +7,6 @@ using STR_SERVICE_INTEGRATION_EAR.EL.Responses;
 using System.Net.Http;
 using System.Configuration;
 using System;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using STR_SERVICE_INTEGRATION_EAR.EL.Requests;
@@ -181,7 +180,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.Controllers
         //}
         [HttpPost]
         [Route("login")]
-        public async Task<IHttpActionResult> ObtieneSesion(EL.Requests.LoginRequest login)
+        public IHttpActionResult ObtieneSesion(EL.Requests.LoginRequest login)
         {
             SQ_Usuario sq = new SQ_Usuario();
             var response = sq.ObtieneSesion(login);
