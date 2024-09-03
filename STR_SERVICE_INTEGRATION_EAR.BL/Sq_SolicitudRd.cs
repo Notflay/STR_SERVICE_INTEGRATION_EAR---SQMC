@@ -631,14 +631,14 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                                 lista.Add(createResponse);
 
                                 // Envio de Correo
-                                envio.EnviarInformativo(solicitante.email, FormatearNombreCompleto(solicitante.Nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.RML_FECHAREGIS, true, "");
+                                envio.EnviarInformativo(solicitante.email, FormatearNombreCompleto(solicitante.Nombres), true, solicitudRD.ID.ToString(),"", solicitudRD.RML_FECHAREGIS, true, "");
                                 //return Global.ReturnOk(lista, "");
                             }
                             else
                             {
                                 string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
                                 hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), "7", mensaje.Replace("'", ""), solicitudId);
-                                envio.EnviarError(true, null, solicitudRD.ID.ToString(), solicitudRD.RML_FECHAREGIS);
+                                envio.EnviarError(true, null, solicitudRD.ID.ToString(), solicitudRD.RML_FECHAREGIS, mensaje.Replace("'", ""));
                                 throw new Exception(mensaje);
                             }
                         });
@@ -851,8 +851,8 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
                     // Inserts despues de crear la SR en SAP 
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoSR), nuevoEstado, "", solicitudId);                                       // Actualiza Estado
-                    string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.get_numeroRendicion), createResponse.DocEntry);   // Obtiene el número de Rendición con el DocEntry
-                    hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, codigoRendicion, solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón
+                    //string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.get_numeroRendicion), createResponse.DocEntry);   // Obtiene el número de Rendición con el DocEntry
+                    hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, "", solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón
 
                     // Obtiene Aprobadores para actualizar
                     //listaAprobados = new List<Aprobador>();
@@ -864,7 +864,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
 
                     Task.Run(() =>
                     {
-                        envio.EnviarInformativo(solicitudRD.RML_EMPLEADO_ASIGNADO.email, FormatearNombreCompleto(solicitudRD.RML_EMPLEADO_ASIGNADO.Nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.RML_FECHAREGIS, true, "");
+                        envio.EnviarInformativo(solicitudRD.RML_EMPLEADO_ASIGNADO.email, FormatearNombreCompleto(solicitudRD.RML_EMPLEADO_ASIGNADO.Nombres), true, solicitudRD.ID.ToString(), "", solicitudRD.RML_FECHAREGIS, true, "");
                     });
                     return Global.ReturnOk(lista, "");
                 }

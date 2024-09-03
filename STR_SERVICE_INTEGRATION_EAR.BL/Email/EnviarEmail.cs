@@ -139,7 +139,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             }
         }
 
-        public void EnviarError(bool solicitud, string codigoRendicion, string codigo, string fechaRegistro) {
+        public void EnviarError(bool solicitud, string codigoRendicion, string codigo, string fechaRegistro, string mensajeError) {
             try
             {
                 List<string> admins = new List<string>();
@@ -173,6 +173,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     body = body.Replace("[$Logo]", Logo); // Config
                     body = body.Replace("[$Link]", Link);                                                               // Config
                     body = body.Replace("[$Gif]", Gif);                   // Config
+                    body = body.Replace("[$Motivo]", mensajeError);
 
                     msg.IsBodyHtml = true;
                     msg.Body = body;

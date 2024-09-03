@@ -60,14 +60,21 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
         public ComprobanteResponses ValidarDocumento(ComprobanteRequest comprobante)
         {
             // 
+            string url = $"https://api.sunat.gob.pe/v1/contribuyente/contribuyentes/{ruc}/validarcomprobante";
             bool prod = ConfigurationManager.AppSettings["ValidacionSunatActiva"] == "1";
 
-            string url = $"https://api.sunat.gob.pe/v1/contribuyente/contribuyentes/{ruc}/validarcomprobante";
             ComprobanteResponses resultContent = new ComprobanteResponses();
-            TokenResponses token = GeneraTokenSUNAT();
+            if (!prod)
+            {
+                resultContent.data = new Data();
+                resultContent.data.estadoCp = "1";
+                return resultContent;
+            }
 
             try
-            {
+            {  
+                TokenResponses token = GeneraTokenSUNAT();
+
                 using (var httpClientHandler = new HttpClientHandler())
                 {
                     System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
@@ -82,15 +89,9 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         var resultContent2 = result.Content.ReadAsStringAsync().Result;
 
                         resultContent = Newtonsoft.Json.JsonConvert.DeserializeObject<ComprobanteResponses>(resultContent2);
-
                     }
                 }
-
-                if (!prod) {
-                    resultContent.data = new Data();
-                    resultContent.data.estadoCp = "1";
-                }
-
+ 
                 return resultContent;
             }
             catch (Exception)

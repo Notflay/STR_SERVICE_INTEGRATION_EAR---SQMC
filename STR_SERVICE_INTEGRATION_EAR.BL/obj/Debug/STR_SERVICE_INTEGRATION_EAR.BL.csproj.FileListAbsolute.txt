@@ -514,7 +514,6 @@ C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INT
 C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.Logging.xml
 C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\Microsoft.IdentityModel.Tokens.xml
 C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
-C:\Users\partner\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\log4net.dll
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\x86\leptonica-1.82.0.dll
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\x86\tesseract50.dll
 C:\Users\Administrador\source\repos\STR_SERVICE_INTEGRATION_EAR---SQMC\STR_SERVICE_INTEGRATION_EAR.BL\bin\Debug\x64\leptonica-1.82.0.dll

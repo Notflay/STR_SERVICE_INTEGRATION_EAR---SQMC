@@ -52,6 +52,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         //RML_TOTALAPERTURA = Convert.ToDouble(dc["RML_TOTALAPERTURA"]),
                         RML_FECHAREGIS = string.IsNullOrWhiteSpace(dc["RML_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["RML_FECHAREGIS"]).ToString("dd/MM/yyyy"),
                         RML_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["RML_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["RML_DOCENTRY"]),
+                        RML_APROBACION = Convert.ToInt32(dc["RML_APROBACIONFINALIZADA"]),
                         RML_MOTIVOMIGR = dc["RML_MOTIVOMIGR"]
                     };
                 }, usrCreate, usrAsig, perfil.ToString(), fecIni, fecFin, nrRendi, estado, area).ToList();
@@ -254,7 +255,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 doc.detalles.ForEach((e) =>
                 {
                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertDOCDt), idDoc,e.RML_CODARTICULO?.ItemCode,e.RML_CANTIDAD,e.RML_PRECIO,
-                        e.RML_SUBTOTAL,e.RML_INDIC_IMPUESTO?.code,e.RML_DIM1?.id,e.RML_DIM3?.id,e.RML_ALMACEN?.id,e.RML_CUENTA_CNTBL.AcctCode);
+                        e.RML_SUBTOTAL,e.RML_INDIC_IMPUESTO?.code,e.RML_DIM1?.id,e.RML_DIM3?.id,e.RML_ALMACEN?.id,e.RML_CUENTA_CNTBL?.AcctCode);
                 });
 
                 hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_RDTotal), doc.RML_RD_ID, doc.RML_RD_ID);
@@ -318,12 +319,12 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                     if (e.ID != null) 
                     {
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_idDOCDet), e.ID, e.RML_CODARTICULO?.ItemCode, e.RML_CANTIDAD, e.RML_PRECIO,
-                        e.RML_SUBTOTAL, e.RML_INDIC_IMPUESTO?.code, e.RML_DIM1?.id, e.RML_DIM3?.id, e.RML_ALMACEN?.id, e.RML_CUENTA_CNTBL.AcctCode);
+                        e.RML_SUBTOTAL, e.RML_INDIC_IMPUESTO?.code, e.RML_DIM1?.id, e.RML_DIM3?.id, e.RML_ALMACEN?.id, e.RML_CUENTA_CNTBL?.AcctCode);
                     }
                     else
                     {
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertDOCDt), doc.ID, e.RML_CODARTICULO?.ItemCode, e.RML_CANTIDAD, e.RML_PRECIO,
-                        e.RML_SUBTOTAL, e.RML_INDIC_IMPUESTO?.code, e.RML_DIM1?.id, e.RML_DIM3?.id, e.RML_ALMACEN?.id, e.RML_CUENTA_CNTBL.AcctCode);
+                        e.RML_SUBTOTAL, e.RML_INDIC_IMPUESTO?.code, e.RML_DIM1?.id, e.RML_DIM3?.id, e.RML_ALMACEN?.id, e.RML_CUENTA_CNTBL?.AcctCode);
                     }
                     // Valida si ya tiene creado ID, si es así                     
                 });
@@ -517,7 +518,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                 List<string> aprobadores = valor.Split(',').Take(3).Where(aprobador => aprobador != "-1").ToList();
 
                 // Se encarga de insertar los aprobadores en la TABLA RML_WEB_APR_RD 
-                Task.Run(() => { hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertAprobadoresRD), idRendicion, usuarioId.ToString(), null, null, 0, estado == 9 ? aprobadores[aprobadores.Count == 2 ? 1 : 2] : estado == 11 ? aprobadores[0] : aprobadores[1]); });
+                 hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertAprobadoresRD), idRendicion, usuarioId.ToString(), null, null, 0, estado == 9 ? aprobadores[aprobadores.Count == 2 ? 1 : 2] : estado == 11 ? aprobadores[0] : aprobadores[1]); 
 
                 aprobadors = new List<Aprobador>();
                 aprobadors = ObtieneListaAprobadores(estado == 9 ? "3" : "2", idRendicion, "0"); // Autorizadores, solicitud, estado
@@ -601,8 +602,11 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadoresRD), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, rendicionId, 0);
                         hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "14", "", rendicionId);
 
-                        CreateResponse createResponse = new CreateResponse();
-                        createResponse.RML_APROBACIONFINALIZADA = 1;
+                        CreateResponse createResponse = new CreateResponse
+                        {
+                            RML_APROBACIONFINALIZADA = 1
+                        };
+                        list.Add(createResponse);
                         Task.Run(() => {
                             // Envio de correo
                             EnviarEmail envio = new EnviarEmail();
@@ -624,7 +628,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarMigradaRD), createResponse.DocEntry, createResponse.DocNum, rendicion.ID);
                                     // hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_migradaRdenSAP), listaAprobados[1].aprobadorNombre, listaAprobados.Count > 2 ? listaAprobados[2].aprobadorNombre : null, listaAprobados[0].aprobadorNombre, createResponse.DocEntry);
 
-                                    list.Add(createResponse);
+                                  
 
 
                                     envio.EnviarInformativo(rendicion.RML_EMPLEADO_ASIGNADO.email, rendicion.RML_EMPLEADO_ASIGNADO.Nombres, false,
@@ -635,7 +639,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                                 {
                                     string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
                                     hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "17", mensaje.Replace("'", ""), rendicionId);
-                                    envio.EnviarError(false, rendicion.RML_NRRENDICION, rendicion.ID.ToString(), rendicion.RML_FECHAREGIS);
+                                    envio.EnviarError(false, rendicion.RML_NRRENDICION, rendicion.ID.ToString(), rendicion.RML_FECHAREGIS, mensaje.Replace("'", ""));
                                     throw new Exception(mensaje);
                                 }
                             }
@@ -643,7 +647,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
                             {
                                 string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
                                 hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_cambiarEstadoRD), "17", mensaje.Replace("'", ""), rendicionId);
-                                envio.EnviarError(false, rendicion.RML_NRRENDICION, rendicion.ID.ToString(), rendicion.RML_FECHAREGIS);
+                                envio.EnviarError(false, rendicion.RML_NRRENDICION, rendicion.ID.ToString(), rendicion.RML_FECHAREGIS, mensaje.Replace("'", ""));
                             }
                         });
                         return Global.ReturnOk(list, respIncorrect);

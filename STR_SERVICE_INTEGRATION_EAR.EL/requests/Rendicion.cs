@@ -21,6 +21,7 @@ namespace STR_SERVICE_INTEGRATION_EAR.EL.Requests
         public double RML_TOTALRENDIDO { get; set; }
         public string RML_FECHAREGIS { get; set; }
         public double RML_TOTALAPERTURA { get; set; }
+        public int RML_APROBACION { get; set; }
        // public double U_CE_SLDI { get; set; }
         public int? RML_DOCENTRY { get; set; }
         public string RML_MOTIVOMIGR { get; set; }
