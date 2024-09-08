@@ -36,13 +36,18 @@ namespace STR_SERVICE_INTEGRATION_EAR.BL
             try
             {
                 // Obtiene VALOR de la contraseña - Si no hay nada es incorrecta
-                string passActual = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_tokenPass), user.username).ToString();
+                var passActual = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_tokenPass), user.username);
 
-                if (string.IsNullOrWhiteSpace(passActual)) throw new Exception(respIncorrect);
+                if (passActual == null)
+                    throw new Exception("No se encontró usuario");
+
+                string _passActual = passActual.ToString();
+
+                if (string.IsNullOrWhiteSpace(_passActual)) throw new Exception(respIncorrect);
 
                 // Obtiene contraseña y hace la validación
                 Encript validacion = new Encript();
-                bool reslt = validacion.ValidarCredenciales(passActual, user.password);
+                bool reslt = validacion.ValidarCredenciales(_passActual, user.password);
 
                 if (!reslt) throw new Exception(respIncorrect);
 
